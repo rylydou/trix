@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://e0nsos0oq5j4"]
+
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="1_u1jf7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8q4nx"]
+radius = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wepe"]
+shader = ExtResource("1_u1jf7")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ixyts"]
+lightmap_size_hint = Vector2i(162, 162)
+size = Vector2(32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ctpei"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[node name="Power Up" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8q4nx")
+debug_color = Color(1, 1, 1, 0)
+
+[node name="Circle" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_4wepe")
+mesh = SubResource("QuadMesh_ixyts")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "B"
+label_settings = SubResource("LabelSettings_ctpei")
+horizontal_alignment = 1
+vertical_alignment = 2

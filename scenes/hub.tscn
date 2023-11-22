@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://2y2wpfkcpfoe"]
+
+[ext_resource type="Script" path="res://scripts/hub/hub.gd" id="1_nib47"]
+[ext_resource type="PackedScene" uid="uid://hfcs8ly4yvr6" path="res://scenes/bubble_button.tscn" id="2_uveh0"]
+[ext_resource type="Resource" uid="uid://c7d4oldlxtid8" path="res://resources/worlds/rylys_test.tres" id="3_dfvi6"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="4_0btjx"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="5_wep7b"]
+
+[node name="Hub" type="Node2D"]
+script = ExtResource("1_nib47")
+button_scene = ExtResource("2_uveh0")
+worlds = Array[Resource("res://scripts/resources/world_data.gd")]([ExtResource("3_dfvi6")])
+
+[node name="Camera" parent="." instance=ExtResource("4_0btjx")]
+
+[node name="World Buttons" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -192)
+
+[node name="Level Buttons" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 64)
+
+[node name="Label" type="Label" parent="."]
+z_index = -200
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.5
+offset_top = -346.9
+offset_right = 195.5
+offset_bottom = -327.9
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Adjust settings such as sensitivity in the pause menu (esacpe)"
+horizontal_alignment = 1
+
+[node name="Player" parent="." instance=ExtResource("5_wep7b")]

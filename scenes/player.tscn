@@ -1,0 +1,163 @@
+[gd_scene load_steps=22 format=3 uid="uid://dmcpku4xskc2q"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_nnxgn"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="2_1qn5j"]
+[ext_resource type="PackedScene" uid="uid://bfn1c51ea1jl2" path="res://scenes/projectiles/basic.tscn" id="2_yqq0i"]
+[ext_resource type="Script" path="res://scripts/trail.gd" id="3_iem7g"]
+[ext_resource type="Script" path="res://scripts/cut_cast.gd" id="5_g05g5"]
+[ext_resource type="Script" path="res://scripts/hurt_cast.gd" id="6_3teke"]
+
+[sub_resource type="Curve" id="Curve_1uywh"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_3am3a"]
+_data = [Vector2(1e-05, 1), 100000.0, -1.00001, 1, 1, Vector2(1, 0), -3.0, 100000.0, 0, 1]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_3le4v"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q260u"]
+shader = ExtResource("2_1qn5j")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_dgb0f"]
+size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1oet"]
+shader = ExtResource("2_1qn5j")
+shader_parameter/radius = 0.75
+shader_parameter/fill = 0.25
+shader_parameter/radial_fill = 0.75
+
+[sub_resource type="QuadMesh" id="QuadMesh_dpo07"]
+size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smix2"]
+shader = ExtResource("2_1qn5j")
+shader_parameter/radius = 0.5
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8224t"]
+shader = ExtResource("2_1qn5j")
+shader_parameter/radius = 0.25
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3d8b0"]
+shader = ExtResource("2_1qn5j")
+shader_parameter/radius = 0.5
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_aguv1"]
+size = Vector2(32, 32)
+
+[sub_resource type="PrismMesh" id="PrismMesh_1totl"]
+size = Vector3(8, 8, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ij3y"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vqksh"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5cnmi"]
+radius = 4.0
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 10
+collision_layer = 2
+collision_mask = 0
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_nnxgn")
+frames_btw_shots = 5
+projectile = ExtResource("2_yqq0i")
+dir_history_weight_curve = SubResource("Curve_1uywh")
+
+[node name="Art" type="Node2D" parent="."]
+
+[node name="Trail" type="Line2D" parent="Art"]
+unique_name_in_owner = true
+top_level = true
+z_index = 50
+z_as_relative = false
+points = PackedVector2Array(0, 0, -42, 0, -57, 44, -35, 89, 44, 49, 77, 64)
+width = 8.0
+width_curve = SubResource("Curve_3am3a")
+gradient = SubResource("Gradient_3le4v")
+joint_mode = 1
+antialiased = true
+script = ExtResource("3_iem7g")
+
+[node name="Outline" type="MeshInstance2D" parent="Art"]
+modulate = Color(0, 0, 0, 1)
+z_index = -5
+z_as_relative = false
+material = SubResource("ShaderMaterial_q260u")
+mesh = SubResource("QuadMesh_dgb0f")
+
+[node name="Ring" type="MeshInstance2D" parent="Art"]
+unique_name_in_owner = true
+z_index = 100
+z_as_relative = false
+material = SubResource("ShaderMaterial_x1oet")
+rotation = -2.3562
+mesh = SubResource("QuadMesh_dpo07")
+
+[node name="Fill" type="MeshInstance2D" parent="Art/Ring"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+material = SubResource("ShaderMaterial_smix2")
+rotation = 2.3562
+mesh = SubResource("QuadMesh_dgb0f")
+
+[node name="Dot" type="MeshInstance2D" parent="Art"]
+unique_name_in_owner = true
+top_level = true
+z_index = 200
+z_as_relative = false
+material = SubResource("ShaderMaterial_8224t")
+mesh = SubResource("QuadMesh_dpo07")
+
+[node name="Outline" type="MeshInstance2D" parent="Art/Dot"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+material = SubResource("ShaderMaterial_3d8b0")
+mesh = SubResource("QuadMesh_aguv1")
+
+[node name="Arrow" type="MeshInstance2D" parent="Art"]
+z_index = 100
+z_as_relative = false
+position = Vector2(20, 0)
+rotation = -1.57079
+mesh = SubResource("PrismMesh_1totl")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4ij3y")
+
+[node name="Shoot Marker" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(32, 0)
+
+[node name="Cut Cast" type="ShapeCast2D" parent="."]
+unique_name_in_owner = true
+top_level = true
+shape = SubResource("CircleShape2D_vqksh")
+target_position = Vector2(-42, 0)
+collision_mask = 4
+script = ExtResource("5_g05g5")
+
+[node name="Hurt Cast" type="ShapeCast2D" parent="."]
+unique_name_in_owner = true
+top_level = true
+shape = SubResource("CircleShape2D_5cnmi")
+target_position = Vector2(-42, 0)
+collision_mask = 8
+script = ExtResource("6_3teke")

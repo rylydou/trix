@@ -1,0 +1,204 @@
+[gd_scene load_steps=11 format=3 uid="uid://xs2s7eh3s3yj"]
+
+[ext_resource type="Script" path="res://scripts/autoloads/game.gd" id="1_fjg5l"]
+[ext_resource type="Script" path="res://scripts/ui/fullscreen_button.gd" id="2_2y54c"]
+[ext_resource type="PackedScene" uid="uid://2y2wpfkcpfoe" path="res://scenes/hub.tscn" id="2_p0p3x"]
+[ext_resource type="StyleBox" uid="uid://cfbpeulqs4m5y" path="res://resources/styles/top/normal.tres" id="4_ie6do"]
+[ext_resource type="StyleBox" uid="uid://bs0286bkvfd38" path="res://resources/styles/top/hover.tres" id="5_xfr26"]
+[ext_resource type="StyleBox" uid="uid://36c3hfbkeg6v" path="res://resources/styles/none/normal.tres" id="6_aj5mh"]
+[ext_resource type="StyleBox" uid="uid://dn6rdj23usk47" path="res://resources/styles/none/hover.tres" id="7_b7rfk"]
+[ext_resource type="StyleBox" uid="uid://il0j50nawgxg" path="res://resources/styles/bottom/normal.tres" id="8_04imf"]
+[ext_resource type="StyleBox" uid="uid://b1ot0f8mxofca" path="res://resources/styles/bottom/hover.tres" id="9_4q1sj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbn4t"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Game" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_fjg5l")
+hub_scene = ExtResource("2_p0p3x")
+bad_shield_color = Color(0.988235, 0, 0.305882, 1)
+bad_vulnerable_color = Color(1, 1, 1, 1)
+
+[node name="Pause Menu" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbn4t")
+
+[node name="Fullscreen Button" type="Button" parent="Pause Menu"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+tooltip_text = "Alt+Enter"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Go Fullscreen"
+script = ExtResource("2_2y54c")
+
+[node name="Quit Button" type="Button" parent="Pause Menu"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+tooltip_text = "So long gay bowser!"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Quit to Desktop"
+
+[node name="How to play" type="Label" parent="Pause Menu"]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "===== How to play =====
+- Shoot shielded enemies (red) to make them vulnerable - don't get hit!
+- Slice through vulnerable enemies (white) to kill them - they are immune to shooting.
+
+===== Controls =====
+- Move the player with the Mouse
+- Press Left-Click or Z to shoot
+- Press Right-Click or X to aim (no movement)
+
+===== Cheats =====
+- Press R to restart the level
+
+PS: The theme of the Jam is 20 Seconds, and the game follows the optional theme of Overpowered."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Menu" type="VBoxContainer" parent="Pause Menu"]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 24
+
+[node name="Pause Label" type="Label" parent="Pause Menu/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "➡  Paused  ⬅"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Buttons" type="VBoxContainer" parent="Pause Menu/Menu"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Resume Button" type="Button" parent="Pause Menu/Menu/Buttons"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = ExtResource("4_ie6do")
+theme_override_styles/hover = ExtResource("5_xfr26")
+theme_override_styles/pressed = ExtResource("5_xfr26")
+theme_override_styles/disabled = ExtResource("6_aj5mh")
+theme_override_styles/focus = ExtResource("5_xfr26")
+text = "▶️  Resume"
+
+[node name="Restart Button" type="Button" parent="Pause Menu/Menu/Buttons"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = ExtResource("6_aj5mh")
+theme_override_styles/hover = ExtResource("7_b7rfk")
+theme_override_styles/pressed = ExtResource("7_b7rfk")
+theme_override_styles/disabled = ExtResource("6_aj5mh")
+theme_override_styles/focus = ExtResource("7_b7rfk")
+text = "↺  Restart (R)"
+
+[node name="Back Button" type="Button" parent="Pause Menu/Menu/Buttons"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = ExtResource("8_04imf")
+theme_override_styles/hover = ExtResource("9_4q1sj")
+theme_override_styles/pressed = ExtResource("9_4q1sj")
+theme_override_styles/disabled = ExtResource("8_04imf")
+theme_override_styles/focus = ExtResource("9_4q1sj")
+text = "↩  Back to Hub"
+
+[node name="Settings" type="VBoxContainer" parent="Pause Menu/Menu"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Settings Separator" type="HSeparator" parent="Pause Menu/Menu/Settings"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pause Menu/Menu/Settings/Settings Separator"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -9.5
+offset_right = 26.0
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Sensitivity" type="VBoxContainer" parent="Pause Menu/Menu/Settings"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBox" type="HBoxContainer" parent="Pause Menu/Menu/Settings/Sensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Pause Menu/Menu/Settings/Sensitivity/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Sensitivity"
+vertical_alignment = 2
+
+[node name="Sensitivity Label" type="Label" parent="Pause Menu/Menu/Settings/Sensitivity/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "100%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sensitivity Slider" type="HSlider" parent="Pause Menu/Menu/Settings/Sensitivity"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+mouse_default_cursor_shape = 10
+min_value = -3.0
+max_value = 3.0
+step = 0.5
+allow_greater = true
+allow_lesser = true
+scrollable = false
+tick_count = 3
+
+[connection signal="pressed" from="Pause Menu/Quit Button" to="." method="quit"]
+[connection signal="pressed" from="Pause Menu/Menu/Buttons/Resume Button" to="." method="resume"]
+[connection signal="pressed" from="Pause Menu/Menu/Buttons/Restart Button" to="." method="restart"]
+[connection signal="pressed" from="Pause Menu/Menu/Buttons/Back Button" to="." method="back"]
+[connection signal="value_changed" from="Pause Menu/Menu/Settings/Sensitivity/Sensitivity Slider" to="." method="_on_sensitivity_slider_value_changed"]

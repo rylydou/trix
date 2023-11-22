@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://hyp3cdcgw00s"]
+
+[ext_resource type="Script" path="res://scripts/enemies/splitter.gd" id="1_hfxnr"]
+[ext_resource type="Script" path="res://scripts/movers/curve_mover.gd" id="2_62uoe"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="2_ywckg"]
+[ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="3_ffbvy"]
+
+[sub_resource type="Curve" id="Curve_ib2p4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40eyh"]
+resource_local_to_scene = true
+shader = ExtResource("2_ywckg")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ejpld"]
+size = Vector2(128, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nh7ao"]
+radius = 64.0
+
+[node name="Splitter" type="CharacterBody2D"]
+modulate = Color(0.988235, 0, 0.305882, 1)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_hfxnr")
+shield_hp = 5
+
+[node name="CurveMover" type="Node" parent="."]
+script = ExtResource("2_62uoe")
+curve = SubResource("Curve_ib2p4")
+
+[node name="EdgeBouncer" type="Node" parent="."]
+script = ExtResource("3_ffbvy")
+
+[node name="Circle" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_40eyh")
+mesh = SubResource("QuadMesh_ejpld")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nh7ao")

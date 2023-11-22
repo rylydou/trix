@@ -1,0 +1,180 @@
+[gd_scene load_steps=27 format=3 uid="uid://c6lqfnih14n24"]
+
+[ext_resource type="Script" path="res://scripts/autoloads/particles.gd" id="1_bsmns"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="2_0nk2s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1etfl"]
+shader = ExtResource("2_0nk2s")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="Curve" id="Curve_8v8bg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3lnta"]
+width = 32
+texture_mode = 1
+curve = SubResource("Curve_8v8bg")
+
+[sub_resource type="Curve" id="Curve_x4imr"]
+_data = [Vector2(0, 0.5), 0.0, 3.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7eyxh"]
+width = 64
+curve = SubResource("Curve_x4imr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xj1n6"]
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 24.0
+scale_max = 24.0
+scale_curve = SubResource("CurveTexture_7eyxh")
+alpha_curve = SubResource("CurveTexture_3lnta")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ueuxs"]
+shader = ExtResource("2_0nk2s")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="Curve" id="Curve_x1d8s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5ndbp"]
+width = 32
+texture_mode = 1
+curve = SubResource("Curve_x1d8s")
+
+[sub_resource type="Curve" id="Curve_e8hx7"]
+_data = [Vector2(0, 0), 0.0, 3.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o84he"]
+width = 64
+curve = SubResource("Curve_e8hx7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g0rej"]
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 128.0
+scale_max = 128.0
+scale_curve = SubResource("CurveTexture_o84he")
+alpha_curve = SubResource("CurveTexture_5ndbp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cws1r"]
+shader = ExtResource("2_0nk2s")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="Curve" id="Curve_sqmvn"]
+_data = [Vector2(0, 1), 0.0, -3.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_unpku"]
+width = 32
+texture_mode = 1
+curve = SubResource("Curve_sqmvn")
+
+[sub_resource type="Curve" id="Curve_c8ryg"]
+_data = [Vector2(0, 0), 0.0, 2.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_u07qv"]
+width = 64
+curve = SubResource("Curve_c8ryg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_psqaq"]
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 256.0
+scale_max = 256.0
+scale_curve = SubResource("CurveTexture_u07qv")
+alpha_curve = SubResource("CurveTexture_unpku")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbgw2"]
+shader = ExtResource("2_0nk2s")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="Curve" id="Curve_8xamj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7efgq"]
+width = 32
+texture_mode = 1
+curve = SubResource("Curve_8xamj")
+
+[sub_resource type="Curve" id="Curve_di62s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 3.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_15a77"]
+width = 64
+curve = SubResource("Curve_di62s")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k7hck"]
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 96.0
+scale_max = 96.0
+scale_curve = SubResource("CurveTexture_15a77")
+alpha_curve = SubResource("CurveTexture_7efgq")
+
+[node name="Particles" type="Node2D" node_paths=PackedStringArray("impact", "shield_break", "kill", "warn")]
+script = ExtResource("1_bsmns")
+impact = NodePath("Impact")
+shield_break = NodePath("Shield Break")
+kill = NodePath("Kill")
+warn = NodePath("Warn")
+
+[node name="Impact" type="GPUParticles2D" parent="."]
+z_index = 50
+z_as_relative = false
+material = SubResource("ShaderMaterial_1etfl")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_xj1n6")
+lifetime = 0.25
+fixed_fps = 60
+
+[node name="Shield Break" type="GPUParticles2D" parent="."]
+z_index = -50
+z_as_relative = false
+material = SubResource("ShaderMaterial_ueuxs")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_g0rej")
+lifetime = 0.5
+fixed_fps = 60
+
+[node name="Kill" type="GPUParticles2D" parent="."]
+z_index = -50
+z_as_relative = false
+material = SubResource("ShaderMaterial_cws1r")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_psqaq")
+lifetime = 0.5
+explosiveness = 1.0
+fixed_fps = 60
+
+[node name="Warn" type="GPUParticles2D" parent="."]
+modulate = Color(0.988235, 0, 0.305882, 1)
+z_index = -110
+z_as_relative = false
+material = SubResource("ShaderMaterial_dbgw2")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_k7hck")
+fixed_fps = 60
