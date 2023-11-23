@@ -2,36 +2,35 @@ class_name Spawn extends Marker2D
 
 
 @export var required_for_completion := true
+@export var warn_ticks := 60
 
-@export var spawn_node: Node2D
-@export var spawn_scene: PackedScene
-@export var spawn_target: Node2D
+@export var target_parent: Node2D
+@export var scene: PackedScene
+@export var node: Node2D
 
 
 func _ready() -> void:
-	if not spawn_target:
-		spawn_target = owner
+	if not target_parent:
+		target_parent = owner
 	
-	if spawn_node:
-		spawn_scene = PackedScene.new()
-		spawn_node.queue_free()
-		var err := spawn_scene.pack(spawn_node)
+	if node:
+		scene = PackedScene.new()
+		node.queue_free()
+		var err := scene.pack(node)
 		
 		assert(err == OK, error_string(err))
 	
-	assert(spawn_scene, 'No scene or node was set to spawn.')
+	assert(scene, 'No scene or node was set to spawn.')
 
 
 func trigger() -> void:
-	var node: Node2D = spawn_scene.instantiate()
+	var offset := Vector2(randf_range(-gizmo_extents, gizmo_extents), randf_range(-gizmo_extents, gizmo_extents))
+	var target_position = global_position + offset
 	
-	if node.has_method('get_init_position'):
-		var init_position: Vector2 = node.call('get_init_position', spawn_target)
-		node.position = init_position
-	else:
-		var offset := Vector2(randf_range(-gizmo_extents, gizmo_extents), randf_range(-gizmo_extents, gizmo_extents))
-		node.position = global_position + offset
 	
-	var t := create_tween()
-	t.tween_callback(func(): spawn_target.add_child(node)).set_delay(1.0)
-	Particles.emit_warn(node.global_position)
+	var warn_node: Warn = Consts.scn_warn.instantiate()
+	warn_node.node = scene.instantiate()
+	warn_node.ticks = warn_ticks
+	
+	target_parent.add_child(warn_node)
+	warn_node.global_position = target_position

@@ -1,14 +1,35 @@
-[gd_scene load_steps=11 format=3 uid="uid://xs2s7eh3s3yj"]
+[gd_scene load_steps=26 format=3 uid="uid://xs2s7eh3s3yj"]
 
 [ext_resource type="Script" path="res://scripts/autoloads/game.gd" id="1_fjg5l"]
 [ext_resource type="Script" path="res://scripts/ui/fullscreen_button.gd" id="2_2y54c"]
 [ext_resource type="PackedScene" uid="uid://2y2wpfkcpfoe" path="res://scenes/hub.tscn" id="2_p0p3x"]
+[ext_resource type="StyleBox" uid="uid://kxvhto7mjodl" path="res://resources/styles/left/normal.tres" id="3_35ky0"]
+[ext_resource type="StyleBox" uid="uid://cfjm0j6qa3ya3" path="res://resources/styles/left/hover.tres" id="4_1322k"]
 [ext_resource type="StyleBox" uid="uid://cfbpeulqs4m5y" path="res://resources/styles/top/normal.tres" id="4_ie6do"]
+[ext_resource type="StyleBox" uid="uid://cg2d6la3ufjno" path="res://resources/styles/right/normal.tres" id="5_x11d8"]
 [ext_resource type="StyleBox" uid="uid://bs0286bkvfd38" path="res://resources/styles/top/hover.tres" id="5_xfr26"]
 [ext_resource type="StyleBox" uid="uid://36c3hfbkeg6v" path="res://resources/styles/none/normal.tres" id="6_aj5mh"]
+[ext_resource type="StyleBox" uid="uid://crmgn4tj3jt5k" path="res://resources/styles/right/hover.tres" id="6_g4ftt"]
 [ext_resource type="StyleBox" uid="uid://dn6rdj23usk47" path="res://resources/styles/none/hover.tres" id="7_b7rfk"]
 [ext_resource type="StyleBox" uid="uid://il0j50nawgxg" path="res://resources/styles/bottom/normal.tres" id="8_04imf"]
 [ext_resource type="StyleBox" uid="uid://b1ot0f8mxofca" path="res://resources/styles/bottom/hover.tres" id="9_4q1sj"]
+[ext_resource type="Shader" path="res://shaders/diamond_fade.gdshader" id="10_eqddc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h4pb"]
+content_margin_left = 32.0
+content_margin_right = 32.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_bottom_right = 32
+corner_detail = 1
+
+[sub_resource type="Animation" id="Animation_cobdn"]
+resource_name = "show"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_13ugc"]
+_data = {
+"show": SubResource("Animation_cobdn")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbn4t"]
 content_margin_left = 12.0
@@ -17,12 +38,205 @@ content_margin_right = 12.0
 content_margin_bottom = 12.0
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_k12k5"]
+resource_name = "show"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu/Pause Label:modulate")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7rf3b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu/Pause Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vo4kc"]
+_data = {
+"RESET": SubResource("Animation_7rf3b"),
+"show": SubResource("Animation_k12k5")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohr7q"]
+shader = ExtResource("10_eqddc")
+shader_parameter/progress = 0.0
+shader_parameter/diamond_pixel_size = 64.0
+
+[sub_resource type="Animation" id="Animation_kl6nt"]
+resource_name = "trans"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fade:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_hj7in"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fade:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3xdio"]
+_data = {
+"RESET": SubResource("Animation_hj7in"),
+"trans": SubResource("Animation_kl6nt")
+}
+
 [node name="Game" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_fjg5l")
 hub_scene = ExtResource("2_p0p3x")
-bad_shield_color = Color(0.988235, 0, 0.305882, 1)
-bad_vulnerable_color = Color(1, 1, 1, 1)
+
+[node name="Win Screen" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="Win Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -267.5
+offset_top = -93.5
+offset_right = 267.5
+offset_bottom = 93.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Win Label" type="Label" parent="Win Screen/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 8
+theme_override_font_sizes/font_size = 128
+theme_override_styles/normal = SubResource("StyleBoxFlat_6h4pb")
+text = "YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="Win Screen/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Replay Level" type="Button" parent="Win Screen/VBox/HBox"]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("3_35ky0")
+theme_override_styles/hover = ExtResource("4_1322k")
+theme_override_styles/pressed = ExtResource("4_1322k")
+theme_override_styles/disabled = ExtResource("3_35ky0")
+theme_override_styles/focus = ExtResource("4_1322k")
+text = "↺  Replay Level"
+
+[node name="Next Button" type="Button" parent="Win Screen/VBox/HBox"]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("5_x11d8")
+theme_override_styles/hover = ExtResource("6_g4ftt")
+theme_override_styles/pressed = ExtResource("6_g4ftt")
+theme_override_styles/disabled = ExtResource("5_x11d8")
+theme_override_styles/focus = ExtResource("6_g4ftt")
+text = "⇒  Next Level"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Win Screen"]
+libraries = {
+"": SubResource("AnimationLibrary_13ugc")
+}
 
 [node name="Pause Menu" type="PanelContainer" parent="."]
 unique_name_in_owner = true
@@ -197,6 +411,26 @@ allow_greater = true
 allow_lesser = true
 scrollable = false
 tick_count = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pause Menu"]
+libraries = {
+"": SubResource("AnimationLibrary_vo4kc")
+}
+
+[node name="Fade" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ohr7q")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3xdio")
+}
 
 [connection signal="pressed" from="Pause Menu/Quit Button" to="." method="quit"]
 [connection signal="pressed" from="Pause Menu/Menu/Buttons/Resume Button" to="." method="resume"]

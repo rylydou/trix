@@ -18,6 +18,8 @@ point_count = 16
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_o1bhj")
+time_limit = null
+win_delay_ticks = null
 
 [node name="Camera" parent="." instance=ExtResource("1_1kj4c")]
 
@@ -27,26 +29,27 @@ parallel = true
 
 [node name="Loop 1" type="Node2D" parent="Start"]
 script = ExtResource("3_7vo70")
-count = 15
 
 [node name="Delay" type="Node2D" parent="Start/Loop 1"]
 script = ExtResource("6_45q0t")
 ticks = 15
 
-[node name="Spawn" type="Marker2D" parent="Start/Loop 1" node_paths=PackedStringArray("spawn_target")]
+[node name="Spawn" type="Marker2D" parent="Start/Loop 1" node_paths=PackedStringArray("target_parent")]
 position = Vector2(496, -161)
 gizmo_extents = 0.0
 script = ExtResource("4_x1wfk")
-spawn_scene = ExtResource("5_ki41h")
-spawn_target = NodePath("../../../Path 1")
+warn_ticks = 30
+scene = ExtResource("5_ki41h")
+target_parent = NodePath("../../../Path 1")
 
 [node name="Loop 2" type="Node2D" parent="Start"]
 script = ExtResource("3_7vo70")
+count = 5
 
 [node name="Spawn" type="Marker2D" parent="Start/Loop 2"]
 gizmo_extents = 300.0
 script = ExtResource("4_x1wfk")
-spawn_scene = ExtResource("7_uqo5f")
+scene = ExtResource("7_uqo5f")
 
 [node name="Delay" type="Node2D" parent="Start/Loop 2"]
 script = ExtResource("6_45q0t")

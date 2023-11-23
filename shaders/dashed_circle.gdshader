@@ -3,12 +3,13 @@ shader_type canvas_item;
 
 uniform float radius: hint_range(0.0, 1.0) = 1.0;
 uniform float fill: hint_range(0.0, 1.0) = 1.0;
-uniform float radial_fill: hint_range(0.0, 1.0) = 1.0;
+uniform float dash_count = 8.0;
 
 
 void fragment() {
 	float half_radius = radius * 0.5;
 	float quarter_fill = fill * 0.25;
+	float dash = 1. / dash_count * 0.5;
 	
 	vec2 uv = UV - vec2(0.5, 0.5);
 	float len = length(uv);
@@ -21,9 +22,9 @@ void fragment() {
 	// Radial Cutout
 	float theta = atan(uv.x, -uv.y);
 	float angle = theta / TAU + 0.5;
-	float radial_feather = fwidth(angle);
-	float radial_alpha = smoothstep(radial_fill + radial_feather, radial_fill, angle);
+	float dash_feather = fwidth(angle);
+	float dash_alpha = smoothstep(dash + dash_feather, dash, mod(angle, dash * 2.0));
 	
-	float fill_alpha = min(ring_alpha, radial_alpha);
+	float fill_alpha = min(ring_alpha, dash_alpha);
 	COLOR.a *= fill_alpha;
 }

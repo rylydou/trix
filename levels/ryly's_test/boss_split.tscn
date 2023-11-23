@@ -8,6 +8,8 @@
 
 [node name="Split Boss" type="Node2D"]
 script = ExtResource("1_wgtmb")
+time_limit = null
+win_delay_ticks = null
 
 [node name="Camera" parent="." instance=ExtResource("1_ajuyn")]
 

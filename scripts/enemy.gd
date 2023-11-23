@@ -33,7 +33,8 @@ func set_shield(new_hp: int) -> void:
 	if had_shield and not has_shield:
 		_shield_broken()
 	
-	modulate = Game.bad_shield_color if has_shield else Game.bad_vulnerable_color
+	modulate = Calc.get_color(new_hp)
+	
 	set_collision_layer_value(4, has_shield)
 
 

@@ -7,7 +7,7 @@ class_name Player extends CharacterBody2D
 
 @export_group('Shooting')
 @export var aim_length_limit := 96.0
-@export var ticks_btw_shots := 3
+@export var ticks_btw_shots := 5
 @export var projectile: PackedScene
 
 @export_group('Trail')
@@ -83,4 +83,4 @@ func shoot(angle := 0.0) -> void:
 	proj.global_rotation = shoot_marker.global_rotation + angle
 	get_tree().current_scene.add_child(proj)
 	
-	velocity -= Vector2.from_angle(global_rotation) * 10
+	velocity -= Vector2.from_angle(global_rotation) * 6

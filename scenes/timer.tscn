@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg3rr5k4gxd1l"]
+[gd_scene load_steps=4 format=3 uid="uid://cs1g4wod6bck4"]
 
-[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="1_d50dk"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="1_l24pr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_asf2m"]
-shader = ExtResource("1_d50dk")
+shader = ExtResource("1_l24pr")
 shader_parameter/radius = 1.0
 shader_parameter/fill = 0.062
 shader_parameter/radial_fill = 0.67
@@ -11,11 +11,8 @@ shader_parameter/radial_fill = 0.67
 [sub_resource type="QuadMesh" id="QuadMesh_4uels"]
 size = Vector2(256, 256)
 
-[node name="Level Background" type="Node2D"]
+[node name="Timer" type="MeshInstance2D"]
 z_index = -200
 z_as_relative = false
-
-[node name="Timer" type="MeshInstance2D" parent="."]
-unique_name_in_owner = true
 material = SubResource("ShaderMaterial_asf2m")
 mesh = SubResource("QuadMesh_4uels")

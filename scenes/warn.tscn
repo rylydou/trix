@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bexryefgii5jk"]
+
+[ext_resource type="Shader" path="res://shaders/dashed_circle.gdshader" id="1_c3mx2"]
+[ext_resource type="Script" path="res://scripts/warn.gd" id="2_ewol0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3cdpn"]
+resource_local_to_scene = true
+shader = ExtResource("1_c3mx2")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.125
+shader_parameter/dash_count = 6.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_kvgeq"]
+size = Vector2(64, 64)
+
+[node name="Warn" type="MeshInstance2D" groups=["enemy"]]
+material = SubResource("ShaderMaterial_3cdpn")
+mesh = SubResource("QuadMesh_kvgeq")
+script = ExtResource("2_ewol0")

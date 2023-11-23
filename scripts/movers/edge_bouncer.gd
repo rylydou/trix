@@ -12,11 +12,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not is_instance_valid(target): return
 	
+	var pos := target.global_position
 	var direction := Vector2.from_angle(target.rotation)
 	var bounds := Game.bounds
-	if abs(target.global_position.x) > bounds.x:
+	if abs(pos.x) > bounds.x and sign(direction.x) == sign(pos.x):
 		direction.x = -direction.x
-	if abs(target.global_position.y) > bounds.y:
+	if abs(pos.y) > bounds.y and sign(direction.y) == sign(pos.y):
 		direction.y = -direction.y
 	
 	target.rotation = direction.angle()

@@ -1,6 +1,11 @@
 class_name Calc extends RefCounted
 
 
+static func get_color(num: int) -> Color:
+	if num <= 0: return Color.from_ok_hsl(0, 0, .67)
+	return Color.from_ok_hsl(hash(num), 1.0, 0.5)
+
+
 static func get_avg_dir(dirs: PackedVector2Array, weight_curve: Curve) -> Vector2:
 	var numer = Vector2.ZERO
 	var denom = 0
