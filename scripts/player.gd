@@ -7,7 +7,7 @@ class_name Player extends CharacterBody2D
 
 @export_group('Shooting')
 @export var aim_length_limit := 96.0
-@export var frames_btw_shots := 3
+@export var ticks_btw_shots := 3
 @export var projectile: PackedScene
 
 @export_group('Trail')
@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	fire_cooldown -= 1
 	if input_shoot:
 		if fire_cooldown <= 0:
-			fire_cooldown = frames_btw_shots
+			fire_cooldown = ticks_btw_shots
 			shoot()
 	
 	
@@ -73,6 +73,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Dot crosshair
 	dot_node.position = global_position + aim_vector
+	
+	Game.mouse_delta = Vector2.ZERO
+
 
 func shoot(angle := 0.0) -> void:
 	var proj := projectile.instantiate()

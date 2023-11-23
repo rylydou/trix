@@ -33,6 +33,7 @@ func _ready() -> void:
 	if not OS.is_debug_build():
 		get_window().focus_exited.connect(pause)
 
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed('restart'):
 		restart()
@@ -43,8 +44,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed('pause'):
 			pause()
 			return
-	
-	mouse_delta = Vector2.ZERO
 
 
 func _input(event: InputEvent) -> void:

@@ -20,10 +20,8 @@ func _shield_broken() -> void:
 	clone1.size = size - 1
 	clone2.size = size - 1
 	
-	clone1.invuln_frames = 15
-	clone2.invuln_frames = 15
-	
-	print('spawning clones')
+	clone1.invuln_ticks = 15
+	clone2.invuln_ticks = 15
 	
 	get_tree().current_scene.add_child(clone1)
 	get_tree().current_scene.add_child(clone2)

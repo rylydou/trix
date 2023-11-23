@@ -26,6 +26,7 @@ bad_vulnerable_color = Color(1, 1, 1, 1)
 
 [node name="Pause Menu" type="PanelContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

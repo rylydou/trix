@@ -10,6 +10,7 @@
 script = ExtResource("1_nib47")
 button_scene = ExtResource("2_uveh0")
 worlds = Array[Resource("res://scripts/resources/world_data.gd")]([ExtResource("3_dfvi6")])
+metadata/level_type = &"hub"
 
 [node name="Camera" parent="." instance=ExtResource("4_0btjx")]
 

@@ -6,7 +6,7 @@ signal killed()
 
 @export var shield_hp := 1
 @export var friction := 0.99
-@export var invuln_frames := 0
+@export var invuln_ticks := 0
 
 
 func _init() -> void:
@@ -21,8 +21,8 @@ func _physics_process(delta: float) -> void:
 	velocity *= friction
 	move_and_slide()
 	
-	if invuln_frames > 0:
-		invuln_frames -= 1
+	if invuln_ticks > 0:
+		invuln_ticks -= 1
 
 
 func set_shield(new_hp: int) -> void:
@@ -38,7 +38,7 @@ func set_shield(new_hp: int) -> void:
 
 
 func take_damage(damage: int, knockback: Vector2) -> bool:
-	if invuln_frames > 0: return false
+	if invuln_ticks > 0: return false
 	if shield_hp <= 0: return true
 	
 	set_shield(shield_hp - damage)
@@ -47,7 +47,7 @@ func take_damage(damage: int, knockback: Vector2) -> bool:
 
 
 func take_cut(dir: Vector2) -> bool:
-	if invuln_frames > 0: return false
+	if invuln_ticks > 0: return false
 	if shield_hp > 0: return false
 	
 	_death()

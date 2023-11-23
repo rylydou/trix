@@ -1,6 +1,8 @@
 class_name Spawn extends Marker2D
 
 
+@export var required_for_completion := true
+
 @export var spawn_node: Node2D
 @export var spawn_scene: PackedScene
 @export var spawn_target: Node2D
@@ -10,12 +12,14 @@ func _ready() -> void:
 	if not spawn_target:
 		spawn_target = owner
 	
-	if not spawn_scene:
+	if spawn_node:
 		spawn_scene = PackedScene.new()
 		spawn_node.queue_free()
 		var err := spawn_scene.pack(spawn_node)
 		
 		assert(err == OK, error_string(err))
+	
+	assert(spawn_scene, 'No scene or node was set to spawn.')
 
 
 func trigger() -> void:
