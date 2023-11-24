@@ -3,10 +3,10 @@ class_name Enemy extends CharacterBody2D
 signal shield_broken()
 signal killed()
 
-
 @export var shield_hp := 1
-@export var friction := 0.99
 @export var invuln_ticks := 0
+@export var friction := 0.99
+@export var warn_radius := 16.0
 
 
 func _init() -> void:

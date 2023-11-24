@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://xs2s7eh3s3yj"]
+[gd_scene load_steps=29 format=3 uid="uid://xs2s7eh3s3yj"]
 
 [ext_resource type="Script" path="res://scripts/autoloads/game.gd" id="1_fjg5l"]
 [ext_resource type="Script" path="res://scripts/ui/fullscreen_button.gd" id="2_2y54c"]
@@ -23,24 +23,48 @@ corner_radius_top_left = 32
 corner_radius_bottom_right = 32
 corner_detail = 1
 
-[sub_resource type="Animation" id="Animation_cobdn"]
-resource_name = "show"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_13ugc"]
-_data = {
-"show": SubResource("Animation_cobdn")
+[sub_resource type="Animation" id="Animation_0xwrv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBox/HBox:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBox/Win Label:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbn4t"]
-content_margin_left = 12.0
-content_margin_top = 12.0
-content_margin_right = 12.0
-content_margin_bottom = 12.0
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_k12k5"]
-resource_name = "show"
-step = 0.05
+[sub_resource type="Animation" id="Animation_m8ywg"]
+resource_name = "hide"
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -51,20 +75,62 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Menu/Pause Label:modulate")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+
+[sub_resource type="Animation" id="Animation_cobdn"]
+resource_name = "show"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBox/HBox:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBox/Win Label:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_13ugc"]
+_data = {
+"RESET": SubResource("Animation_0xwrv"),
+"hide": SubResource("Animation_m8ywg"),
+"show": SubResource("Animation_cobdn")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbn4t"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_7rf3b"]
 length = 0.001
@@ -93,9 +159,55 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_bbdba"]
+resource_name = "hide"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_k12k5"]
+resource_name = "show"
+length = 0.350005
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menu/Pause Label:modulate")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vo4kc"]
 _data = {
 "RESET": SubResource("Animation_7rf3b"),
+"hide": SubResource("Animation_bbdba"),
 "show": SubResource("Animation_k12k5")
 }
 
@@ -104,39 +216,12 @@ shader = ExtResource("10_eqddc")
 shader_parameter/progress = 0.0
 shader_parameter/diamond_pixel_size = 64.0
 
-[sub_resource type="Animation" id="Animation_kl6nt"]
-resource_name = "trans"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Fade:material:shader_parameter/progress")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 2.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Fade:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
 [sub_resource type="Animation" id="Animation_hj7in"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Fade:material:shader_parameter/progress")
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -148,7 +233,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Fade:visible")
+tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -156,6 +241,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_kl6nt"]
+resource_name = "trans"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3xdio"]
@@ -217,6 +329,8 @@ alignment = 1
 
 [node name="Replay Level" type="Button" parent="Win Screen/VBox/HBox"]
 layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = ExtResource("3_35ky0")
 theme_override_styles/hover = ExtResource("4_1322k")
 theme_override_styles/pressed = ExtResource("4_1322k")
@@ -226,6 +340,8 @@ text = "↺  Replay Level"
 
 [node name="Next Button" type="Button" parent="Win Screen/VBox/HBox"]
 layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = ExtResource("5_x11d8")
 theme_override_styles/hover = ExtResource("6_g4ftt")
 theme_override_styles/pressed = ExtResource("6_g4ftt")
@@ -233,7 +349,8 @@ theme_override_styles/disabled = ExtResource("5_x11d8")
 theme_override_styles/focus = ExtResource("6_g4ftt")
 text = "⇒  Next Level"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Win Screen"]
+[node name="Win Animation" type="AnimationPlayer" parent="Win Screen"]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_13ugc")
 }
@@ -412,7 +529,8 @@ allow_lesser = true
 scrollable = false
 tick_count = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pause Menu"]
+[node name="Pause Animation" type="AnimationPlayer" parent="Pause Menu"]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_vo4kc")
 }
@@ -427,13 +545,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Transition Animation" type="AnimationPlayer" parent="Fade"]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_3xdio")
 }
 
+[connection signal="pressed" from="Win Screen/VBox/HBox/Replay Level" to="." method="restart_level"]
+[connection signal="pressed" from="Win Screen/VBox/HBox/Next Button" to="." method="next_level"]
 [connection signal="pressed" from="Pause Menu/Quit Button" to="." method="quit"]
 [connection signal="pressed" from="Pause Menu/Menu/Buttons/Resume Button" to="." method="resume"]
-[connection signal="pressed" from="Pause Menu/Menu/Buttons/Restart Button" to="." method="restart"]
-[connection signal="pressed" from="Pause Menu/Menu/Buttons/Back Button" to="." method="back"]
+[connection signal="pressed" from="Pause Menu/Menu/Buttons/Restart Button" to="." method="restart_level"]
+[connection signal="pressed" from="Pause Menu/Menu/Buttons/Back Button" to="." method="back_to_hub"]
 [connection signal="value_changed" from="Pause Menu/Menu/Settings/Sensitivity/Sensitivity Slider" to="." method="_on_sensitivity_slider_value_changed"]

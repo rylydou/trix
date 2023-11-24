@@ -8,7 +8,10 @@ var sensitivity_multiplier := 1.0
 @export var hub_scene: PackedScene
 
 
-@onready var pause_menu: Control = %'Pause Menu'
+@onready var transition_anim: AnimationPlayer = %'Transition Animation'
+@onready var pause_anim: AnimationPlayer = %'Pause Animation'
+@onready var win_anim: AnimationPlayer = %'Win Animation'
+
 @onready var sensitivity_slider: Slider = %'Sensitivity Slider'
 @onready var sensitivity_label: Label = %'Sensitivity Label'
 
@@ -31,7 +34,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed('restart'):
-		restart()
+		restart_level()
 		return
 	
 	if get_tree().paused: return
@@ -52,12 +55,12 @@ func _input(event: InputEvent) -> void:
 func pause() -> void:
 	get_tree().paused = true
 	release_mouse()
-	pause_menu.show()
+	pause_anim.play('show')
 
 func resume() -> void:
-	pause_menu.hide()
 	capture_mouse()
 	get_tree().paused = false
+	pause_anim.play('hide')
 
 
 func capture_mouse() -> void:
@@ -68,27 +71,34 @@ func release_mouse() -> void:
 
 
 func win() -> void:
-	print('>> You win!')
-	restart()
+	get_tree().paused = true
+	release_mouse()
+	win_anim.play('show')
+
 
 func fail_out_of_time() -> void:
 	print('>> Out of time!')
-	restart()
+	restart_level()
 
 
-func restart() -> void:
+func restart_level() -> void:
 	get_tree().paused = true
 	get_tree().reload_current_scene()
 	await get_tree().process_frame
 	Particles.restart_all()
+	win_anim.play('hide')
 	resume()
 
 
-func back() -> void:
+func back_to_hub() -> void:
 	get_tree().change_scene_to_packed(hub_scene)
 	await get_tree().process_frame
 	Particles.restart_all()
 	resume()
+
+
+func next_level() -> void:
+	print('>> Next level')
 
 
 func quit() -> void:

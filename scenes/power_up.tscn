@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://e0nsos0oq5j4"]
+[gd_scene load_steps=7 format=3 uid="uid://e0nsos0oq5j4"]
 
+[ext_resource type="Script" path="res://scripts/power_up_orb.gd" id="1_j520u"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="1_u1jf7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8q4nx"]
@@ -22,6 +23,7 @@ font_color = Color(0, 0, 0, 1)
 [node name="Power Up" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
+script = ExtResource("1_j520u")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8q4nx")

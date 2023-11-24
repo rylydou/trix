@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://dgv3s1f78u48u"]
 
-[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="1_1kj4c"]
-[ext_resource type="Script" path="res://scripts/level.gd" id="1_o1bhj"]
-[ext_resource type="Script" path="res://scripts/events/start.gd" id="2_anxn7"]
-[ext_resource type="Script" path="res://scripts/events/loop.gd" id="3_7vo70"]
-[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="4_x1wfk"]
-[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/path_ball.tscn" id="5_ki41h"]
-[ext_resource type="Script" path="res://scripts/events/delay.gd" id="6_45q0t"]
-[ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/bouncy_ball.tscn" id="7_uqo5f"]
-[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="8_odfbo"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_1eubm"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_x2x1t"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_tyqj4"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="4_qeaqc"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="5_sdext"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="6_1pcix"]
+[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/path_ball.tscn" id="7_yjb7s"]
+[ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/bouncy_ball.tscn" id="8_i5y4y"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_o5ev6"]
 
 [sub_resource type="Curve2D" id="Curve2D_uv1gb"]
 _data = {
@@ -17,46 +17,46 @@ _data = {
 point_count = 16
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_o1bhj")
+script = ExtResource("1_1eubm")
 time_limit = null
 win_delay_ticks = null
 
-[node name="Camera" parent="." instance=ExtResource("1_1kj4c")]
+[node name="Camera" parent="." instance=ExtResource("2_x2x1t")]
 
 [node name="Start" type="Node2D" parent="."]
-script = ExtResource("2_anxn7")
+script = ExtResource("3_tyqj4")
 parallel = true
 
 [node name="Loop 1" type="Node2D" parent="Start"]
-script = ExtResource("3_7vo70")
+script = ExtResource("4_qeaqc")
 
 [node name="Delay" type="Node2D" parent="Start/Loop 1"]
-script = ExtResource("6_45q0t")
+script = ExtResource("5_sdext")
 ticks = 15
 
 [node name="Spawn" type="Marker2D" parent="Start/Loop 1" node_paths=PackedStringArray("target_parent")]
 position = Vector2(496, -161)
 gizmo_extents = 0.0
-script = ExtResource("4_x1wfk")
+script = ExtResource("6_1pcix")
 warn_ticks = 30
 target_parent = NodePath("../../../Path 1")
-scene = ExtResource("5_ki41h")
+scene = ExtResource("7_yjb7s")
 
 [node name="Loop 2" type="Node2D" parent="Start"]
-script = ExtResource("3_7vo70")
+script = ExtResource("4_qeaqc")
 count = 5
 
 [node name="Spawn" type="Marker2D" parent="Start/Loop 2"]
 gizmo_extents = 300.0
-script = ExtResource("4_x1wfk")
-scene = ExtResource("7_uqo5f")
+script = ExtResource("6_1pcix")
+scene = ExtResource("8_i5y4y")
 
 [node name="Delay" type="Node2D" parent="Start/Loop 2"]
-script = ExtResource("6_45q0t")
+script = ExtResource("5_sdext")
 ticks = 15
 
 [node name="Path 1" type="Path2D" parent="."]
 position = Vector2(43, -18)
 curve = SubResource("Curve2D_uv1gb")
 
-[node name="Player" parent="." instance=ExtResource("8_odfbo")]
+[node name="Player" parent="." instance=ExtResource("9_o5ev6")]

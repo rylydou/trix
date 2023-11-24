@@ -2,7 +2,7 @@ class_name Calc extends RefCounted
 
 
 static func get_color(num: int) -> Color:
-	if num <= 0: return Color.from_ok_hsl(0, 0, .67)
+	if num <= 0: return Color.from_ok_hsl(0.0, 0.0, 1.0)
 	return Color.from_ok_hsl(hash(num), 1.0, 0.5)
 
 

@@ -1,48 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://2y2wpfkcpfoe"]
+[gd_scene load_steps=7 format=3 uid="uid://2y2wpfkcpfoe"]
 
 [ext_resource type="Script" path="res://scripts/hub/hub.gd" id="1_nib47"]
 [ext_resource type="PackedScene" uid="uid://hfcs8ly4yvr6" path="res://scenes/bubble_button.tscn" id="2_uveh0"]
-[ext_resource type="Resource" uid="uid://c7d4oldlxtid8" path="res://resources/worlds/rylys_test.tres" id="3_dfvi6"]
+[ext_resource type="Resource" uid="uid://c7d4oldlxtid8" path="res://resources/worlds/ryly.tres" id="3_bmoob"]
 [ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="4_0btjx"]
-[ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="4_h2tce"]
-[ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="5_mlu6j"]
+[ext_resource type="Resource" uid="uid://ccyx7hylpi2yd" path="res://resources/worlds/blake.tres" id="4_4kpw7"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="5_wep7b"]
-[ext_resource type="Texture2D" uid="uid://bk26rlq02oipv" path="res://content/sprites/fruits/eggplant.svg" id="6_gsaob"]
-
-[sub_resource type="Resource" id="Resource_tanjt"]
-script = ExtResource("4_h2tce")
-name = "Ez"
-is_boss = false
-path = "res://levels/blake/ez.tscn"
-
-[sub_resource type="Resource" id="Resource_tky8k"]
-script = ExtResource("4_h2tce")
-name = "Ez2"
-is_boss = false
-path = "res://levels/blake/Ez2.tscn"
-
-[sub_resource type="Resource" id="Resource_kerx8"]
-script = ExtResource("4_h2tce")
-name = "Ez3"
-is_boss = false
-path = "res://levels/blake/Ez3.tscn"
-
-[sub_resource type="Resource" id="Resource_8tkkd"]
-script = ExtResource("4_h2tce")
-name = "Blake test"
-is_boss = false
-path = "res://levels/blake/blaketest.tscn"
-
-[sub_resource type="Resource" id="Resource_pmwqo"]
-script = ExtResource("5_mlu6j")
-name = "Blake Test"
-sprite = ExtResource("6_gsaob")
-levels = Array[ExtResource("4_h2tce")]([SubResource("Resource_tanjt"), SubResource("Resource_tky8k"), SubResource("Resource_kerx8"), SubResource("Resource_8tkkd")])
 
 [node name="Hub" type="Node2D"]
 script = ExtResource("1_nib47")
 button_scene = ExtResource("2_uveh0")
-worlds = Array[ExtResource("5_mlu6j")]([ExtResource("3_dfvi6"), SubResource("Resource_pmwqo")])
+worlds = Array[Resource("res://scripts/resources/world_data.gd")]([ExtResource("3_bmoob"), ExtResource("4_4kpw7")])
 metadata/level_type = &"hub"
 
 [node name="Camera" parent="." instance=ExtResource("4_0btjx")]

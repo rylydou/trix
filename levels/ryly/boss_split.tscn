@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://17l453q3r7y8"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_ue87u"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_mfig4"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_ugy5x"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="4_56bw4"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="5_irurj"]
+
+[node name="Split Boss" type="Node2D"]
+script = ExtResource("1_ue87u")
+time_limit = null
+win_delay_ticks = null
+
+[node name="Camera" parent="." instance=ExtResource("2_mfig4")]
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_ugy5x")
+
+[node name="Spawn" type="Marker2D" parent="Start"]
+gizmo_extents = 0.0
+script = ExtResource("4_56bw4")
+
+[node name="Player" parent="." instance=ExtResource("5_irurj")]

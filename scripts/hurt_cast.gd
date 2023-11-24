@@ -1,8 +1,11 @@
 extends ShapeCast2D
 
+
 @export var is_active := true
 
+
 var player: Player
+
 
 func _ready() -> void:
 	player = owner
@@ -25,4 +28,4 @@ func _physics_process(delta: float) -> void:
 			is_dangerous = reported
 		
 		if is_dangerous:
-			Game.restart()
+			Game.restart_level()
