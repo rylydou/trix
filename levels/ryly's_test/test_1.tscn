@@ -39,8 +39,8 @@ position = Vector2(496, -161)
 gizmo_extents = 0.0
 script = ExtResource("4_x1wfk")
 warn_ticks = 30
-scene = ExtResource("5_ki41h")
 target_parent = NodePath("../../../Path 1")
+scene = ExtResource("5_ki41h")
 
 [node name="Loop 2" type="Node2D" parent="Start"]
 script = ExtResource("3_7vo70")

@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://dwia3x752dhuk"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_qaywy"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_7qfer"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_nfwwe"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="4_hf78i"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="5_1x7e5"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="6_pje3a"]
+[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/path_ball.tscn" id="7_0xcso"]
+[ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/bouncy_ball.tscn" id="8_43gon"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_yxtgd"]
+
+[sub_resource type="Curve2D" id="Curve2D_fabwo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 600, -330, 0, 0, 0, 0, -600, -330, 0, 0, 0, 0, -600, 330, 0, 0, 0, 0, 600, 330, 0, 0, 0, 0, 600, -330)
+}
+point_count = 5
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_qaywy")
+time_limit = null
+win_delay_ticks = null
+
+[node name="Camera" parent="." instance=ExtResource("2_7qfer")]
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_nfwwe")
+parallel = true
+
+[node name="Loop 1" type="Node2D" parent="Start"]
+script = ExtResource("4_hf78i")
+count = 20
+
+[node name="Delay" type="Node2D" parent="Start/Loop 1"]
+script = ExtResource("5_1x7e5")
+ticks = 15
+
+[node name="Spawn" type="Marker2D" parent="Start/Loop 1" node_paths=PackedStringArray("target_parent")]
+position = Vector2(600, -330)
+gizmo_extents = 0.0
+script = ExtResource("6_pje3a")
+warn_ticks = 30
+target_parent = NodePath("../../../Path2D")
+scene = ExtResource("7_0xcso")
+
+[node name="Loop 2" type="Node2D" parent="Start"]
+script = ExtResource("4_hf78i")
+count = 5
+
+[node name="Spawn" type="Marker2D" parent="Start/Loop 2"]
+gizmo_extents = 300.0
+script = ExtResource("6_pje3a")
+scene = ExtResource("8_43gon")
+
+[node name="Delay" type="Node2D" parent="Start/Loop 2"]
+script = ExtResource("5_1x7e5")
+ticks = 15
+
+[node name="Player" parent="." instance=ExtResource("9_yxtgd")]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_fabwo")
