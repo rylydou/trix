@@ -1,8 +1,8 @@
 extends PowerUp
 
 var projectile: PackedScene = preload('res://scenes/projectiles/basic_bullet.tscn')
-var fire_cooldown := 4
-var recoil_ticks := 4
+var fire_cooldown := 5
+var recoil_ticks := 5
 var recoil_force := 6.0
 
 
