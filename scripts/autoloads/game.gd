@@ -61,6 +61,7 @@ func resume() -> void:
 	capture_mouse()
 	get_tree().paused = false
 	pause_anim.play('hide')
+	win_anim.play('hide')
 
 
 func capture_mouse() -> void:
@@ -86,7 +87,6 @@ func restart_level() -> void:
 	get_tree().reload_current_scene()
 	await get_tree().process_frame
 	Particles.restart_all()
-	win_anim.play('hide')
 	resume()
 
 
