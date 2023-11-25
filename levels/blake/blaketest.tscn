@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/events/loop.gd" id="4_hf78i"]
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="5_1x7e5"]
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="6_pje3a"]
-[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/path_ball.tscn" id="7_0xcso"]
+[ext_resource type="PackedScene" uid="uid://c50i8iwf4w6p" path="res://scenes/enemies/explosion_path_ball.tscn" id="7_eteyo"]
 [ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/bouncy_ball.tscn" id="8_43gon"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_yxtgd"]
 
@@ -41,7 +41,7 @@ gizmo_extents = 0.0
 script = ExtResource("6_pje3a")
 warn_ticks = 30
 target_parent = NodePath("../../../Path2D")
-scene = ExtResource("7_0xcso")
+scene = ExtResource("7_eteyo")
 
 [node name="Loop 2" type="Node2D" parent="Start"]
 script = ExtResource("4_hf78i")
