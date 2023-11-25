@@ -22,7 +22,7 @@ parallel = true
 
 [node name="Loop 2" type="Node2D" parent="Start"]
 script = ExtResource("4_yd5su")
-count = 4
+count = 6
 
 [node name="Spawn" type="Marker2D" parent="Start/Loop 2"]
 gizmo_extents = 300.0
@@ -31,6 +31,6 @@ scene = ExtResource("6_wvsh8")
 
 [node name="Delay" type="Node2D" parent="Start/Loop 2"]
 script = ExtResource("7_8rwmb")
-ticks = 25
+ticks = 35
 
 [node name="Player" parent="." instance=ExtResource("8_vt5w8")]

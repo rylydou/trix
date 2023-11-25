@@ -1,14 +1,8 @@
-[gd_resource type="Resource" script_class="WorldData" load_steps=8 format=3 uid="uid://ccyx7hylpi2yd"]
+[gd_resource type="Resource" script_class="WorldData" load_steps=9 format=3 uid="uid://ccyx7hylpi2yd"]
 
 [ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="1_1ju4s"]
 [ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="1_vm6u4"]
 [ext_resource type="Texture2D" uid="uid://b7xfyyc6n55xw" path="res://content/sprites/animals/pig.svg" id="2_qdbct"]
-
-[sub_resource type="Resource" id="Resource_1xb2e"]
-script = ExtResource("1_vm6u4")
-name = ""
-is_boss = false
-path = "res://levels/blake/blaketest.tscn"
 
 [sub_resource type="Resource" id="Resource_hnsmm"]
 script = ExtResource("1_vm6u4")
@@ -22,14 +16,26 @@ name = ""
 is_boss = false
 path = "res://levels/blake/Ez2.tscn"
 
+[sub_resource type="Resource" id="Resource_1xb2e"]
+script = ExtResource("1_vm6u4")
+name = ""
+is_boss = false
+path = "res://levels/blake/blaketest.tscn"
+
 [sub_resource type="Resource" id="Resource_chmpt"]
 script = ExtResource("1_vm6u4")
 name = ""
 is_boss = false
 path = "res://levels/blake/Ez3.tscn"
 
+[sub_resource type="Resource" id="Resource_5rwnn"]
+script = ExtResource("1_vm6u4")
+name = "Prison"
+is_boss = false
+path = "res://levels/blake/prisonbreak.tscn"
+
 [resource]
 script = ExtResource("1_1ju4s")
 name = "Blake's Test"
 sprite = ExtResource("2_qdbct")
-levels = Array[ExtResource("1_vm6u4")]([SubResource("Resource_1xb2e"), SubResource("Resource_hnsmm"), SubResource("Resource_tnlms"), SubResource("Resource_chmpt")])
+levels = Array[ExtResource("1_vm6u4")]([SubResource("Resource_hnsmm"), SubResource("Resource_tnlms"), SubResource("Resource_1xb2e"), SubResource("Resource_chmpt"), SubResource("Resource_5rwnn")])

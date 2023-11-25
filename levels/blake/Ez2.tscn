@@ -22,7 +22,7 @@ parallel = true
 
 [node name="Loop 2" type="Node2D" parent="Start"]
 script = ExtResource("4_n7xuh")
-count = 7
+count = 8
 
 [node name="Spawn" type="Marker2D" parent="Start/Loop 2"]
 gizmo_extents = 300.0
