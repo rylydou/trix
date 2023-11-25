@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://sq1xnf8av723"]
+[gd_scene load_steps=10 format=3 uid="uid://sq1xnf8av723"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_clysi"]
 [ext_resource type="Script" path="res://scripts/movers/projmover.gd" id="2_x4dqi"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_8j4pn"]
-[ext_resource type="Script" path="res://scripts/modules/dieonshieldbreak.gd" id="4_dg7yh"]
 
 [sub_resource type="Curve" id="Curve_4l1if"]
 max_value = 10.0
@@ -38,6 +37,7 @@ collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_clysi")
 rand_rot = false
+die_on_shield_break = true
 
 [node name="Projectile Mover" type="Node" parent="."]
 script = ExtResource("2_x4dqi")
@@ -55,6 +55,3 @@ mesh = SubResource("QuadMesh_3yejo")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_brgrb")
-
-[node name="DieOnShieldBreak" type="Node" parent="."]
-script = ExtResource("4_dg7yh")

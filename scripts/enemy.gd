@@ -8,6 +8,7 @@ signal killed()
 @export var friction := 0.99
 @export var warn_radius := 16.0
 @export var rand_rot := true
+@export var die_on_shield_break := false
 
 
 func _init() -> void:
@@ -60,6 +61,8 @@ func take_cut(dir: Vector2) -> bool:
 func _shield_broken() -> void:
 	shield_broken.emit()
 	Particles.emit_shield_break(global_position)
+	if die_on_shield_break:
+		_death()
 
 
 func _death() -> void:
