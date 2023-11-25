@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://bfn1c51ea1jl2"]
 
-[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_g4v0o"]
-[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="2_8phyy"]
-[ext_resource type="Script" path="res://scripts/simple_trail.gd" id="3_b71te"]
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_r4tpi"]
+[ext_resource type="Script" path="res://scripts/simple_trail.gd" id="2_w6ytu"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_1lx0k"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8rmqd"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdxnx"]
 radius = 6.0
 
 [sub_resource type="Curve" id="Curve_e34e6"]
@@ -20,21 +20,21 @@ point_count = 2
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a1cxk"]
-shader = ExtResource("2_8phyy")
-shader_parameter/radius = 0.75
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_apso2"]
+shader = ExtResource("3_1lx0k")
+shader_parameter/radius = 1.0
 shader_parameter/fill = 1.0
 shader_parameter/radial_fill = 1.0
 
-[sub_resource type="QuadMesh" id="QuadMesh_kpjxk"]
-size = Vector2(16, 16)
+[sub_resource type="QuadMesh" id="QuadMesh_ndi4e"]
+size = Vector2(12, 12)
 
 [node name="Basic" type="ShapeCast2D" groups=["projectile"]]
 z_index = 50
-shape = SubResource("CircleShape2D_8rmqd")
+shape = SubResource("CircleShape2D_jdxnx")
 target_position = Vector2(50, 0)
 collision_mask = 4
-script = ExtResource("1_g4v0o")
+script = ExtResource("1_r4tpi")
 lifetime = 0.5
 time = 0.5
 position_over_time = SubResource("Curve_e34e6")
@@ -46,8 +46,8 @@ z_as_relative = false
 points = PackedVector2Array(0, 0, -50, 0)
 width_curve = SubResource("Curve_00npg")
 gradient = SubResource("Gradient_4mm71")
-script = ExtResource("3_b71te")
+script = ExtResource("2_w6ytu")
 
 [node name="Dot" type="MeshInstance2D" parent="."]
-material = SubResource("ShaderMaterial_a1cxk")
-mesh = SubResource("QuadMesh_kpjxk")
+material = SubResource("ShaderMaterial_apso2")
+mesh = SubResource("QuadMesh_ndi4e")

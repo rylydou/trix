@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://2y2wpfkcpfoe"]
 
-[ext_resource type="Script" path="res://scripts/hub/hub.gd" id="1_nib47"]
+[ext_resource type="Script" path="res://scripts/hub.gd" id="1_nib47"]
 [ext_resource type="PackedScene" uid="uid://hfcs8ly4yvr6" path="res://scenes/bubble_button.tscn" id="2_uveh0"]
 [ext_resource type="Resource" uid="uid://c7d4oldlxtid8" path="res://resources/worlds/ryly.tres" id="3_bmoob"]
 [ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="4_0btjx"]

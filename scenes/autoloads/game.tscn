@@ -349,6 +349,13 @@ theme_override_styles/disabled = ExtResource("5_x11d8")
 theme_override_styles/focus = ExtResource("6_g4ftt")
 text = "⇒  Next Level"
 
+[node name="Hub Button" type="Button" parent="Win Screen/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "↩  Back to Hub"
+
 [node name="Win Animation" type="AnimationPlayer" parent="Win Screen"]
 unique_name_in_owner = true
 libraries = {
@@ -553,6 +560,7 @@ libraries = {
 
 [connection signal="pressed" from="Win Screen/VBox/HBox/Replay Level" to="." method="restart_level"]
 [connection signal="pressed" from="Win Screen/VBox/HBox/Next Button" to="." method="next_level"]
+[connection signal="pressed" from="Win Screen/VBox/Hub Button" to="." method="back_to_hub"]
 [connection signal="pressed" from="Pause Menu/Quit Button" to="." method="quit"]
 [connection signal="pressed" from="Pause Menu/Menu/Buttons/Resume Button" to="." method="resume"]
 [connection signal="pressed" from="Pause Menu/Menu/Buttons/Restart Button" to="." method="restart_level"]

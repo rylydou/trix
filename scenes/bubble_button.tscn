@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://hfcs8ly4yvr6"]
 
-[ext_resource type="Script" path="res://scripts/hub/bubble_button.gd" id="1_htump"]
+[ext_resource type="Script" path="res://scripts/bubble_button.gd" id="1_htump"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="1_nalhe"]
 [ext_resource type="FontFile" uid="uid://dgswjjmfa3khq" path="res://content/fonts/teko/bold.otf" id="3_fgaea"]
 

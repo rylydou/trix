@@ -8,13 +8,13 @@
 script = ExtResource("1_agrmg")
 name = "Test 1"
 is_boss = false
-path = "res://levels/ryly's_test/test_1.tscn"
+path = "res://levels/ryly/test_1.tscn"
 
 [sub_resource type="Resource" id="Resource_srq4h"]
 script = ExtResource("1_agrmg")
 name = "Split Boss"
 is_boss = true
-path = "res://levels/ryly's_test/boss_split.tscn"
+path = "res://levels/ryly/boss_split.tscn"
 
 [resource]
 script = ExtResource("2_hc5xq")

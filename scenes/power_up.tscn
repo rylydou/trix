@@ -14,13 +14,13 @@ shader_parameter/radial_fill = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_ixyts"]
 lightmap_size_hint = Vector2i(162, 162)
-size = Vector2(32, 32)
+size = Vector2(64, 64)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ctpei"]
-font_size = 24
+font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[node name="Power Up" type="Area2D"]
+[node name="Power Up Orb" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_j520u")
@@ -34,7 +34,7 @@ material = SubResource("ShaderMaterial_4wepe")
 mesh = SubResource("QuadMesh_ixyts")
 
 [node name="Label" type="Label" parent="."]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(64, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -50,3 +50,5 @@ text = "B"
 label_settings = SubResource("LabelSettings_ctpei")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

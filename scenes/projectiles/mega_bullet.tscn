@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyfnvg0bi0sfq"]
+
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_0s17h"]
+[ext_resource type="Script" path="res://scripts/simple_trail.gd" id="2_15xm1"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_7pnit"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4q2jt"]
+radius = 24.0
+
+[sub_resource type="Curve" id="Curve_1dkta"]
+max_value = 200.0
+_data = [Vector2(0, 0), 0.0, 150.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_00npg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_4mm71"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvjvv"]
+shader = ExtResource("3_7pnit")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_6atvy"]
+size = Vector2(48, 48)
+
+[node name="Basic" type="ShapeCast2D" groups=["projectile"]]
+z_index = 50
+shape = SubResource("CircleShape2D_4q2jt")
+target_position = Vector2(50, 0)
+collision_mask = 4
+script = ExtResource("1_0s17h")
+lifetime = 3.0
+max_hits = 9999
+damage = 10
+knockback = 4.0
+time = 3.0
+position_over_time = SubResource("Curve_1dkta")
+
+[node name="Line" type="Line2D" parent="."]
+top_level = true
+z_index = 49
+z_as_relative = false
+points = PackedVector2Array(0, 0, -50, 0)
+width = 47.0
+width_curve = SubResource("Curve_00npg")
+gradient = SubResource("Gradient_4mm71")
+script = ExtResource("2_15xm1")
+
+[node name="Dot" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_jvjvv")
+mesh = SubResource("QuadMesh_6atvy")
