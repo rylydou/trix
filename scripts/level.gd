@@ -27,6 +27,8 @@ func _physics_process(delta: float) -> void:
 	var timer_material: ShaderMaterial = $'Timer'.material
 	timer_material.set_shader_parameter('radial_fill', time_remaining_ratio)
 	
+	$'Timer/Label'.text = '%2.2f' % [max(time_limit - time, 0)]
+	
 	enemy_count = get_tree().get_nodes_in_group(&'enemy').size()
 	
 	if enemy_count == 0:

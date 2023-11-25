@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cs1g4wod6bck4"]
+[gd_scene load_steps=11 format=3 uid="uid://cs1g4wod6bck4"]
 
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="1_l24pr"]
 [ext_resource type="Script" path="res://scripts/power_up_hud.gd" id="2_pq075"]
@@ -32,6 +32,9 @@ shader_parameter/radial_fill = 1.0
 shader = ExtResource("3_r8qsr")
 shader_parameter/from = 0.25
 shader_parameter/to = -1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_0k7ce"]
+font_size = 64
 
 [node name="Timer" type="MeshInstance2D"]
 self_modulate = Color(0.25098, 0.25098, 0.25098, 1)
@@ -69,6 +72,26 @@ rotation = -0.0872665
 pivot_offset = Vector2(64, 64)
 theme_override_font_sizes/font_size = 32
 text = "Mega"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Label" type="Label" parent="."]
+material = SubResource("ShaderMaterial_7fy6p")
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_top = -170.0
+offset_right = 128.0
+offset_bottom = -42.0
+grow_horizontal = 0
+rotation = -0.0872665
+pivot_offset = Vector2(128, 128)
+theme_override_font_sizes/font_size = 32
+text = "20.00"
+label_settings = SubResource("LabelSettings_0k7ce")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
