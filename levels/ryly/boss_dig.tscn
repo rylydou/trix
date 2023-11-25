@@ -18,7 +18,7 @@ shader_parameter/radial_fill = 1.0
 size = Vector2(114, 114)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_spvfk"]
-radius = 52.0
+radius = 54.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wg8lw"]
 radius = 16.0
