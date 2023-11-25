@@ -7,10 +7,12 @@ signal killed()
 @export var invuln_ticks := 0
 @export var friction := 0.99
 @export var warn_radius := 16.0
+@export var rand_rot := true
 
 
 func _init() -> void:
-	rotation = randf_range(0, 2*PI)
+	if rand_rot:
+		rotation = randf_range(0, 2*PI)
 
 
 func _ready() -> void:

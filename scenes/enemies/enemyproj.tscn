@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://sq1xnf8av723"]
+[gd_scene load_steps=11 format=3 uid="uid://sq1xnf8av723"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemyprojectile.gd" id="1_alglp"]
-[ext_resource type="Script" path="res://scripts/movers/projmover.gd" id="2_4qhb0"]
-[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="4_b6xbo"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_clysi"]
+[ext_resource type="Script" path="res://scripts/movers/projmover.gd" id="2_x4dqi"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_8j4pn"]
+[ext_resource type="Script" path="res://scripts/modules/dieonshieldbreak.gd" id="4_dg7yh"]
 
 [sub_resource type="Curve" id="Curve_4l1if"]
 max_value = 10.0
@@ -10,7 +11,7 @@ _data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
-shader = ExtResource("4_b6xbo")
+shader = ExtResource("3_8j4pn")
 shader_parameter/radius = 1.0
 shader_parameter/fill = 0.25
 shader_parameter/radial_fill = 1.0
@@ -19,7 +20,7 @@ shader_parameter/radial_fill = 1.0
 size = Vector2(64, 64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
-shader = ExtResource("4_b6xbo")
+shader = ExtResource("3_8j4pn")
 shader_parameter/radius = 0.5
 shader_parameter/fill = 1.0
 shader_parameter/radial_fill = 1.0
@@ -35,10 +36,11 @@ modulate = Color(0.988235, 0, 0.305882, 1)
 collision_layer = 4
 collision_mask = 0
 motion_mode = 1
-script = ExtResource("1_alglp")
+script = ExtResource("1_clysi")
+rand_rot = false
 
 [node name="Projectile Mover" type="Node" parent="."]
-script = ExtResource("2_4qhb0")
+script = ExtResource("2_x4dqi")
 curve = SubResource("Curve_4l1if")
 
 [node name="Ring" type="MeshInstance2D" parent="."]
@@ -53,3 +55,6 @@ mesh = SubResource("QuadMesh_3yejo")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_brgrb")
+
+[node name="DieOnShieldBreak" type="Node" parent="."]
+script = ExtResource("4_dg7yh")
