@@ -50,7 +50,10 @@ func update() -> void:
 			get_tree().change_scene_to_file(level.path)
 		)
 		level_buttons.add_child(btn)
-		btn.label.text = str(index + 1)
+		if level.is_boss:
+			btn.sprite.texture = preload('res://content/sprites/skull.svg')
+		else:
+			btn.label.text = str(index + 1)
 		
 		index += 1
 

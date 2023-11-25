@@ -344,6 +344,7 @@ text = "↺  Replay Level"
 
 [node name="Next Button" type="Button" parent="Win Screen/VBox/HBox/HBox"]
 layout_mode = 2
+tooltip_text = "NOT IMPLEMENTED!!!"
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_styles/normal = ExtResource("5_x11d8")

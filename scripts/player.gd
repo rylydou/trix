@@ -54,6 +54,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_collide(motion)
 	
+	slippery_ticks -= 1
 	var friction = firing_friction if slippery_ticks > 0 else normal_friction
 	velocity *= friction
 	move_and_slide()
