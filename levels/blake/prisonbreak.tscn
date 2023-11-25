@@ -61,7 +61,7 @@ position = Vector2(0, -300)
 gizmo_extents = 0.0
 script = ExtResource("6_7v8rd")
 warn_ticks = 30
-target_parent = NodePath("../../../../PathU")
+target_parent = NodePath("../../../../PathR")
 scene = ExtResource("7_kmbnx")
 
 [node name="Loop 3" type="Node2D" parent="Start/Group"]
@@ -77,7 +77,7 @@ position = Vector2(-300, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_7v8rd")
 warn_ticks = 30
-target_parent = NodePath("../../../../PathL")
+target_parent = NodePath("../../../../PathR")
 scene = ExtResource("7_kmbnx")
 
 [node name="Loop 4" type="Node2D" parent="Start/Group"]
@@ -93,7 +93,7 @@ position = Vector2(0, 300)
 gizmo_extents = 0.0
 script = ExtResource("6_7v8rd")
 warn_ticks = 30
-target_parent = NodePath("../../../../PathD")
+target_parent = NodePath("../../../../PathR")
 scene = ExtResource("7_kmbnx")
 
 [node name="Loop 2" type="Node2D" parent="Start"]
@@ -111,13 +111,4 @@ script = ExtResource("5_0uhfm")
 [node name="Player" parent="." instance=ExtResource("9_wx2is")]
 
 [node name="PathR" type="Path2D" parent="."]
-curve = SubResource("Curve2D_jxb3k")
-
-[node name="PathU" type="Path2D" parent="."]
-curve = SubResource("Curve2D_jxb3k")
-
-[node name="PathL" type="Path2D" parent="."]
-curve = SubResource("Curve2D_jxb3k")
-
-[node name="PathD" type="Path2D" parent="."]
 curve = SubResource("Curve2D_jxb3k")
