@@ -6,5 +6,6 @@ class_name Delay extends Node2D
 
 func trigger() -> void:
 	var t := create_tween()
+	t.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	t.tween_callback(func():).set_delay(ticks/60.)
 	await t.finished
