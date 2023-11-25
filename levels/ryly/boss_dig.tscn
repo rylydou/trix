@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://nhfq7pm34sg6"]
+[gd_scene load_steps=15 format=3 uid="uid://nhfq7pm34sg6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_a1ofk"]
 [ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_gujm5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="5_62mhd"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="5_ir7ko"]
 [ext_resource type="Image" uid="uid://bbclod4w1jx1m" path="res://content/mazes.png" id="5_xfv8h"]
+[ext_resource type="Script" path="res://scripts/enemies/dig_boss/dig_boss.gd" id="7_7cw58"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ucsp7"]
 shader = ExtResource("5_ir7ko")
@@ -17,42 +18,65 @@ shader_parameter/radial_fill = 1.0
 size = Vector2(114, 114)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_spvfk"]
-radius = 57.0
+radius = 52.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wg8lw"]
+radius = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmgxk"]
+shader = ExtResource("5_ir7ko")
+shader_parameter/radius = 0.5
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_wr5eh"]
+size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_13chy"]
+shader = ExtResource("5_ir7ko")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.25
+shader_parameter/radial_fill = 1.0
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_a1ofk")
 
-[node name="Camera" parent="." groups=["enemy"] instance=ExtResource("2_gujm5")]
+[node name="Camera" parent="." instance=ExtResource("2_gujm5")]
 
 [node name="Player" parent="." instance=ExtResource("5_62mhd")]
 visible = false
 
-[node name="Maze Gen" type="Node2D" parent="."]
+[node name="Maze" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("4_0brnk")
 mazes_image = ExtResource("5_xfv8h")
 
-[node name="Orb" type="StaticBody2D" parent="Maze Gen"]
-collision_layer = 0
+[node name="Orb" type="StaticBody2D" parent="Maze"]
+collision_layer = 8
 collision_mask = 0
 
-[node name="Mesh" type="MeshInstance2D" parent="Maze Gen/Orb"]
+[node name="Mesh" type="MeshInstance2D" parent="Maze/Orb"]
 modulate = Color(0.988235, 0, 0.305882, 1)
 material = SubResource("ShaderMaterial_ucsp7")
 mesh = SubResource("QuadMesh_a2j6w")
 
-[node name="Collision" type="CollisionShape2D" parent="Maze Gen/Orb"]
+[node name="Collision" type="CollisionShape2D" parent="Maze/Orb"]
 shape = SubResource("CircleShape2D_spvfk")
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.5
-offset_top = -9.5
-offset_right = 23.5
-offset_bottom = 9.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Press G"
+[node name="Boss" type="StaticBody2D" parent="." groups=["enemy"]]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("7_7cw58")
+hp = null
+
+[node name="Collision" type="CollisionShape2D" parent="Boss"]
+shape = SubResource("CircleShape2D_wg8lw")
+
+[node name="Circle" type="MeshInstance2D" parent="Boss"]
+material = SubResource("ShaderMaterial_bmgxk")
+mesh = SubResource("QuadMesh_wr5eh")
+
+[node name="Ring" type="MeshInstance2D" parent="Boss"]
+material = SubResource("ShaderMaterial_13chy")
+mesh = SubResource("QuadMesh_wr5eh")

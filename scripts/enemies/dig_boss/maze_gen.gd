@@ -18,6 +18,7 @@ func _ready() -> void:
 			clone.position = (Vector2(x + .5, y + .5) * (Game.bounds * 2) / Vector2(width, height)) - Game.bounds
 			
 			add_child(clone)
+			set_cell(x, y, false)
 
 
 func _process(delta: float) -> void:
@@ -26,7 +27,7 @@ func _process(delta: float) -> void:
 
 
 func debug_generate() -> void:
-		generate(randi_range(0, 3), 0, randi_range(0, 1) == 0, randi_range(0, 1) == 0)
+		generate(randi_range(0, 2), 0, randi_range(0, 1) == 0, randi_range(0, 1) == 0)
 
 
 func generate(maze_x: int, maze_y: int, flip_x: bool, flip_y: bool) -> void:
