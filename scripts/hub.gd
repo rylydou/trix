@@ -55,6 +55,8 @@ func update() -> void:
 		else:
 			btn.label.text = str(index + 1)
 		
+		btn.hint.text = level.name
+		
 		index += 1
 
 

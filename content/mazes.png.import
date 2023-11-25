@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://bbclod4w1jx1m"
+path="res://.godot/imported/mazes.png-0fd200d601b6e59d89b019162a88b6be.image"
+
+[deps]
+
+source_file="res://content/mazes.png"
+dest_files=["res://.godot/imported/mazes.png-0fd200d601b6e59d89b019162a88b6be.image"]
+
+[params]
+

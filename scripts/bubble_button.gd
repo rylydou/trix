@@ -9,6 +9,7 @@ signal triggered()
 
 @onready var sprite: TextureRect = %'Sprite'
 @onready var label: Label = %'Label'
+@onready var hint: Label = %'Hint'
 @onready var fill: Node2D = %'Fill'
 
 
@@ -21,12 +22,14 @@ func _init() -> void:
 		func(body: Node2D):
 			if body is Player:
 				has_player = true
+				hint.show()
 	)
 	
 	body_exited.connect(
 		func(body: Node2D):
 			if body is Player:
 				has_player = false
+				hint.hide()
 	)
 
 

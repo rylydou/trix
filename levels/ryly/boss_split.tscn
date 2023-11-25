@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="4_56bw4"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="5_irurj"]
 
-[node name="Split Boss" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource("1_ue87u")
 
 [node name="Camera" parent="." instance=ExtResource("2_mfig4")]

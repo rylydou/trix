@@ -546,6 +546,29 @@ allow_lesser = true
 scrollable = false
 tick_count = 3
 
+[node name="Spacer" type="Control" parent="Pause Menu/Menu/Settings"]
+visible = false
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Links" type="HBoxContainer" parent="Pause Menu/Menu"]
+layout_mode = 2
+alignment = 1
+
+[node name="Manual Link" type="LinkButton" parent="Pause Menu/Menu/Links"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "?   Game Manual"
+underline = 1
+uri = "https://docs.google.com/document/d/1esns5LsN3EUoewvOUas6Ssb5ur48sypH8x9NlgGfMKo"
+
+[node name="Itch Link" type="LinkButton" parent="Pause Menu/Menu/Links"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "♥️  Itch Page"
+underline = 1
+uri = "https://ciber-turtle.itch.io/20sec-2023"
+
 [node name="Pause Animation" type="AnimationPlayer" parent="Pause Menu"]
 unique_name_in_owner = true
 libraries = {
