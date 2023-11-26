@@ -39,10 +39,10 @@ count = 6
 position = Vector2(532, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_xg4hg")
+scene = ExtResource("7_3wjv4")
+target_parent = NodePath("../../../../Left Trench")
 spawn_rotation = 0
 health_override = 5
-target_parent = NodePath("../../../../Left Trench")
-scene = ExtResource("7_3wjv4")
 
 [node name="Delay" type="Node2D" parent="Start/Group/Armored"]
 script = ExtResource("8_57sh7")
@@ -63,10 +63,10 @@ count = 5
 position = Vector2(532, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_xg4hg")
+scene = ExtResource("9_838mc")
+target_parent = NodePath("../../../../Left Trench")
 spawn_rotation = 0
 health_override = 2
-target_parent = NodePath("../../../../Left Trench")
-scene = ExtResource("9_838mc")
 
 [node name="Delay" type="Node2D" parent="Start/Group 2/Turret"]
 script = ExtResource("8_57sh7")
@@ -87,10 +87,10 @@ count = 5
 position = Vector2(532, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_xg4hg")
+scene = ExtResource("9_838mc")
+target_parent = NodePath("../../../../Left Trench")
 spawn_rotation = 0
 health_override = 2
-target_parent = NodePath("../../../../Left Trench")
-scene = ExtResource("9_838mc")
 
 [node name="Delay" type="Node2D" parent="Start/Group 3/Turret 2"]
 script = ExtResource("8_57sh7")

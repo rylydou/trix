@@ -74,9 +74,9 @@ ticks = 15
 [node name="Spawn" type="Marker2D" parent="Start/Loop/Loop"]
 gizmo_extents = 0.0
 script = ExtResource("3_aj8c3")
+scene = ExtResource("7_v82d7")
 warn_ticks = -1
 spawn_rotation = 1
-scene = ExtResource("7_v82d7")
 
 [node name="Ring" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_d4481")
