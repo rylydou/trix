@@ -21,7 +21,7 @@ void fragment() {
 	// Radial Cutout
 	float theta = atan(uv.x, -uv.y);
 	float angle = theta / TAU + 0.5;
-	float radial_feather = fwidth(angle);
+	float radial_feather = fwidth(angle) * 1.5;
 	float radial_alpha = smoothstep(radial_fill + radial_feather, radial_fill, angle);
 	
 	float fill_alpha = min(ring_alpha, radial_alpha);

@@ -11,6 +11,7 @@ enum SpawnRotation {
 
 @export var warn_ticks := 30
 @export var spawn_rotation := SpawnRotation.Randomize
+@export var health_override := -1
 
 @export var target_parent: Node2D
 @export var scene: PackedScene
@@ -38,6 +39,9 @@ func trigger() -> void:
 	var node = scene.instantiate()
 	node.global_position = target_position
 	set_node_rotation(node)
+	
+	if health_override > 0:
+		node.shield_hp = health_override
 	
 	if warn_ticks <= 0:
 		target_parent.add_child(node)
