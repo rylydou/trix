@@ -1,0 +1,127 @@
+[gd_scene load_steps=12 format=3 uid="uid://eigmpw3h81sj"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_xmw0d"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_dfv2x"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_ml1s8"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="5_t04wu"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="6_hyhrk"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="7_lbsbv"]
+[ext_resource type="PackedScene" uid="uid://beo05alnu1rco" path="res://scenes/enemies/turret.tscn" id="8_pip13"]
+[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/path_ball.tscn" id="8_xfbbg"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="10_0titi"]
+
+[sub_resource type="Curve2D" id="Curve2D_4ltbu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -250, -370, 0, 0, 0, 0, -250, 370)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_t358h"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 250, 370, 0, 0, 0, 0, 250, -370)
+}
+point_count = 2
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_xmw0d")
+time_limit = null
+win_delay_ticks = null
+
+[node name="Camera" parent="." instance=ExtResource("2_dfv2x")]
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_ml1s8")
+parallel = true
+
+[node name="LT Turrets" type="Node2D" parent="Start"]
+script = ExtResource("5_t04wu")
+count = 1
+
+[node name="Delay" type="Node2D" parent="Start/LT Turrets"]
+script = ExtResource("6_hyhrk")
+ticks = 0
+
+[node name="Spawn" type="Marker2D" parent="Start/LT Turrets"]
+position = Vector2(-450, -175)
+gizmo_extents = 150.0
+script = ExtResource("7_lbsbv")
+scene = ExtResource("8_pip13")
+
+[node name="LB Turrets" type="Node2D" parent="Start"]
+script = ExtResource("5_t04wu")
+count = 1
+
+[node name="Delay" type="Node2D" parent="Start/LB Turrets"]
+script = ExtResource("6_hyhrk")
+ticks = 90
+
+[node name="Spawn" type="Marker2D" parent="Start/LB Turrets"]
+position = Vector2(-450, 175)
+gizmo_extents = 150.0
+script = ExtResource("7_lbsbv")
+scene = ExtResource("8_pip13")
+
+[node name="RB Turrets" type="Node2D" parent="Start"]
+script = ExtResource("5_t04wu")
+count = 1
+
+[node name="Delay" type="Node2D" parent="Start/RB Turrets"]
+script = ExtResource("6_hyhrk")
+ticks = 60
+
+[node name="Spawn" type="Marker2D" parent="Start/RB Turrets"]
+position = Vector2(450, 175)
+gizmo_extents = 150.0
+script = ExtResource("7_lbsbv")
+scene = ExtResource("8_pip13")
+
+[node name="RT Turrets" type="Node2D" parent="Start"]
+script = ExtResource("5_t04wu")
+count = 1
+
+[node name="Delay" type="Node2D" parent="Start/RT Turrets"]
+script = ExtResource("6_hyhrk")
+
+[node name="Spawn" type="Marker2D" parent="Start/RT Turrets"]
+position = Vector2(450, -175)
+gizmo_extents = 150.0
+script = ExtResource("7_lbsbv")
+scene = ExtResource("8_pip13")
+
+[node name="Left Trench Spawn" type="Node2D" parent="Start"]
+script = ExtResource("5_t04wu")
+count = 11
+
+[node name="Spawn" type="Marker2D" parent="Start/Left Trench Spawn" node_paths=PackedStringArray("target_parent")]
+position = Vector2(-250, -340)
+gizmo_extents = 0.0
+script = ExtResource("7_lbsbv")
+target_parent = NodePath("../../../Left Trench")
+scene = ExtResource("8_xfbbg")
+
+[node name="Delay" type="Node2D" parent="Start/Left Trench Spawn"]
+script = ExtResource("6_hyhrk")
+ticks = 17
+
+[node name="Right Trench Spawn" type="Node2D" parent="Start"]
+script = ExtResource("5_t04wu")
+count = 11
+
+[node name="Spawn" type="Marker2D" parent="Start/Right Trench Spawn" node_paths=PackedStringArray("target_parent")]
+position = Vector2(250, 340)
+gizmo_extents = 0.0
+script = ExtResource("7_lbsbv")
+target_parent = NodePath("../../../Right Trench")
+scene = ExtResource("8_xfbbg")
+
+[node name="Delay" type="Node2D" parent="Start/Right Trench Spawn"]
+script = ExtResource("6_hyhrk")
+ticks = 17
+
+[node name="Player" parent="." instance=ExtResource("10_0titi")]
+
+[node name="Left Trench" type="Path2D" parent="."]
+curve = SubResource("Curve2D_4ltbu")
+
+[node name="Right Trench" type="Path2D" parent="."]
+curve = SubResource("Curve2D_t358h")
