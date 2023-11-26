@@ -36,7 +36,7 @@ shape = SubResource("CircleShape2D_brgrb")
 
 [node name="Aimer" type="Node" parent="."]
 script = ExtResource("2_fkyje")
-turn_speed = 3.0
+turn_speed = 1.5
 
 [node name="Mover" type="Node" parent="."]
 script = ExtResource("3_k63va")
