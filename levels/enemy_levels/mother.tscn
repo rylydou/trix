@@ -22,7 +22,7 @@ parallel = true
 
 [node name="Loop 1" type="Node2D" parent="Start"]
 script = ExtResource("4_253kr")
-count = 5
+count = 4
 
 [node name="Spawn" type="Marker2D" parent="Start/Loop 1"]
 position = Vector2(300, 0)
