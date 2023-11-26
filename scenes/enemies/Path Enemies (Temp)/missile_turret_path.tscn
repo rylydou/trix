@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://deglerxji8bsb"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_s3cc5"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="2_3qe0j"]
+[ext_resource type="Script" path="res://scripts/modules/turret.gd" id="3_m50pb"]
+[ext_resource type="PackedScene" uid="uid://bsnvvssl1bdf2" path="res://scenes/enemies/Projectiles (Temp)/missile.tscn" id="4_4215k"]
+[ext_resource type="Script" path="res://scripts/movers/path_mover.gd" id="5_x6l8j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
+shader = ExtResource("2_3qe0j")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.25
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_fb1hl"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
+shader = ExtResource("2_3qe0j")
+shader_parameter/radius = 0.5
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3yejo"]
+size = Vector2(64, 64)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7vs2i"]
+size = Vector2(10, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brgrb"]
+radius = 32.0
+
+[node name="Missile Turret Path" type="CharacterBody2D" groups=["enemy"]]
+modulate = Color(0.988235, 0, 0.305882, 1)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_s3cc5")
+shield_hp = 2
+warn_radius = 24.0
+rand_rot = false
+
+[node name="Ring" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_d4481")
+scale = Vector2(0.8, 0.8)
+mesh = SubResource("QuadMesh_fb1hl")
+
+[node name="Dot" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_ssyi3")
+scale = Vector2(0.8, 0.8)
+mesh = SubResource("QuadMesh_3yejo")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("QuadMesh_7vs2i")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CircleShape2D_brgrb")
+
+[node name="Turret" type="Node" parent="."]
+script = ExtResource("3_m50pb")
+proj_scene = ExtResource("4_4215k")
+cooldown = 4.0
+tween_shots = 0.2
+
+[node name="Path Mover" type="Node" parent="."]
+script = ExtResource("5_x6l8j")
+speed = 3.0

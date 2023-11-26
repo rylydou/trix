@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/movers/path_mover.gd" id="2_yinv4"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_x82jl"]
 [ext_resource type="Script" path="res://scripts/modules/explosive.gd" id="4_1mvtp"]
-[ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/enemies/enemyproj.tscn" id="5_6fq2p"]
+[ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/enemies/Projectiles (Temp)/enemyproj.tscn" id="5_6fq2p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pkrh4"]
 shader = ExtResource("3_x82jl")

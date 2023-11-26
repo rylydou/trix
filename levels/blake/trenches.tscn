@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="6_hyhrk"]
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="7_lbsbv"]
 [ext_resource type="PackedScene" uid="uid://beo05alnu1rco" path="res://scenes/enemies/turret.tscn" id="8_pip13"]
-[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/path_ball.tscn" id="8_xfbbg"]
+[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/Path Enemies (Temp)/path_ball.tscn" id="8_xfbbg"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="10_0titi"]
 
 [sub_resource type="Curve2D" id="Curve2D_4ltbu"]

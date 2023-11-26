@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://d21y84u11p8ic"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_shq8e"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="2_2fkt6"]
+[ext_resource type="Script" path="res://scripts/modules/turret.gd" id="3_6ouap"]
+[ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/enemies/Projectiles (Temp)/enemyproj.tscn" id="4_btknh"]
+[ext_resource type="Script" path="res://scripts/movers/path_mover.gd" id="5_6dmuf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
+shader = ExtResource("2_2fkt6")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.25
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_fb1hl"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
+shader = ExtResource("2_2fkt6")
+shader_parameter/radius = 0.5
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3yejo"]
+size = Vector2(64, 64)
+
+[sub_resource type="QuadMesh" id="QuadMesh_va5n1"]
+size = Vector2(20, 10)
+center_offset = Vector3(15, 0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brgrb"]
+radius = 32.0
+
+[node name="Turret Path" type="CharacterBody2D" groups=["enemy"]]
+modulate = Color(0.988235, 0, 0.305882, 1)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_shq8e")
+shield_hp = 2
+warn_radius = 24.0
+rand_rot = false
+
+[node name="Ring" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_d4481")
+scale = Vector2(0.8, 0.8)
+mesh = SubResource("QuadMesh_fb1hl")
+
+[node name="Dot" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_ssyi3")
+scale = Vector2(0.8, 0.8)
+mesh = SubResource("QuadMesh_3yejo")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(0.8, 0.8)
+mesh = SubResource("QuadMesh_va5n1")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CircleShape2D_brgrb")
+
+[node name="Turret" type="Node" parent="."]
+script = ExtResource("3_6ouap")
+proj_scene = ExtResource("4_btknh")
+cooldown = 4.0
+tween_shots = 0.15
+amount = 3
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("5_6dmuf")
+speed = 3.0

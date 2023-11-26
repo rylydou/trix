@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://dt0u602le2p0p"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_o66iw"]
+[ext_resource type="Script" path="res://scripts/movers/path_mover.gd" id="2_24q5a"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_xklqb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkrh4"]
+shader = ExtResource("3_xklqb")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.25
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_gyfj6"]
+size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mmyrf"]
+shader = ExtResource("3_xklqb")
+shader_parameter/radius = 0.675
+shader_parameter/fill = 0.1
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5x6ge"]
+radius = 12.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0jdw6"]
+shader = ExtResource("3_xklqb")
+shader_parameter/radius = 0.5
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_12wf7"]
+size = Vector2(64, 64)
+
+[node name="Path Ball" type="CharacterBody2D" groups=["enemy"]]
+modulate = Color(0.988235, 0, 0.305882, 1)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_o66iw")
+shield_hp = 5
+rand_rot = false
+
+[node name="Path Mover" type="Node" parent="."]
+script = ExtResource("2_24q5a")
+speed = 3.0
+
+[node name="Ring" type="MeshInstance2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_pkrh4")
+scale = Vector2(1.6, 1.6)
+mesh = SubResource("QuadMesh_gyfj6")
+
+[node name="Ring 2" type="MeshInstance2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_mmyrf")
+scale = Vector2(1.6, 1.6)
+mesh = SubResource("QuadMesh_gyfj6")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_5x6ge")
+debug_color = Color(1, 0, 0, 0)
+
+[node name="Dot" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_0jdw6")
+scale = Vector2(0.8, 0.8)
+mesh = SubResource("QuadMesh_12wf7")

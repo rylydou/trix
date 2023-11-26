@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WorldData" load_steps=6 format=3 uid="uid://ccyx7hylpi2yd"]
+[gd_resource type="Resource" script_class="WorldData" load_steps=7 format=3 uid="uid://ccyx7hylpi2yd"]
 
 [ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="1_1ju4s"]
 [ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="1_vm6u4"]
@@ -10,14 +10,20 @@ name = "Prison"
 is_boss = false
 path = "res://levels/blake/prisonbreak.tscn"
 
-[sub_resource type="Resource" id="Resource_e7vro"]
+[sub_resource type="Resource" id="Resource_0juyn"]
 script = ExtResource("1_vm6u4")
 name = "Trenches"
 is_boss = false
 path = "res://levels/blake/trenches.tscn"
 
+[sub_resource type="Resource" id="Resource_y8mp0"]
+script = ExtResource("1_vm6u4")
+name = "Snake"
+is_boss = false
+path = "res://levels/blake/snake.tscn"
+
 [resource]
 script = ExtResource("1_1ju4s")
 name = "Blake's Test"
 sprite = ExtResource("2_qdbct")
-levels = Array[ExtResource("1_vm6u4")]([SubResource("Resource_5rwnn"), SubResource("Resource_e7vro")])
+levels = Array[ExtResource("1_vm6u4")]([SubResource("Resource_5rwnn"), SubResource("Resource_0juyn"), SubResource("Resource_y8mp0")])

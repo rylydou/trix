@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/events/loop.gd" id="4_qeaqc"]
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="5_sdext"]
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="6_1pcix"]
-[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/path_ball.tscn" id="7_yjb7s"]
+[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/Path Enemies (Temp)/path_ball.tscn" id="7_yjb7s"]
 [ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/bouncy_ball.tscn" id="8_i5y4y"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_o5ev6"]
 

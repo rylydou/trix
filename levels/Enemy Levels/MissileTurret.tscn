@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://bismvdk6cabt4"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_fj22u"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_oa3ng"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_knc71"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="4_ssqkp"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="5_fhu6n"]
+[ext_resource type="PackedScene" uid="uid://bms80o6kt2iuj" path="res://scenes/enemies/missile_turret.tscn" id="6_guebn"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="7_tcit8"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="8_8tc8r"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_fj22u")
+time_limit = null
+win_delay_ticks = null
+
+[node name="Camera" parent="." instance=ExtResource("2_oa3ng")]
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_knc71")
+parallel = true
+
+[node name="Loop 1" type="Node2D" parent="Start"]
+script = ExtResource("4_ssqkp")
+count = 1
+
+[node name="Spawn" type="Marker2D" parent="Start/Loop 1"]
+position = Vector2(300, 0)
+gizmo_extents = 158.5
+script = ExtResource("5_fhu6n")
+warn_ticks = 30
+scene = ExtResource("6_guebn")
+
+[node name="Delay" type="Node2D" parent="Start/Loop 1"]
+script = ExtResource("7_tcit8")
+
+[node name="Player" parent="." instance=ExtResource("8_8tc8r")]
