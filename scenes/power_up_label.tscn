@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dohicd3g58wch"]
+[gd_scene load_steps=3 format=3 uid="uid://dohicd3g58wch"]
+
+[ext_resource type="Script" path="res://scripts/components/always_up_control.gd" id="1_nmuaf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ctpei"]
 font_size = 32
@@ -21,3 +23,4 @@ text = "?"
 label_settings = SubResource("LabelSettings_ctpei")
 horizontal_alignment = 1
 vertical_alignment = 2
+script = ExtResource("1_nmuaf")

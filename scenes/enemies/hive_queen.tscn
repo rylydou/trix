@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ckv3504f51vbt"]
+[gd_scene load_steps=21 format=3 uid="uid://ckv3504f51vbt"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_8k7me"]
 [ext_resource type="Script" path="res://scripts/movers/aimer.gd" id="2_8xxdl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="3_a4mkn"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="4_1yy6x"]
 [ext_resource type="Script" path="res://scripts/events/start.gd" id="5_46sod"]
+[ext_resource type="Script" path="res://scripts/components/health_indicator.gd" id="6_fvp4l"]
 [ext_resource type="Script" path="res://scripts/events/group.gd" id="6_jewkl"]
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="7_v35r7"]
 [ext_resource type="Script" path="res://scripts/events/loop.gd" id="8_4fnqp"]
@@ -69,6 +70,7 @@ mesh = SubResource("QuadMesh_fb1hl")
 material = SubResource("ShaderMaterial_ssyi3")
 scale = Vector2(1.5, 1.5)
 mesh = SubResource("QuadMesh_3yejo")
+script = ExtResource("6_fvp4l")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)
@@ -94,9 +96,9 @@ count = 3
 
 [node name="Spawn" type="Marker2D" parent="Start/Spawn Seek/Loop/Loop"]
 script = ExtResource("9_wm0ed")
+scene = ExtResource("12_vah8e")
 warn_ticks = -1
 health_override = 2
-scene = ExtResource("12_vah8e")
 
 [node name="Delay" type="Node2D" parent="Start/Spawn Seek/Loop/Loop"]
 script = ExtResource("7_v35r7")
@@ -125,8 +127,8 @@ count = 30
 
 [node name="Spawn" type="Marker2D" parent="Start/Shoot/Loop/Group/Loop"]
 script = ExtResource("9_wm0ed")
-warn_ticks = -1
 scene = ExtResource("10_ssvge")
+warn_ticks = -1
 
 [node name="Delay" type="Node2D" parent="Start/Shoot/Loop/Group/Loop"]
 script = ExtResource("7_v35r7")
@@ -138,9 +140,9 @@ count = 10
 
 [node name="Spawn" type="Marker2D" parent="Start/Shoot/Loop/Group/Loop 2"]
 script = ExtResource("9_wm0ed")
+scene = ExtResource("10_ssvge")
 warn_ticks = -1
 spawn_rotation = 3
-scene = ExtResource("10_ssvge")
 
 [node name="Delay" type="Node2D" parent="Start/Shoot/Loop/Group/Loop 2"]
 script = ExtResource("7_v35r7")
@@ -166,8 +168,8 @@ count = 3
 
 [node name="Spawn" type="Marker2D" parent="Start/Spawn Bounce/Loop/Loop"]
 script = ExtResource("9_wm0ed")
-warn_ticks = -1
 scene = ExtResource("11_3oh0k")
+warn_ticks = -1
 
 [node name="Delay" type="Node2D" parent="Start/Spawn Bounce/Loop/Loop"]
 script = ExtResource("7_v35r7")

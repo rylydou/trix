@@ -8,6 +8,12 @@ enum SpawnRotation {
 	TowardPlayer,
 }
 
+enum SpawnColor {
+	Unset,
+	Inherit,
+	Randomize,
+}
+
 
 @export var scene: PackedScene
 @export var target_parent: Node2D
@@ -15,6 +21,7 @@ enum SpawnRotation {
 @export var warn_ticks := 30
 @export var spawn_rotation := SpawnRotation.Randomize
 @export var health_override := -1
+@export var spawn_color := SpawnColor.Unset
 
 
 func _ready() -> void:
@@ -31,6 +38,7 @@ func trigger() -> void:
 	var node = scene.instantiate()
 	node.global_position = target_position
 	set_node_rotation(node)
+	set_node_color(node)
 	
 	if health_override > 0:
 		node.shield_hp = health_override
@@ -64,3 +72,14 @@ func set_node_rotation(node: Node2D) -> void:
 				return
 			
 			node.rotation = node.global_position.angle_to_point(Player.current.global_position)
+
+
+func set_node_color(node: Node2D) -> void:
+	match spawn_color:
+		SpawnColor.Unset: return
+		
+		SpawnColor.Inherit:
+			node.modulate = modulate
+		
+		SpawnColor.Randomize:
+			node.modulate = Calc.get_color(randi())

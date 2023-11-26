@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_nnxgn"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="2_1qn5j"]
-[ext_resource type="Script" path="res://scripts/trail.gd" id="3_iem7g"]
+[ext_resource type="Script" path="res://scripts/components/trail.gd" id="3_iem7g"]
 [ext_resource type="Script" path="res://scripts/cut_cast.gd" id="5_g05g5"]
 [ext_resource type="Script" path="res://scripts/hurt_cast.gd" id="6_3teke"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bfn1c51ea1jl2"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_r4tpi"]
-[ext_resource type="Script" path="res://scripts/simple_trail.gd" id="2_w6ytu"]
+[ext_resource type="Script" path="res://scripts/components/simple_trail.gd" id="2_w6ytu"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_1lx0k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jdxnx"]

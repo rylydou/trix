@@ -7,7 +7,7 @@
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="5_ir7ko"]
 [ext_resource type="Image" uid="uid://bbclod4w1jx1m" path="res://content/mazes.png" id="5_xfv8h"]
 [ext_resource type="Script" path="res://scripts/enemies/dig_boss/dig_boss.gd" id="7_7cw58"]
-[ext_resource type="Script" path="res://scripts/trail.gd" id="8_jwyvy"]
+[ext_resource type="Script" path="res://scripts/components/trail.gd" id="8_jwyvy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ucsp7"]
 shader = ExtResource("5_ir7ko")
