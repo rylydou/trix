@@ -9,6 +9,7 @@ func _ready() -> void:
 	clear_points()
 	add_point(owner.global_position)
 	add_point(owner.global_position)
+	modulate = owner.modulate
 
 
 func _physics_process(delta: float) -> void:

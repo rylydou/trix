@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgv3s1f78u48u"]
+[gd_scene load_steps=13 format=3 uid="uid://dgv3s1f78u48u"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_1eubm"]
 [ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_x2x1t"]
@@ -8,7 +8,15 @@
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="6_1pcix"]
 [ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/ball_sm.tscn" id="7_yjb7s"]
 [ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/ball_md.tscn" id="8_i5y4y"]
+[ext_resource type="Script" path="res://scripts/resources/power_up_pool.gd" id="8_ts0p8"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_o5ev6"]
+
+[sub_resource type="Resource" id="Resource_s4ugm"]
+script = ExtResource("8_ts0p8")
+power_ids = Array[StringName]([&"mega"])
+allow_repeats = true
+max_drop_count = 1
+expected_rolls_count = 1
 
 [sub_resource type="Curve2D" id="Curve2D_uv1gb"]
 _data = {
@@ -27,6 +35,7 @@ parallel = true
 
 [node name="Loop 1" type="Node2D" parent="Start"]
 script = ExtResource("4_qeaqc")
+count = 10
 
 [node name="Delay" type="Node2D" parent="Start/Loop 1"]
 script = ExtResource("5_sdext")
@@ -36,9 +45,9 @@ ticks = 15
 position = Vector2(496, -161)
 gizmo_extents = 0.0
 script = ExtResource("6_1pcix")
-warn_ticks = 30
-target_parent = NodePath("../../../Path 1")
 scene = ExtResource("7_yjb7s")
+target_parent = NodePath("../../../Path 1")
+power_pool = SubResource("Resource_s4ugm")
 
 [node name="Loop 2" type="Node2D" parent="Start"]
 script = ExtResource("4_qeaqc")

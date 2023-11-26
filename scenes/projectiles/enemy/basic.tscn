@@ -10,7 +10,7 @@ _data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Gradient" id="Gradient_7y5lt"]
-colors = PackedColorArray(0.988235, 0, 0.305882, 1, 0.99, 0, 0.3135, 0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
 shader = ExtResource("3_cs3kx")

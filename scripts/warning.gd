@@ -1,4 +1,4 @@
-class_name Warn extends MeshInstance2D
+class_name Warning extends MeshInstance2D
 
 
 @export var rotation_speed := 1.0

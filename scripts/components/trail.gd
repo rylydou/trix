@@ -10,6 +10,8 @@ func _ready() -> void:
 		target = owner
 	
 	clear_points()
+	
+	modulate = owner.modulate
 
 
 func _physics_process(delta: float) -> void:

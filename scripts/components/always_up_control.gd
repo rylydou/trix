@@ -8,3 +8,4 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	rotation = 0
 	position = get_parent().global_position - size/2
+	modulate = get_parent().modulate
