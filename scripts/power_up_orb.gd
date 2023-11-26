@@ -1,7 +1,7 @@
 extends Area2D
 
 
-@export var power_up_id := ''
+@export var power_up_id := &''
 
 
 @onready var power_up: PowerUp = Consts.powers_ups[power_up_id].new()

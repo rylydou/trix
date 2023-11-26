@@ -11,9 +11,20 @@ signal killed()
 @export var warn_radius := 16.0
 @export var die_on_shield_break := false
 
+@export var power_up_id := &''
+
+
+var power_up: PowerUp
+
 
 func _ready() -> void:
 	set_shield(shield_hp)
+	
+	if not power_up_id.is_empty():
+		power_up = Consts.powers_ups[power_up_id].new()
+		var label: Label = Consts.scn_power_up_label.instantiate()
+		label.text = power_up.get_name()[0]
+		add_child(label)
 
 
 func _physics_process(delta: float) -> void:
@@ -66,3 +77,6 @@ func die() -> void:
 	killed.emit()
 	queue_free()
 	Particles.emit_kill(global_position)
+	
+	if power_up and is_instance_valid(Player.current):
+		Player.current.set_power_up(power_up)
