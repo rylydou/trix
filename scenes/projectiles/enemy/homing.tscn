@@ -1,5 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsnvvssl1bdf2"]
+[gd_scene load_steps=8 format=3 uid="uid://bsnvvssl1bdf2"]
 
+[ext_resource type="Script" path="res://scripts/movers/aimer.gd" id="2_fkyje"]
+[ext_resource type="Script" path="res://scripts/movers/mover.gd" id="3_k63va"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_wp70c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
@@ -14,6 +16,11 @@ size = Vector2(16, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_brgrb"]
 radius = 8.0
 
+[sub_resource type="Curve" id="Curve_phfsq"]
+max_value = 5.0
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0]
+point_count = 1
+
 [node name="Homing Slow" type="CharacterBody2D"]
 modulate = Color(0.988235, 0, 0.305882, 1)
 collision_layer = 8
@@ -26,3 +33,11 @@ mesh = SubResource("QuadMesh_3yejo")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_brgrb")
+
+[node name="Aimer" type="Node" parent="."]
+script = ExtResource("2_fkyje")
+turn_speed = 3.0
+
+[node name="Mover" type="Node" parent="."]
+script = ExtResource("3_k63va")
+curve = SubResource("Curve_phfsq")
