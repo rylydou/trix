@@ -126,9 +126,11 @@ script = ExtResource("8_4fnqp")
 count = 30
 
 [node name="Spawn" type="Marker2D" parent="Start/Shoot/Loop/Group/Loop"]
+modulate = Color(0.439216, 0.713726, 0, 1)
 script = ExtResource("9_wm0ed")
 scene = ExtResource("10_ssvge")
 warn_ticks = -1
+spawn_color = 1
 
 [node name="Delay" type="Node2D" parent="Start/Shoot/Loop/Group/Loop"]
 script = ExtResource("7_v35r7")
@@ -139,10 +141,12 @@ script = ExtResource("8_4fnqp")
 count = 10
 
 [node name="Spawn" type="Marker2D" parent="Start/Shoot/Loop/Group/Loop 2"]
+modulate = Color(0.439216, 0.713726, 0, 1)
 script = ExtResource("9_wm0ed")
 scene = ExtResource("10_ssvge")
 warn_ticks = -1
 spawn_rotation = 3
+spawn_color = 1
 
 [node name="Delay" type="Node2D" parent="Start/Shoot/Loop/Group/Loop 2"]
 script = ExtResource("7_v35r7")
