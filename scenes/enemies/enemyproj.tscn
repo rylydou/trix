@@ -6,8 +6,8 @@
 
 [sub_resource type="Curve" id="Curve_4l1if"]
 max_value = 10.0
-_data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
-point_count = 1
+_data = [Vector2(0, 14.8983), 0.0, 0.0, 0, 0, Vector2(1e-05, 10), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
 shader = ExtResource("3_8j4pn")
@@ -41,6 +41,7 @@ die_on_shield_break = true
 
 [node name="Projectile Mover" type="Node" parent="."]
 script = ExtResource("2_x4dqi")
+life = 1.5
 curve = SubResource("Curve_4l1if")
 
 [node name="Ring" type="MeshInstance2D" parent="."]

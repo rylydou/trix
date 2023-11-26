@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://beo05alnu1rco"]
+[gd_scene load_steps=11 format=3 uid="uid://dhhm2yj3i3i7t"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ce73k"]
-[ext_resource type="Script" path="res://scripts/modules/turret.gd" id="3_vbfqh"]
-[ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/enemies/enemyproj.tscn" id="4_ng6jy"]
-[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="4_ogo1g"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ohu67"]
+[ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="3_p6qx3"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="4_ig3d1"]
+[ext_resource type="Script" path="res://scripts/movers/seeker.gd" id="4_p8kl0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
-shader = ExtResource("4_ogo1g")
+shader = ExtResource("4_ig3d1")
 shader_parameter/radius = 1.0
 shader_parameter/fill = 0.25
 shader_parameter/radial_fill = 1.0
@@ -15,7 +15,7 @@ shader_parameter/radial_fill = 1.0
 size = Vector2(64, 64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
-shader = ExtResource("4_ogo1g")
+shader = ExtResource("4_ig3d1")
 shader_parameter/radius = 0.5
 shader_parameter/fill = 1.0
 shader_parameter/radial_fill = 1.0
@@ -26,32 +26,34 @@ size = Vector2(64, 64)
 [sub_resource type="CircleShape2D" id="CircleShape2D_brgrb"]
 radius = 32.0
 
-[node name="Turret" type="CharacterBody2D" groups=["enemy"]]
+[sub_resource type="Curve" id="Curve_84aat"]
+max_value = 5.0
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[node name="Seeker" type="CharacterBody2D" groups=["enemy"]]
 modulate = Color(0.988235, 0, 0.305882, 1)
 collision_layer = 4
 collision_mask = 0
 motion_mode = 1
-script = ExtResource("1_ce73k")
-shield_hp = 7
-warn_radius = 24.0
+script = ExtResource("1_ohu67")
+shield_hp = 4
+
+[node name="Edge Boucer" type="Node" parent="."]
+script = ExtResource("3_p6qx3")
 
 [node name="Ring" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_d4481")
-scale = Vector2(1.5, 1.5)
 mesh = SubResource("QuadMesh_fb1hl")
 
 [node name="Dot" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_ssyi3")
-scale = Vector2(1.5, 1.5)
 mesh = SubResource("QuadMesh_3yejo")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_brgrb")
 
-[node name="Turret" type="Node" parent="."]
-script = ExtResource("3_vbfqh")
-proj_scene = ExtResource("4_ng6jy")
-cooldown = 4.0
-tween_shots = 0.15
-amount = 4
+[node name="Seeker" type="Node" parent="."]
+script = ExtResource("4_p8kl0")
+curve = SubResource("Curve_84aat")
+turn_max = 2.0

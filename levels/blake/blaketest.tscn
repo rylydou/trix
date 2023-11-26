@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="6_pje3a"]
 [ext_resource type="PackedScene" uid="uid://c50i8iwf4w6p" path="res://scenes/enemies/explosion_path_ball.tscn" id="7_eteyo"]
 [ext_resource type="PackedScene" uid="uid://bqommp5xb2eya" path="res://scenes/enemies/mother.tscn" id="8_exnvn"]
-[ext_resource type="PackedScene" uid="uid://beo05alnu1rco" path="res://scenes/enemies/turret.tscn" id="9_1hmq5"]
+[ext_resource type="PackedScene" uid="uid://dhhm2yj3i3i7t" path="res://scenes/enemies/seeker.tscn" id="9_cn3ss"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_yxtgd"]
 
 [sub_resource type="Curve2D" id="Curve2D_fabwo"]
@@ -30,7 +30,7 @@ parallel = true
 
 [node name="Loop 1" type="Node2D" parent="Start"]
 script = ExtResource("4_hf78i")
-count = 20
+count = 0
 
 [node name="Delay" type="Node2D" parent="Start/Loop 1"]
 script = ExtResource("5_1x7e5")
@@ -46,7 +46,7 @@ scene = ExtResource("7_eteyo")
 
 [node name="Loop 2" type="Node2D" parent="Start"]
 script = ExtResource("4_hf78i")
-count = 5
+count = 0
 
 [node name="Spawn" type="Marker2D" parent="Start/Loop 2"]
 gizmo_extents = 300.0
@@ -64,7 +64,7 @@ count = 5
 [node name="Spawn" type="Marker2D" parent="Start/Loop 3"]
 gizmo_extents = 300.0
 script = ExtResource("6_pje3a")
-scene = ExtResource("9_1hmq5")
+scene = ExtResource("9_cn3ss")
 
 [node name="Delay" type="Node2D" parent="Start/Loop 3"]
 script = ExtResource("5_1x7e5")

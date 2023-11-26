@@ -41,5 +41,5 @@ debug_color = Color(1, 0, 0, 0)
 
 [node name="Explosion" type="Node" parent="."]
 script = ExtResource("4_1mvtp")
-explosion_amount = 8
+explosion_amount = 6
 proj_scene = ExtResource("5_6fq2p")

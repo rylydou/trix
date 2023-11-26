@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="WorldData" load_steps=8 format=3 uid="uid://ckrkti6uuewkc"]
+
+[ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="1_qv4td"]
+[ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="2_gwghx"]
+[ext_resource type="Texture2D" uid="uid://bk26rlq02oipv" path="res://content/sprites/fruits/eggplant.svg" id="3_mur8a"]
+
+[sub_resource type="Resource" id="Resource_q07me"]
+script = ExtResource("1_qv4td")
+name = "Mother"
+is_boss = false
+path = "res://levels/Enemy Levels/Mother.tscn"
+
+[sub_resource type="Resource" id="Resource_t03b8"]
+script = ExtResource("1_qv4td")
+name = "Turret"
+is_boss = false
+path = "res://levels/Enemy Levels/Turret.tscn"
+
+[sub_resource type="Resource" id="Resource_0vuu8"]
+script = ExtResource("1_qv4td")
+name = "Seeker"
+is_boss = false
+path = "res://levels/Enemy Levels/Seeker.tscn"
+
+[sub_resource type="Resource" id="Resource_cob1y"]
+script = ExtResource("1_qv4td")
+name = "Explosion"
+is_boss = false
+path = "res://levels/Enemy Levels/Explosion.tscn"
+
+[resource]
+script = ExtResource("2_gwghx")
+name = "Enemy Testing"
+sprite = ExtResource("3_mur8a")
+levels = Array[ExtResource("1_qv4td")]([SubResource("Resource_q07me"), SubResource("Resource_t03b8"), SubResource("Resource_0vuu8"), SubResource("Resource_cob1y")])

@@ -66,3 +66,4 @@ shape = SubResource("CircleShape2D_brgrb")
 [node name="Mother" type="Node" parent="."]
 script = ExtResource("5_cwxs8")
 child_scene = ExtResource("6_lgqys")
+spawn_cooldown = 4.0
