@@ -48,6 +48,7 @@ warn_radius = 24.0
 [node name="Mover" type="Node" parent="."]
 script = ExtResource("2_tvwp7")
 curve = SubResource("Curve_8bs85")
+only_move_on_path = true
 
 [node name="Aimer" type="Node" parent="."]
 script = ExtResource("2_6kqy6")
