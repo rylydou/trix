@@ -9,25 +9,17 @@ enum SpawnRotation {
 }
 
 
+@export var scene: PackedScene
+@export var target_parent: Node2D
+
 @export var warn_ticks := 30
 @export var spawn_rotation := SpawnRotation.Randomize
 @export var health_override := -1
-
-@export var target_parent: Node2D
-@export var scene: PackedScene
-@export var node: Node2D
 
 
 func _ready() -> void:
 	if not target_parent:
 		target_parent = get_tree().current_scene
-	
-	if node:
-		scene = PackedScene.new()
-		node.queue_free()
-		var err := scene.pack(node)
-		
-		assert(err == OK, error_string(err))
 	
 	assert(scene, 'No scene or node was set to spawn.')
 

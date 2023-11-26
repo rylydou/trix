@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://e0nsos0oq5j4"]
+[gd_scene load_steps=7 format=3 uid="uid://cfkqcefo8k234"]
 
 [ext_resource type="Script" path="res://scripts/power_up_orb.gd" id="1_j520u"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="1_u1jf7"]
@@ -36,13 +36,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_left = -32.0
+offset_top = -19.0
+offset_right = 32.0
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "B"
+text = "?"
 label_settings = SubResource("LabelSettings_ctpei")
 horizontal_alignment = 1
 vertical_alignment = 2

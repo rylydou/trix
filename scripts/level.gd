@@ -2,9 +2,11 @@ class_name Level extends Node2D
 
 
 @export var time_limit := 20.0
-@onready var time_limit_ticks := time_limit * 60
-
 @export var win_delay_ticks := 30
+@export var attempts_to_skip := 3.0
+
+
+@onready var time_limit_ticks := time_limit * 60
 
 
 var tick := 0
