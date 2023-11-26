@@ -34,10 +34,7 @@ func _shield_broken() -> void:
 	if size <= 1:
 		return super._shield_broken()
 	
-	var count := 3
-	# if size == 4:
-		# count = 4
-		
+	var count := size
 	var rotation_basis := randf_range(0, 2 * PI)
 	
 	for i in range(count):
