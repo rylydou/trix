@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://sq1xnf8av723"]
+
+[ext_resource type="Script" path="res://scripts/movers/mover.gd" id="1_5ggjn"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_cs3kx"]
+[ext_resource type="Script" path="res://scripts/trail.gd" id="3_hb1df"]
+
+[sub_resource type="Curve" id="Curve_enxuc"]
+max_value = 5.0
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_7y5lt"]
+colors = PackedColorArray(0.988235, 0, 0.305882, 1, 0.99, 0, 0.3135, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
+shader = ExtResource("3_cs3kx")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3yejo"]
+size = Vector2(24, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8adq2"]
+radius = 12.0
+
+[node name="Projectile" type="CharacterBody2D"]
+modulate = Color(0.988235, 0, 0.305882, 1)
+collision_layer = 8
+collision_mask = 0
+motion_mode = 1
+
+[node name="Mover" type="Node" parent="."]
+script = ExtResource("1_5ggjn")
+curve = SubResource("Curve_enxuc")
+
+[node name="Trail" type="Line2D" parent="."]
+top_level = true
+z_index = -50
+z_as_relative = false
+width = 23.0
+gradient = SubResource("Gradient_7y5lt")
+script = ExtResource("3_hb1df")
+
+[node name="Circle" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_ssyi3")
+mesh = SubResource("QuadMesh_3yejo")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8adq2")

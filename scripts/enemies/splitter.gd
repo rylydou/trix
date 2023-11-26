@@ -35,4 +35,4 @@ func _shield_broken() -> void:
 		
 		get_parent().add_child(clone)
 	
-	super._death()
+	super.die()

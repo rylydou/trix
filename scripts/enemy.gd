@@ -1,19 +1,15 @@
 class_name Enemy extends CharacterBody2D
 
+
 signal shield_broken()
 signal killed()
+
 
 @export var shield_hp := 1
 @export var invuln_ticks := 0
 @export var friction := 0.99
 @export var warn_radius := 16.0
-@export var rand_rot := true
 @export var die_on_shield_break := false
-
-
-func _init() -> void:
-	if rand_rot:
-		rotation = randf_range(0, 2*PI)
 
 
 func _ready() -> void:
@@ -54,18 +50,19 @@ func take_cut(dir: Vector2) -> bool:
 	if invuln_ticks > 0: return false
 	if shield_hp > 0: return false
 	
-	_death()
+	die()
 	return true
 
 
 func _shield_broken() -> void:
 	shield_broken.emit()
 	Particles.emit_shield_break(global_position)
+	
 	if die_on_shield_break:
-		_death()
+		die()
 
 
-func _death() -> void:
+func die() -> void:
 	killed.emit()
 	queue_free()
 	Particles.emit_kill(global_position)

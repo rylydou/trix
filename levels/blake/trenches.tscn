@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://scripts/events/start.gd" id="3_ml1s8"]
 [ext_resource type="Script" path="res://scripts/events/loop.gd" id="5_t04wu"]
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="6_hyhrk"]
+[ext_resource type="PackedScene" uid="uid://bms80o6kt2iuj" path="res://scenes/enemies/shooter.tscn" id="7_goimt"]
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="7_lbsbv"]
-[ext_resource type="PackedScene" uid="uid://beo05alnu1rco" path="res://scenes/enemies/turret.tscn" id="8_pip13"]
-[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/Path Enemies (Temp)/path_ball.tscn" id="8_xfbbg"]
+[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/ball_sm.tscn" id="8_xfbbg"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="10_0titi"]
 
 [sub_resource type="Curve2D" id="Curve2D_4ltbu"]
@@ -45,7 +45,7 @@ ticks = 0
 position = Vector2(-450, -175)
 gizmo_extents = 150.0
 script = ExtResource("7_lbsbv")
-scene = ExtResource("8_pip13")
+scene = ExtResource("7_goimt")
 
 [node name="LB Turrets" type="Node2D" parent="Start"]
 script = ExtResource("5_t04wu")
@@ -59,7 +59,7 @@ ticks = 90
 position = Vector2(-450, 175)
 gizmo_extents = 150.0
 script = ExtResource("7_lbsbv")
-scene = ExtResource("8_pip13")
+scene = ExtResource("7_goimt")
 
 [node name="RB Turrets" type="Node2D" parent="Start"]
 script = ExtResource("5_t04wu")
@@ -73,7 +73,7 @@ ticks = 60
 position = Vector2(450, 175)
 gizmo_extents = 150.0
 script = ExtResource("7_lbsbv")
-scene = ExtResource("8_pip13")
+scene = ExtResource("7_goimt")
 
 [node name="RT Turrets" type="Node2D" parent="Start"]
 script = ExtResource("5_t04wu")
@@ -86,7 +86,7 @@ script = ExtResource("6_hyhrk")
 position = Vector2(450, -175)
 gizmo_extents = 150.0
 script = ExtResource("7_lbsbv")
-scene = ExtResource("8_pip13")
+scene = ExtResource("7_goimt")
 
 [node name="Left Trench Spawn" type="Node2D" parent="Start"]
 script = ExtResource("5_t04wu")

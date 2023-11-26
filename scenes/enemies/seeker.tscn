@@ -1,35 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhhm2yj3i3i7t"]
+[gd_scene load_steps=7 format=3 uid="uid://dhhm2yj3i3i7t"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ohu67"]
+[ext_resource type="Script" path="res://scripts/movers/mover.gd" id="2_ofmrk"]
+[ext_resource type="Script" path="res://scripts/movers/aimer.gd" id="3_gv2gn"]
 [ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="3_p6qx3"]
-[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="4_ig3d1"]
-[ext_resource type="Script" path="res://scripts/movers/seeker.gd" id="4_p8kl0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
-shader = ExtResource("4_ig3d1")
-shader_parameter/radius = 1.0
-shader_parameter/fill = 0.25
-shader_parameter/radial_fill = 1.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_fb1hl"]
-size = Vector2(64, 64)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
-shader = ExtResource("4_ig3d1")
-shader_parameter/radius = 0.5
-shader_parameter/fill = 1.0
-shader_parameter/radial_fill = 1.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_3yejo"]
-size = Vector2(64, 64)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_brgrb"]
-radius = 32.0
-
-[sub_resource type="Curve" id="Curve_84aat"]
+[sub_resource type="Curve" id="Curve_u83e7"]
 max_value = 5.0
 _data = [Vector2(0, 5), 0.0, 0.0, 0, 0]
 point_count = 1
+
+[sub_resource type="PrismMesh" id="PrismMesh_f0oph"]
+size = Vector3(32, 32, 0)
 
 [node name="Seeker" type="CharacterBody2D" groups=["enemy"]]
 modulate = Color(0.988235, 0, 0.305882, 1)
@@ -39,21 +21,20 @@ motion_mode = 1
 script = ExtResource("1_ohu67")
 shield_hp = 4
 
+[node name="Mover" type="Node" parent="."]
+script = ExtResource("2_ofmrk")
+curve = SubResource("Curve_u83e7")
+
+[node name="Aimer" type="Node" parent="."]
+script = ExtResource("3_gv2gn")
+turn_speed = 1.0
+
 [node name="Edge Boucer" type="Node" parent="."]
 script = ExtResource("3_p6qx3")
 
-[node name="Ring" type="MeshInstance2D" parent="."]
-material = SubResource("ShaderMaterial_d4481")
-mesh = SubResource("QuadMesh_fb1hl")
+[node name="Triangle" type="MeshInstance2D" parent="."]
+rotation = -1.5708
+mesh = SubResource("PrismMesh_f0oph")
 
-[node name="Dot" type="MeshInstance2D" parent="."]
-material = SubResource("ShaderMaterial_ssyi3")
-mesh = SubResource("QuadMesh_3yejo")
-
-[node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_brgrb")
-
-[node name="Seeker" type="Node" parent="."]
-script = ExtResource("4_p8kl0")
-curve = SubResource("Curve_84aat")
-turn_max = 2.0
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-16, -16, 16, 0, -16, 16)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://7xvt1pwbwvgq"]
+[gd_scene load_steps=12 format=3 uid="uid://7xvt1pwbwvgq"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_4tvae"]
 [ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_e7iin"]
@@ -7,10 +7,9 @@
 [ext_resource type="Script" path="res://scripts/events/group.gd" id="4_nhxss"]
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="5_nddmf"]
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="6_mx5k0"]
-[ext_resource type="PackedScene" uid="uid://dt0u602le2p0p" path="res://scenes/enemies/Path Enemies (Temp)/armored_ball_path.tscn" id="7_wfjvs"]
+[ext_resource type="PackedScene" uid="uid://dt0u602le2p0p" path="res://scenes/enemies/ball_md_strong.tscn" id="7_wfjvs"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_ikxmj"]
-[ext_resource type="PackedScene" uid="uid://d21y84u11p8ic" path="res://scenes/enemies/Path Enemies (Temp)/turret_path.tscn" id="9_q40gh"]
-[ext_resource type="PackedScene" uid="uid://deglerxji8bsb" path="res://scenes/enemies/Path Enemies (Temp)/missile_turret_path.tscn" id="10_soayf"]
+[ext_resource type="PackedScene" uid="uid://bms80o6kt2iuj" path="res://scenes/enemies/shooter.tscn" id="10_soayf"]
 
 [sub_resource type="Curve2D" id="Curve2D_4ltbu"]
 _data = {
@@ -40,6 +39,7 @@ count = 6
 position = Vector2(532, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_mx5k0")
+spawn_rotation = 0
 target_parent = NodePath("../../../../Left Trench")
 scene = ExtResource("7_wfjvs")
 
@@ -62,8 +62,9 @@ count = 5
 position = Vector2(532, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_mx5k0")
+spawn_rotation = 0
 target_parent = NodePath("../../../../Left Trench")
-scene = ExtResource("9_q40gh")
+scene = ExtResource("10_soayf")
 
 [node name="Delay" type="Node2D" parent="Start/Group 2/Turret"]
 script = ExtResource("5_nddmf")
@@ -83,6 +84,7 @@ count = 5
 position = Vector2(532, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_mx5k0")
+spawn_rotation = 0
 target_parent = NodePath("../../../../Left Trench")
 scene = ExtResource("10_soayf")
 

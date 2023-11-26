@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="WorldData" load_steps=7 format=3 uid="uid://ckrkti6uuewkc"]
+
+[ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="1_c8lsp"]
+[ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="2_6y735"]
+[ext_resource type="Texture2D" uid="uid://c1sns22ylpw22" path="res://content/sprites/alien.svg" id="3_udv4s"]
+
+[sub_resource type="Resource" id="Resource_t03b8"]
+script = ExtResource("1_c8lsp")
+name = "Shooter"
+is_boss = false
+path = "res://levels/enemy_levels/shooter.tscn"
+
+[sub_resource type="Resource" id="Resource_0vuu8"]
+script = ExtResource("1_c8lsp")
+name = "Seeker"
+is_boss = false
+path = "res://levels/enemy_levels/seeker.tscn"
+
+[sub_resource type="Resource" id="Resource_q07me"]
+script = ExtResource("1_c8lsp")
+name = "Mother"
+is_boss = true
+path = "res://levels/enemy_levels/mother.tscn"
+
+[resource]
+script = ExtResource("2_6y735")
+name = "Enemy Testing Range"
+sprite = ExtResource("3_udv4s")
+levels = Array[ExtResource("1_c8lsp")]([SubResource("Resource_t03b8"), SubResource("Resource_0vuu8"), SubResource("Resource_q07me")])

@@ -2,7 +2,7 @@ extends PowerUp
 
 
 var max_shots := 3
-var projectile: PackedScene = preload('res://scenes/projectiles/mega_bullet.tscn')
+var projectile: PackedScene = preload('res://scenes/projectiles/player/mega_bullet.tscn')
 var fire_cooldown := 10
 var recoil_ticks := 4
 var recoil_force := 10.0

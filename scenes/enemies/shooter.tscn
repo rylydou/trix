@@ -1,0 +1,83 @@
+[gd_scene load_steps=16 format=3 uid="uid://bms80o6kt2iuj"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_1x5p5"]
+[ext_resource type="Script" path="res://scripts/movers/aimer.gd" id="2_6kqy6"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="2_ln2nf"]
+[ext_resource type="Script" path="res://scripts/movers/mover.gd" id="2_tvwp7"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="3_aj8c3"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_tq43f"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="4_ryyte"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="5_rtpmw"]
+[ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/projectiles/enemy/basic.tscn" id="7_v82d7"]
+
+[sub_resource type="Curve" id="Curve_8bs85"]
+max_value = 5.0
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
+shader = ExtResource("2_ln2nf")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.5
+shader_parameter/radial_fill = 0.75
+
+[sub_resource type="QuadMesh" id="QuadMesh_fb1hl"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
+shader = ExtResource("2_ln2nf")
+shader_parameter/radius = 0.25
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3yejo"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brgrb"]
+radius = 32.0
+
+[node name="Basic Shooter" type="CharacterBody2D" groups=["enemy"]]
+modulate = Color(0.988235, 0, 0.305882, 1)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_1x5p5")
+shield_hp = 7
+warn_radius = 24.0
+
+[node name="Mover" type="Node" parent="."]
+script = ExtResource("2_tvwp7")
+curve = SubResource("Curve_8bs85")
+
+[node name="Aimer" type="Node" parent="."]
+script = ExtResource("2_6kqy6")
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_tq43f")
+
+[node name="Loop" type="Node2D" parent="Start"]
+script = ExtResource("4_ryyte")
+
+[node name="Delay" type="Node2D" parent="Start/Loop"]
+script = ExtResource("5_rtpmw")
+ticks = 120
+
+[node name="Spawn" type="Marker2D" parent="Start/Loop"]
+gizmo_extents = 0.0
+script = ExtResource("3_aj8c3")
+warn_ticks = -1
+spawn_rotation = 1
+scene = ExtResource("7_v82d7")
+
+[node name="Ring" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_d4481")
+rotation = 0.785398
+mesh = SubResource("QuadMesh_fb1hl")
+
+[node name="Dot" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_ssyi3")
+rotation = 0.785398
+mesh = SubResource("QuadMesh_3yejo")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_brgrb")

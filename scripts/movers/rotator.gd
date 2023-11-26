@@ -1,4 +1,4 @@
-class_name CurveRotator extends Node
+class_name Rotator extends Node
 
 @export var target: Node2D
 @export var time := 1.0

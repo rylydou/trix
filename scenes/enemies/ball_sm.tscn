@@ -1,8 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cahbnmdqml26y"]
+[gd_scene load_steps=9 format=3 uid="uid://cahbnmdqml26y"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_kwrct"]
-[ext_resource type="Script" path="res://scripts/movers/path_mover.gd" id="2_q10op"]
+[ext_resource type="Script" path="res://scripts/movers/mover.gd" id="2_xn43b"]
+[ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="3_2f5hu"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_lsnvf"]
+
+[sub_resource type="Curve" id="Curve_cgv04"]
+max_value = 5.0
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pkrh4"]
 shader = ExtResource("3_lsnvf")
@@ -16,7 +22,7 @@ size = Vector2(32, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_5x6ge"]
 radius = 12.0
 
-[node name="Path Ball" type="CharacterBody2D" groups=["enemy"]]
+[node name="Ball Small" type="CharacterBody2D" groups=["enemy"]]
 modulate = Color(0.988235, 0, 0.305882, 1)
 collision_layer = 4
 collision_mask = 0
@@ -24,12 +30,14 @@ motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_kwrct")
 
-[node name="Path Mover" type="Node" parent="."]
-script = ExtResource("2_q10op")
-speed = 4.0
+[node name="Mover" type="Node" parent="."]
+script = ExtResource("2_xn43b")
+curve = SubResource("Curve_cgv04")
+
+[node name="Edge Boucer" type="Node" parent="."]
+script = ExtResource("3_2f5hu")
 
 [node name="Ring" type="MeshInstance2D" parent="."]
-unique_name_in_owner = true
 material = SubResource("ShaderMaterial_pkrh4")
 mesh = SubResource("QuadMesh_gyfj6")
 

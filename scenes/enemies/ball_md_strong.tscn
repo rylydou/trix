@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://dt0u602le2p0p"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_o66iw"]
+[ext_resource type="Script" path="res://scripts/movers/mover.gd" id="2_ps3cb"]
+[ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="3_ootbr"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_xklqb"]
+
+[sub_resource type="Curve" id="Curve_erduw"]
+max_value = 5.0
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkrh4"]
+shader = ExtResource("3_xklqb")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.25
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_gyfj6"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0jdw6"]
+shader = ExtResource("3_xklqb")
+shader_parameter/radius = 0.625
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_12wf7"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5x6ge"]
+radius = 16.0
+
+[node name="Strong Medium Ball" type="CharacterBody2D" groups=["enemy"]]
+modulate = Color(0.988235, 0, 0.305882, 1)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_o66iw")
+shield_hp = 5
+
+[node name="Mover" type="Node" parent="."]
+script = ExtResource("2_ps3cb")
+curve = SubResource("Curve_erduw")
+
+[node name="Edge Boucer" type="Node" parent="."]
+script = ExtResource("3_ootbr")
+
+[node name="Ring" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_pkrh4")
+mesh = SubResource("QuadMesh_gyfj6")
+
+[node name="Dot" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_0jdw6")
+mesh = SubResource("QuadMesh_12wf7")
+
+[node name="Dot 2" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_0jdw6")
+rotation = 3.14159
+mesh = SubResource("QuadMesh_12wf7")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_5x6ge")
+debug_color = Color(1, 0, 0, 0)

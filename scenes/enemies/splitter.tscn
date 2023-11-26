@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://hyp3cdcgw00s"]
 
 [ext_resource type="Script" path="res://scripts/enemies/splitter.gd" id="1_hfxnr"]
-[ext_resource type="Script" path="res://scripts/movers/curve_mover.gd" id="2_62uoe"]
+[ext_resource type="Script" path="res://scripts/movers/mover.gd" id="2_62uoe"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="2_ywckg"]
 [ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="3_ffbvy"]
 
@@ -32,11 +32,11 @@ motion_mode = 1
 script = ExtResource("1_hfxnr")
 shield_hp = 5
 
-[node name="CurveMover" type="Node" parent="."]
+[node name="Mover" type="Node" parent="."]
 script = ExtResource("2_62uoe")
 curve = SubResource("Curve_ib2p4")
 
-[node name="EdgeBouncer" type="Node" parent="."]
+[node name="Edge Bouncer" type="Node" parent="."]
 script = ExtResource("3_ffbvy")
 
 [node name="Circle" type="MeshInstance2D" parent="."]

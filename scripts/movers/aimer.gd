@@ -1,8 +1,8 @@
-class_name SteerRotator extends Node
+class_name Aimer extends Node
 
 
 @export var target: Node2D
-@export var turn_speed := 1.0
+@export var turn_speed := 0.0
 
 
 func _ready() -> void:
@@ -17,4 +17,8 @@ func _physics_process(delta: float) -> void:
 	
 	var angle_to_player := target.global_position.angle_to_point(player.global_position)
 	
-	target.global_rotation = rotate_toward(target.global_rotation, angle_to_player, turn_speed)
+	if turn_speed == 0:
+		target.global_rotation = angle_to_player
+		return
+	
+	target.global_rotation = rotate_toward(target.global_rotation, angle_to_player, deg_to_rad(turn_speed))

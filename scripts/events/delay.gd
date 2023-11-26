@@ -1,3 +1,4 @@
+@icon('res://content/icons/delay.svg')
 class_name Delay extends Node2D
 
 

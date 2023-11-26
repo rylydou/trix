@@ -26,6 +26,7 @@ func _ready() -> void:
 		
 		world_buttons.add_child(btn)
 		btn.sprite.texture = world.sprite
+		btn.hint.text = world.name
 		
 		index += 1
 	

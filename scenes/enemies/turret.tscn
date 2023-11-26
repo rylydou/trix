@@ -1,8 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://beo05alnu1rco"]
+[gd_scene load_steps=8 format=3 uid="uid://cx1rd4knf8ovm"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ce73k"]
-[ext_resource type="Script" path="res://scripts/modules/turret.gd" id="3_vbfqh"]
-[ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/enemies/Projectiles (Temp)/enemyproj.tscn" id="4_garew"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="4_ogo1g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
@@ -48,10 +46,3 @@ mesh = SubResource("QuadMesh_3yejo")
 [node name="Collision" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_brgrb")
-
-[node name="Turret" type="Node" parent="."]
-script = ExtResource("3_vbfqh")
-proj_scene = ExtResource("4_garew")
-cooldown = 4.0
-tween_shots = 0.15
-amount = 4

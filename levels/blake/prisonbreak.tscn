@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://scripts/events/loop.gd" id="4_kliyo"]
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="5_0uhfm"]
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="6_7v8rd"]
-[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/Path Enemies (Temp)/path_ball.tscn" id="7_kmbnx"]
-[ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/bouncy_ball.tscn" id="8_pde1e"]
+[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/ball_sm.tscn" id="7_kmbnx"]
+[ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/ball_md.tscn" id="8_pde1e"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_wx2is"]
 
 [sub_resource type="Curve2D" id="Curve2D_jxb3k"]
@@ -44,8 +44,7 @@ ticks = 14
 position = Vector2(300, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_7v8rd")
-warn_ticks = 30
-target_parent = NodePath("../../../../PathR")
+target_parent = NodePath("../../../../Path")
 scene = ExtResource("7_kmbnx")
 
 [node name="Loop 2" type="Node2D" parent="Start/Group"]
@@ -60,8 +59,7 @@ ticks = 14
 position = Vector2(0, -300)
 gizmo_extents = 0.0
 script = ExtResource("6_7v8rd")
-warn_ticks = 30
-target_parent = NodePath("../../../../PathR")
+target_parent = NodePath("../../../../Path")
 scene = ExtResource("7_kmbnx")
 
 [node name="Loop 3" type="Node2D" parent="Start/Group"]
@@ -76,8 +74,7 @@ ticks = 14
 position = Vector2(-300, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_7v8rd")
-warn_ticks = 30
-target_parent = NodePath("../../../../PathR")
+target_parent = NodePath("../../../../Path")
 scene = ExtResource("7_kmbnx")
 
 [node name="Loop 4" type="Node2D" parent="Start/Group"]
@@ -92,8 +89,7 @@ ticks = 14
 position = Vector2(0, 300)
 gizmo_extents = 0.0
 script = ExtResource("6_7v8rd")
-warn_ticks = 30
-target_parent = NodePath("../../../../PathR")
+target_parent = NodePath("../../../../Path")
 scene = ExtResource("7_kmbnx")
 
 [node name="Loop 2" type="Node2D" parent="Start"]
@@ -110,5 +106,5 @@ script = ExtResource("5_0uhfm")
 
 [node name="Player" parent="." instance=ExtResource("9_wx2is")]
 
-[node name="PathR" type="Path2D" parent="."]
+[node name="Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_jxb3k")
