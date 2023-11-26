@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://nhfq7pm34sg6"]
+[gd_scene load_steps=17 format=3 uid="uid://nhfq7pm34sg6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_a1ofk"]
 [ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_gujm5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="5_ir7ko"]
 [ext_resource type="Image" uid="uid://bbclod4w1jx1m" path="res://content/mazes.png" id="5_xfv8h"]
 [ext_resource type="Script" path="res://scripts/enemies/dig_boss/dig_boss.gd" id="7_7cw58"]
+[ext_resource type="Script" path="res://scripts/trail.gd" id="8_jwyvy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ucsp7"]
 shader = ExtResource("5_ir7ko")
@@ -37,6 +38,9 @@ shader = ExtResource("5_ir7ko")
 shader_parameter/radius = 1.0
 shader_parameter/fill = 0.25
 shader_parameter/radial_fill = 1.0
+
+[sub_resource type="Gradient" id="Gradient_4lrnk"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_a1ofk")
@@ -80,3 +84,12 @@ mesh = SubResource("QuadMesh_wr5eh")
 [node name="Ring" type="MeshInstance2D" parent="Boss"]
 material = SubResource("ShaderMaterial_13chy")
 mesh = SubResource("QuadMesh_wr5eh")
+
+[node name="Trail" type="Line2D" parent="Boss" node_paths=PackedStringArray("target")]
+top_level = true
+z_index = 100
+z_as_relative = false
+width = 15.0
+gradient = SubResource("Gradient_4lrnk")
+script = ExtResource("8_jwyvy")
+target = NodePath("..")

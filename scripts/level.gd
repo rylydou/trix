@@ -18,6 +18,12 @@ func _ready() -> void:
 	add_child(timer_scene.instantiate())
 
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed('cheat_refill_timer'):
+		tick = 0
+		time = 0
+
+
 func _physics_process(delta: float) -> void:
 	tick += 1
 	time += delta

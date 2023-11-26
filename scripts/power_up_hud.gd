@@ -1,6 +1,10 @@
 extends MeshInstance2D
 
 
+func _ready() -> void:
+	hide()
+
+
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(Player.current) and not Player.current.power_up:
 		hide()

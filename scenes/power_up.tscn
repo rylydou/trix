@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://scripts/power_up_orb.gd" id="1_j520u"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="1_u1jf7"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8q4nx"]
-radius = 16.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4wepe"]
 shader = ExtResource("1_u1jf7")
 shader_parameter/radius = 1.0
@@ -20,14 +17,13 @@ size = Vector2(64, 64)
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8q4nx"]
+radius = 32.0
+
 [node name="Power Up Orb" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_j520u")
-
-[node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_8q4nx")
-debug_color = Color(1, 1, 1, 0)
 
 [node name="Circle" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_4wepe")
@@ -50,5 +46,8 @@ text = "B"
 label_settings = SubResource("LabelSettings_ctpei")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8q4nx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

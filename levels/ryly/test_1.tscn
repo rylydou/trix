@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgv3s1f78u48u"]
+[gd_scene load_steps=11 format=3 uid="uid://dgv3s1f78u48u"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_1eubm"]
 [ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_x2x1t"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/path_ball.tscn" id="7_yjb7s"]
 [ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/bouncy_ball.tscn" id="8_i5y4y"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_o5ev6"]
-[ext_resource type="PackedScene" uid="uid://e0nsos0oq5j4" path="res://scenes/power_up.tscn" id="10_2m4dw"]
 
 [sub_resource type="Curve2D" id="Curve2D_uv1gb"]
 _data = {
@@ -59,7 +58,3 @@ position = Vector2(43, -18)
 curve = SubResource("Curve2D_uv1gb")
 
 [node name="Player" parent="." instance=ExtResource("9_o5ev6")]
-
-[node name="Power Up Orb" parent="." instance=ExtResource("10_2m4dw")]
-position = Vector2(-131, -198)
-power_up_id = "mega"

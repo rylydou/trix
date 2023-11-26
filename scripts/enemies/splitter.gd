@@ -4,26 +4,35 @@ extends Enemy
 @export var size := 4
 
 
+var scene := PackedScene.new()
+
+
 func _ready() -> void:
-	var radius := size * 16
-	$'Circle'.material.set_shader_parameter('', 1. / size)
-	$'Collision'.shape.radius = radius
+	scene.pack(self)
+	
+	var scale := 1. / (5 - size)
+	$'Circle'.material.set_shader_parameter('radius', scale)
+	$'Collision'.shape.radius = 128 * scale
+	
+	shield_hp = size * 2
+	
+	super._ready()
 
 
 func _shield_broken() -> void:
-	if size == 1:
+	if size <= 1:
 		return super._shield_broken()
 	
-	var clone1 = duplicate()
-	var clone2 = duplicate()
+	var count := 2
+	if size == 4:
+		count = 4
 	
-	clone1.size = size - 1
-	clone2.size = size - 1
-	
-	clone1.invuln_ticks = 15
-	clone2.invuln_ticks = 15
-	
-	get_tree().current_scene.add_child(clone1)
-	get_tree().current_scene.add_child(clone2)
+	for i in range(count):
+		var clone: Node2D = scene.instantiate()
+		clone.size = size - 1
+		clone.invuln_ticks = 15
+		clone.position = position
+		
+		get_parent().add_child(clone)
 	
 	super._death()

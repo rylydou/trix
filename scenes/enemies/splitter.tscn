@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="3_ffbvy"]
 
 [sub_resource type="Curve" id="Curve_ib2p4"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+max_value = 5.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_40eyh"]
@@ -17,10 +18,11 @@ shader_parameter/fill = 1.0
 shader_parameter/radial_fill = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_ejpld"]
-size = Vector2(128, 128)
+size = Vector2(256, 256)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nh7ao"]
-radius = 64.0
+resource_local_to_scene = true
+radius = 128.0
 
 [node name="Splitter" type="CharacterBody2D" groups=["enemy"]]
 modulate = Color(0.988235, 0, 0.305882, 1)

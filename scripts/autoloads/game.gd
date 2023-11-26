@@ -81,13 +81,19 @@ func fail_out_of_time() -> void:
 	print('>> Out of time!')
 	restart_level()
 
-
+var is_restarting := false
 func restart_level() -> void:
+	if is_restarting: return
+	is_restarting = true
 	get_tree().paused = true
 	get_tree().reload_current_scene()
 	await get_tree().process_frame
 	Particles.restart_all()
 	resume()
+	
+	await get_tree().process_frame
+	
+	is_restarting = false
 
 
 func back_to_hub() -> void:
