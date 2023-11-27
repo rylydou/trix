@@ -1,0 +1,152 @@
+[gd_scene load_steps=17 format=3 uid="uid://br2iuq5nhsjfe"]
+
+[ext_resource type="Script" path="res://scripts/enemies/Pillar Boss/pillar.gd" id="1_ioavu"]
+[ext_resource type="PackedScene" uid="uid://dl0802bd4oxdx" path="res://scenes/enemies/pillars/path.tscn" id="2_sn4p8"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="3_o8gce"]
+[ext_resource type="Script" path="res://scripts/components/health_indicator.gd" id="4_heagn"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="5_l7u3d"]
+[ext_resource type="Script" path="res://scripts/events/group.gd" id="6_wlue2"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="7_k6sq2"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="8_03un8"]
+[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/ball_sm.tscn" id="9_575dm"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="10_qy5ch"]
+[ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/projectiles/enemy/basic.tscn" id="11_lloe4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
+shader = ExtResource("3_o8gce")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.25
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_fb1hl"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
+shader = ExtResource("3_o8gce")
+shader_parameter/radius = 0.5
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3yejo"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brgrb"]
+radius = 32.0
+
+[node name="Pillar" type="CharacterBody2D" node_paths=PackedStringArray("spawns") groups=["enemy"]]
+modulate = Color(0.988235, 0, 0.305882, 1)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_ioavu")
+spawns = [NodePath("Start/Ring/Loop/Spawn"), NodePath("Start/Ring/Loop 2/Spawn 2"), NodePath("Start/Ring/Loop 3/Spawn 3"), NodePath("Start/Ring/Loop 4/Spawn 4")]
+path_scene = ExtResource("2_sn4p8")
+shield_hp = 10
+warn_radius = 24.0
+
+[node name="Ring" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_d4481")
+scale = Vector2(1.5, 1.5)
+mesh = SubResource("QuadMesh_fb1hl")
+
+[node name="Dot" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_ssyi3")
+scale = Vector2(1.5, 1.5)
+mesh = SubResource("QuadMesh_3yejo")
+script = ExtResource("4_heagn")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_brgrb")
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("5_l7u3d")
+parallel = true
+
+[node name="Ring" type="Node2D" parent="Start"]
+script = ExtResource("6_wlue2")
+parallel = true
+
+[node name="Loop" type="Node2D" parent="Start/Ring"]
+script = ExtResource("7_k6sq2")
+count = 5
+
+[node name="Spawn" type="Marker2D" parent="Start/Ring/Loop"]
+position = Vector2(200, 0)
+gizmo_extents = 0.0
+script = ExtResource("8_03un8")
+scene = ExtResource("9_575dm")
+
+[node name="Delay" type="Node2D" parent="Start/Ring/Loop"]
+script = ExtResource("10_qy5ch")
+ticks = 14
+
+[node name="Loop 2" type="Node2D" parent="Start/Ring"]
+script = ExtResource("7_k6sq2")
+count = 5
+
+[node name="Spawn 2" type="Marker2D" parent="Start/Ring/Loop 2"]
+position = Vector2(0, -200)
+gizmo_extents = 0.0
+script = ExtResource("8_03un8")
+scene = ExtResource("9_575dm")
+
+[node name="Delay" type="Node2D" parent="Start/Ring/Loop 2"]
+script = ExtResource("10_qy5ch")
+ticks = 14
+
+[node name="Loop 3" type="Node2D" parent="Start/Ring"]
+script = ExtResource("7_k6sq2")
+count = 5
+
+[node name="Spawn 3" type="Marker2D" parent="Start/Ring/Loop 3"]
+position = Vector2(-200, 0)
+gizmo_extents = 0.0
+script = ExtResource("8_03un8")
+scene = ExtResource("9_575dm")
+
+[node name="Delay" type="Node2D" parent="Start/Ring/Loop 3"]
+script = ExtResource("10_qy5ch")
+ticks = 14
+
+[node name="Loop 4" type="Node2D" parent="Start/Ring"]
+script = ExtResource("7_k6sq2")
+count = 5
+
+[node name="Spawn 4" type="Marker2D" parent="Start/Ring/Loop 4"]
+position = Vector2(0, 200)
+gizmo_extents = 0.0
+script = ExtResource("8_03un8")
+scene = ExtResource("9_575dm")
+
+[node name="Delay" type="Node2D" parent="Start/Ring/Loop 4"]
+script = ExtResource("10_qy5ch")
+ticks = 14
+
+[node name="Spawn" type="Node2D" parent="Start"]
+script = ExtResource("6_wlue2")
+
+[node name="Delay" type="Node2D" parent="Start/Spawn"]
+script = ExtResource("10_qy5ch")
+ticks = 90
+
+[node name="Loop" type="Node2D" parent="Start/Spawn"]
+script = ExtResource("7_k6sq2")
+
+[node name="Loop" type="Node2D" parent="Start/Spawn/Loop"]
+script = ExtResource("7_k6sq2")
+count = 10
+
+[node name="Spawn" type="Marker2D" parent="Start/Spawn/Loop/Loop"]
+script = ExtResource("8_03un8")
+scene = ExtResource("11_lloe4")
+warn_ticks = -1
+spawn_rotation = 3
+
+[node name="Delay" type="Node2D" parent="Start/Spawn/Loop/Loop"]
+script = ExtResource("10_qy5ch")
+ticks = 10
+
+[node name="Delay" type="Node2D" parent="Start/Spawn/Loop"]
+script = ExtResource("10_qy5ch")
+ticks = 240

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WorldData" load_steps=9 format=3 uid="uid://ccyx7hylpi2yd"]
+[gd_resource type="Resource" script_class="WorldData" load_steps=10 format=3 uid="uid://ccyx7hylpi2yd"]
 
 [ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="1_1ju4s"]
 [ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="1_vm6u4"]
@@ -34,8 +34,14 @@ name = "Hive Queen"
 is_boss = true
 path = "res://levels/blake/hive_queen.tscn"
 
+[sub_resource type="Resource" id="Resource_4aw71"]
+script = ExtResource("1_vm6u4")
+name = "Pillar Boss"
+is_boss = true
+path = "res://levels/blake/pillar_boss.tscn"
+
 [resource]
 script = ExtResource("1_1ju4s")
 name = "Lemon World"
 sprite = ExtResource("3_15hra")
-levels = Array[ExtResource("1_vm6u4")]([SubResource("Resource_5rwnn"), SubResource("Resource_0juyn"), SubResource("Resource_jnutf"), SubResource("Resource_y8mp0"), SubResource("Resource_exmw5")])
+levels = Array[ExtResource("1_vm6u4")]([SubResource("Resource_5rwnn"), SubResource("Resource_0juyn"), SubResource("Resource_jnutf"), SubResource("Resource_y8mp0"), SubResource("Resource_exmw5"), SubResource("Resource_4aw71")])

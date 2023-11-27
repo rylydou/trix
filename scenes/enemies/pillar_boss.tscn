@@ -1,0 +1,100 @@
+[gd_scene load_steps=19 format=3 uid="uid://rwedmk43yuce"]
+
+[ext_resource type="Script" path="res://scripts/enemies/Pillar Boss/pillar_boss.gd" id="1_2dqp6"]
+[ext_resource type="Script" path="res://scripts/movers/mover.gd" id="2_dhplt"]
+[ext_resource type="PackedScene" uid="uid://cmd6i4gc2qk3o" path="res://scenes/enemies/pillars/ball_pillar.tscn" id="2_etbvg"]
+[ext_resource type="PackedScene" uid="uid://br2iuq5nhsjfe" path="res://scenes/enemies/pillars/shooter_pillar.tscn" id="3_4ckql"]
+[ext_resource type="PackedScene" uid="uid://drlwwk7okv58y" path="res://scenes/enemies/pillars/seeker_pillar.tscn" id="3_ga626"]
+[ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="3_uod83"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="4_g3gva"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="7_nfqfd"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="8_oenwt"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="9_d6udm"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="10_jm0pk"]
+[ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/projectiles/enemy/basic.tscn" id="11_a5gft"]
+
+[sub_resource type="Curve" id="Curve_jc4ki"]
+max_value = 5.0
+_data = [Vector2(0, 2.00036), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
+shader = ExtResource("4_g3gva")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.25
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_fb1hl"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
+shader = ExtResource("4_g3gva")
+shader_parameter/radius = 0.5
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3yejo"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brgrb"]
+radius = 32.0
+
+[node name="Pillar Boss" type="CharacterBody2D" groups=["enemy"]]
+modulate = Color(0.988235, 0, 0.305882, 1)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_2dqp6")
+pillar_scenes = Array[PackedScene]([ExtResource("2_etbvg"), ExtResource("3_ga626"), ExtResource("3_4ckql")])
+num_of_pillars = 3
+bounds = Vector2(500, 300)
+shield_hp = 20
+warn_radius = 24.0
+
+[node name="Mover" type="Node" parent="."]
+script = ExtResource("2_dhplt")
+curve = SubResource("Curve_jc4ki")
+
+[node name="Edge Boucer" type="Node" parent="."]
+script = ExtResource("3_uod83")
+
+[node name="Ring" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_d4481")
+scale = Vector2(1.5, 1.5)
+mesh = SubResource("QuadMesh_fb1hl")
+
+[node name="Dot" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_ssyi3")
+scale = Vector2(1.5, 1.5)
+mesh = SubResource("QuadMesh_3yejo")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_brgrb")
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("7_nfqfd")
+
+[node name="Delay" type="Node2D" parent="Start"]
+script = ExtResource("8_oenwt")
+ticks = 40
+
+[node name="Loop 2" type="Node2D" parent="Start"]
+script = ExtResource("9_d6udm")
+
+[node name="Loop" type="Node2D" parent="Start/Loop 2"]
+script = ExtResource("9_d6udm")
+count = 6
+
+[node name="Spawn" type="Marker2D" parent="Start/Loop 2/Loop"]
+script = ExtResource("10_jm0pk")
+scene = ExtResource("11_a5gft")
+warn_ticks = -1
+
+[node name="Delay" type="Node2D" parent="Start/Loop 2/Loop"]
+script = ExtResource("8_oenwt")
+ticks = 20
+
+[node name="Delay 2" type="Node2D" parent="Start/Loop 2"]
+script = ExtResource("8_oenwt")
+ticks = 60

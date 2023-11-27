@@ -26,13 +26,12 @@ script = ExtResource("4_owcve")
 
 [node name="Spawn" type="Node2D" parent="Start/Group"]
 script = ExtResource("5_ju2er")
-count = 10
+count = 8
 
-[node name="Spawn" type="Marker2D" parent="Start/Group/Spawn" node_paths=PackedStringArray("target_parent")]
+[node name="Spawn" type="Marker2D" parent="Start/Group/Spawn"]
 gizmo_extents = 300.0
 script = ExtResource("6_fwvid")
 scene = ExtResource("7_wl1e0")
-target_parent = NodePath("")
 
 [node name="Delay" type="Node2D" parent="Start/Group/Spawn"]
 script = ExtResource("8_u81d7")

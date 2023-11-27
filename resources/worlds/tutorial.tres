@@ -22,11 +22,11 @@ name = "Split"
 is_boss = false
 path = "res://levels/tutorial/split.tscn"
 
-[sub_resource type="Resource" id="Resource_m3o0j"]
+[sub_resource type="Resource" id="Resource_hrg36"]
 script = ExtResource("1_8yh5t")
-name = "Rift"
+name = "Prison Break"
 is_boss = false
-path = "res://levels/tutorial/sbm.tscn"
+path = "res://levels/blake/prisonbreak.tscn"
 
 [sub_resource type="Resource" id="Resource_cqend"]
 script = ExtResource("1_8yh5t")
@@ -38,4 +38,4 @@ path = "res://levels/blake/hive_queen.tscn"
 script = ExtResource("2_or5ob")
 name = "Tutorial World"
 sprite = ExtResource("3_g3uja")
-levels = Array[ExtResource("1_8yh5t")]([SubResource("Resource_1jvii"), SubResource("Resource_0jsem"), SubResource("Resource_iouw4"), SubResource("Resource_m3o0j"), SubResource("Resource_cqend")])
+levels = Array[ExtResource("1_8yh5t")]([SubResource("Resource_1jvii"), SubResource("Resource_0jsem"), SubResource("Resource_iouw4"), SubResource("Resource_hrg36"), SubResource("Resource_cqend")])
