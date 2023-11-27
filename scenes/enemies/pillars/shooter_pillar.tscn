@@ -128,7 +128,7 @@ script = ExtResource("6_wlue2")
 
 [node name="Delay" type="Node2D" parent="Start/Spawn"]
 script = ExtResource("10_qy5ch")
-ticks = 90
+ticks = 60
 
 [node name="Loop" type="Node2D" parent="Start/Spawn"]
 script = ExtResource("7_k6sq2")

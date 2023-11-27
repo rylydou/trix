@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/movers/mover.gd" id="2_dhplt"]
 [ext_resource type="PackedScene" uid="uid://cmd6i4gc2qk3o" path="res://scenes/enemies/pillars/ball_pillar.tscn" id="2_etbvg"]
 [ext_resource type="PackedScene" uid="uid://br2iuq5nhsjfe" path="res://scenes/enemies/pillars/shooter_pillar.tscn" id="3_4ckql"]
-[ext_resource type="PackedScene" uid="uid://drlwwk7okv58y" path="res://scenes/enemies/pillars/seeker_pillar.tscn" id="3_ga626"]
+[ext_resource type="PackedScene" uid="uid://drlwwk7okv58y" path="res://scenes/enemies/pillars/seeker_pillar.tscn" id="3_k8erc"]
 [ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="3_uod83"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="4_g3gva"]
 [ext_resource type="Script" path="res://scripts/events/start.gd" id="7_nfqfd"]
@@ -45,7 +45,7 @@ collision_layer = 4
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_2dqp6")
-pillar_scenes = Array[PackedScene]([ExtResource("2_etbvg"), ExtResource("3_ga626"), ExtResource("3_4ckql")])
+pillar_scenes = Array[PackedScene]([ExtResource("2_etbvg"), ExtResource("3_k8erc"), ExtResource("3_4ckql")])
 num_of_pillars = 3
 bounds = Vector2(500, 300)
 shield_hp = 20
