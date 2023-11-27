@@ -52,6 +52,10 @@ gizmo_extents = 0.0
 script = ExtResource("7_67hag")
 scene = ExtResource("8_jqwdd")
 target_parent = NodePath("../../../../Path")
+warn_ticks = null
+spawn_rotation = null
+spawn_color = null
+health_override = null
 
 [node name="Loop 2" type="Node2D" parent="Start/Group"]
 script = ExtResource("5_y47ke")
@@ -67,6 +71,10 @@ gizmo_extents = 0.0
 script = ExtResource("7_67hag")
 scene = ExtResource("8_jqwdd")
 target_parent = NodePath("../../../../Path")
+warn_ticks = null
+spawn_rotation = null
+spawn_color = null
+health_override = null
 
 [node name="Loop 3" type="Node2D" parent="Start/Group"]
 script = ExtResource("5_y47ke")
@@ -82,6 +90,10 @@ gizmo_extents = 0.0
 script = ExtResource("7_67hag")
 scene = ExtResource("8_jqwdd")
 target_parent = NodePath("../../../../Path 2")
+warn_ticks = null
+spawn_rotation = null
+spawn_color = null
+health_override = null
 
 [node name="Loop 4" type="Node2D" parent="Start/Group"]
 script = ExtResource("5_y47ke")
@@ -97,6 +109,10 @@ gizmo_extents = 0.0
 script = ExtResource("7_67hag")
 scene = ExtResource("8_jqwdd")
 target_parent = NodePath("../../../../Path 2")
+warn_ticks = null
+spawn_rotation = null
+spawn_color = null
+health_override = null
 
 [node name="Loop 2" type="Node2D" parent="Start"]
 script = ExtResource("5_y47ke")
@@ -107,6 +123,10 @@ position = Vector2(300, 0)
 gizmo_extents = 120.0
 script = ExtResource("7_67hag")
 scene = ExtResource("9_1psbb")
+warn_ticks = null
+spawn_rotation = null
+spawn_color = null
+health_override = null
 
 [node name="Delay" type="Node2D" parent="Start/Loop 2"]
 script = ExtResource("6_1y20e")
@@ -127,6 +147,10 @@ position = Vector2(-300, 0)
 gizmo_extents = 120.0
 script = ExtResource("7_67hag")
 scene = ExtResource("9_1psbb")
+warn_ticks = null
+spawn_rotation = null
+spawn_color = null
+health_override = null
 
 [node name="Delay" type="Node2D" parent="Start/Group 2/Loop 3"]
 script = ExtResource("6_1y20e")

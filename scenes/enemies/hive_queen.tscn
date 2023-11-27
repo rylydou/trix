@@ -98,6 +98,8 @@ count = 3
 script = ExtResource("9_wm0ed")
 scene = ExtResource("12_vah8e")
 warn_ticks = -1
+spawn_rotation = null
+spawn_color = null
 health_override = 2
 
 [node name="Delay" type="Node2D" parent="Start/Spawn Seek/Loop/Loop"]
@@ -130,7 +132,9 @@ modulate = Color(0.439216, 0.713726, 0, 1)
 script = ExtResource("9_wm0ed")
 scene = ExtResource("10_ssvge")
 warn_ticks = -1
+spawn_rotation = null
 spawn_color = 1
+health_override = null
 
 [node name="Delay" type="Node2D" parent="Start/Shoot/Loop/Group/Loop"]
 script = ExtResource("7_v35r7")
@@ -147,6 +151,7 @@ scene = ExtResource("10_ssvge")
 warn_ticks = -1
 spawn_rotation = 3
 spawn_color = 1
+health_override = null
 
 [node name="Delay" type="Node2D" parent="Start/Shoot/Loop/Group/Loop 2"]
 script = ExtResource("7_v35r7")
@@ -174,6 +179,9 @@ count = 3
 script = ExtResource("9_wm0ed")
 scene = ExtResource("11_3oh0k")
 warn_ticks = -1
+spawn_rotation = null
+spawn_color = null
+health_override = null
 
 [node name="Delay" type="Node2D" parent="Start/Spawn Bounce/Loop/Loop"]
 script = ExtResource("7_v35r7")

@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="WorldData" load_steps=9 format=3 uid="uid://bnbkqdor7bbm4"]
+
+[ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="1_8yh5t"]
+[ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="2_or5ob"]
+[ext_resource type="Texture2D" uid="uid://ci87obahahpay" path="res://content/sprites/fruits/apple.svg" id="3_g3uja"]
+
+[sub_resource type="Resource" id="Resource_1jvii"]
+script = ExtResource("1_8yh5t")
+name = "Snake"
+is_boss = false
+path = "res://levels/tutorial/snake.tscn"
+
+[sub_resource type="Resource" id="Resource_0jsem"]
+script = ExtResource("1_8yh5t")
+name = "Balls"
+is_boss = false
+path = "res://levels/tutorial/balls.tscn"
+
+[sub_resource type="Resource" id="Resource_iouw4"]
+script = ExtResource("1_8yh5t")
+name = "Split"
+is_boss = false
+path = "res://levels/tutorial/split.tscn"
+
+[sub_resource type="Resource" id="Resource_m3o0j"]
+script = ExtResource("1_8yh5t")
+name = "Rift"
+is_boss = false
+path = "res://levels/tutorial/sbm.tscn"
+
+[sub_resource type="Resource" id="Resource_cqend"]
+script = ExtResource("1_8yh5t")
+name = "Hive Queen"
+is_boss = true
+path = "res://levels/blake/hive_queen.tscn"
+
+[resource]
+script = ExtResource("2_or5ob")
+name = "Tutorial World"
+sprite = ExtResource("3_g3uja")
+levels = Array[ExtResource("1_8yh5t")]([SubResource("Resource_1jvii"), SubResource("Resource_0jsem"), SubResource("Resource_iouw4"), SubResource("Resource_m3o0j"), SubResource("Resource_cqend")])

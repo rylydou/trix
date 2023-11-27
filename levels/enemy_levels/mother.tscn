@@ -29,6 +29,10 @@ position = Vector2(300, 0)
 gizmo_extents = 0.0
 script = ExtResource("5_yrpfg")
 scene = ExtResource("6_lpnmh")
+warn_ticks = null
+spawn_rotation = null
+spawn_color = null
+health_override = null
 
 [node name="Delay" type="Node2D" parent="Start/Loop 1"]
 script = ExtResource("7_tnc4u")

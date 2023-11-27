@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=3 uid="uid://73lduakye1gy"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_546wx"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_grdst"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_ubuwn"]
+[ext_resource type="Script" path="res://scripts/events/group.gd" id="4_dth0d"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="5_6k034"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="6_0gvag"]
+[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/ball_sm.tscn" id="7_vn5fm"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="8_ottr4"]
+[ext_resource type="PackedScene" uid="uid://bqommp5xb2eya" path="res://scenes/enemies/spawner.tscn" id="9_dpq4d"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="10_2326n"]
+[ext_resource type="PackedScene" uid="uid://fdfmst7swi3k" path="res://scenes/enemies/ball_lg.tscn" id="11_5wxvs"]
+
+[sub_resource type="Curve2D" id="Curve2D_mtss0"]
+_data = {
+"points": PackedVector2Array(-7.56807, 123.612, 7.56807, -123.612, -459, 44, -115.203, -19.3406, 115.203, 19.3406, -261, -170, -133.703, -50.4538, 133.703, 50.4538, -116, 153, -100.908, 85.7714, 100.908, -85.7714, 106, 97, -148.839, 133.703, 148.839, -133.703, -37, -245, -102.589, -6.72717, 102.589, 6.72717, 250, -265, -55.4992, -161.452, 55.4992, 161.452, 458, -98, 95.0213, -73.158, -95.0213, 73.158, 378, 190, 132.021, -15.977, -132.021, 15.977, 91, 321, 53.8174, 75.6807, -53.8174, -75.6807, -384, 269, 18.4997, 69.7944, -18.4997, -69.7944, -459, 44)
+}
+point_count = 11
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_546wx")
+time_limit = null
+win_delay_ticks = null
+
+[node name="Camera" parent="." instance=ExtResource("2_grdst")]
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_ubuwn")
+parallel = true
+
+[node name="Group" type="Node2D" parent="Start"]
+script = ExtResource("4_dth0d")
+parallel = true
+
+[node name="Spawn" type="Node2D" parent="Start/Group"]
+script = ExtResource("5_6k034")
+count = 20
+
+[node name="Spawn" type="Marker2D" parent="Start/Group/Spawn" node_paths=PackedStringArray("target_parent")]
+position = Vector2(500, 0)
+gizmo_extents = 0.0
+script = ExtResource("6_0gvag")
+scene = ExtResource("7_vn5fm")
+target_parent = NodePath("../../../../Path2D")
+
+[node name="Delay" type="Node2D" parent="Start/Group/Spawn"]
+script = ExtResource("8_ottr4")
+ticks = 15
+
+[node name="Spawn 2" type="Node2D" parent="Start/Group"]
+script = ExtResource("5_6k034")
+count = 1
+
+[node name="Loop" type="Node2D" parent="Start/Group/Spawn 2"]
+script = ExtResource("5_6k034")
+count = 2
+
+[node name="Spawn 3" type="Marker2D" parent="Start/Group/Spawn 2/Loop"]
+position = Vector2(-300, -175)
+gizmo_extents = 150.0
+script = ExtResource("6_0gvag")
+scene = ExtResource("11_5wxvs")
+
+[node name="Delay 3" type="Node2D" parent="Start/Group/Spawn 2/Loop"]
+script = ExtResource("8_ottr4")
+
+[node name="Delay 2" type="Node2D" parent="Start/Group/Spawn 2"]
+script = ExtResource("8_ottr4")
+
+[node name="Mother" type="Marker2D" parent="Start/Group/Spawn 2"]
+position = Vector2(300, -175)
+gizmo_extents = 150.0
+script = ExtResource("6_0gvag")
+scene = ExtResource("9_dpq4d")
+
+[node name="Delay" type="Node2D" parent="Start/Group/Spawn 2"]
+script = ExtResource("8_ottr4")
+
+[node name="Loop 2" type="Node2D" parent="Start/Group/Spawn 2"]
+script = ExtResource("5_6k034")
+count = 2
+
+[node name="Spawn 4" type="Marker2D" parent="Start/Group/Spawn 2/Loop 2"]
+position = Vector2(300, 175)
+gizmo_extents = 150.0
+script = ExtResource("6_0gvag")
+scene = ExtResource("11_5wxvs")
+
+[node name="Delay 4" type="Node2D" parent="Start/Group/Spawn 2/Loop 2"]
+script = ExtResource("8_ottr4")
+
+[node name="Delay 3" type="Node2D" parent="Start/Group/Spawn 2"]
+script = ExtResource("8_ottr4")
+
+[node name="Mother 2" type="Marker2D" parent="Start/Group/Spawn 2"]
+position = Vector2(-300, 175)
+gizmo_extents = 150.0
+script = ExtResource("6_0gvag")
+scene = ExtResource("9_dpq4d")
+
+[node name="Player" parent="." instance=ExtResource("10_2326n")]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_mtss0")

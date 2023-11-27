@@ -56,12 +56,12 @@ script = ExtResource("2_6kqy6")
 [node name="Start" type="Node2D" parent="."]
 script = ExtResource("3_tq43f")
 
+[node name="Delay 2" type="Node2D" parent="Start"]
+script = ExtResource("5_rtpmw")
+ticks = 180
+
 [node name="Loop" type="Node2D" parent="Start"]
 script = ExtResource("4_ryyte")
-
-[node name="Delay" type="Node2D" parent="Start/Loop"]
-script = ExtResource("5_rtpmw")
-ticks = 240
 
 [node name="Loop" type="Node2D" parent="Start/Loop"]
 script = ExtResource("4_ryyte")
@@ -77,6 +77,10 @@ script = ExtResource("3_aj8c3")
 scene = ExtResource("7_v82d7")
 warn_ticks = -1
 spawn_rotation = 1
+
+[node name="Delay" type="Node2D" parent="Start/Loop"]
+script = ExtResource("5_rtpmw")
+ticks = 240
 
 [node name="Ring" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_d4481")
