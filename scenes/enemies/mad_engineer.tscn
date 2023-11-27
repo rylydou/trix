@@ -46,7 +46,7 @@ collision_layer = 4
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_s2nhc")
-shield_hp = 80
+shield_hp = 75
 warn_radius = 24.0
 
 [node name="Aimer" type="Node" parent="."]
@@ -235,5 +235,39 @@ warn_ticks = -1
 spawn_color = 1
 
 [node name="Delay" type="Node2D" parent="Start/MG 4"]
+script = ExtResource("9_j5m27")
+ticks = 4
+
+[node name="Delay 8" type="Node2D" parent="Start"]
+script = ExtResource("9_j5m27")
+ticks = 120
+
+[node name="MG 5" type="Node2D" parent="Start"]
+script = ExtResource("10_5sf7n")
+count = 20
+
+[node name="Spawn" type="Marker2D" parent="Start/MG 5"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_rotation = 3
+spawn_color = 1
+
+[node name="Spawn 2" type="Marker2D" parent="Start/MG 5"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_color = 1
+
+[node name="Spawn 3" type="Marker2D" parent="Start/MG 5"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_color = 1
+
+[node name="Delay" type="Node2D" parent="Start/MG 5"]
 script = ExtResource("9_j5m27")
 ticks = 4
