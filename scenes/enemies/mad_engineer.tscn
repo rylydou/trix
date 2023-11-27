@@ -52,7 +52,6 @@ warn_radius = 24.0
 [node name="Aimer" type="Node" parent="."]
 script = ExtResource("2_ev2ns")
 turn_speed = 2.0
-away = true
 
 [node name="Mover" type="Node" parent="."]
 script = ExtResource("3_8dn35")
