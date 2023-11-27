@@ -5,6 +5,8 @@ class_name Level extends Node2D
 @export var win_delay_ticks := 30
 @export var attempts_to_skip := 3.0
 
+@export var power_pools: Array[PowerPool] = []
+
 
 @onready var time_limit_ticks := time_limit * 60
 

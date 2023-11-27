@@ -23,12 +23,7 @@ enum SpawnColor {
 @export var spawn_color := SpawnColor.Unset
 @export var health_override := -1
 
-@export var power_pool: PowerPool
-
-
-var spawn_index := 0
-var power_up_drop_count := 0
-var dropped_power_indices: Array[int] = []
+@export var power_pool_index := -1
 
 
 func _ready() -> void:
@@ -62,8 +57,7 @@ func trigger() -> void:
 	
 	target_parent.add_child(warn_node)
 	warn_node.global_position = target_position
-	
-	spawn_index += 1
+
 
 func set_node_rotation(node: Node2D) -> void:
 	match spawn_rotation:
@@ -95,20 +89,7 @@ func set_node_color(node: Node2D) -> void:
 
 
 func set_node_power(node: Node2D) -> void:
-	if not power_pool: return
-	if power_up_drop_count >= power_pool.max_drop_count: return
-	
-	var odds := power_pool.expected_rolls_count - mini(spawn_index, power_pool.expected_rolls_count)
-	var should_drop := randi_range(0, odds - 1) == 0
-	if not should_drop: return
-	
-	power_up_drop_count += 1
-	
-	var index := randi_range(0, power_pool.power_ids.size() - 1)
-	for i in range(power_pool.power_ids.size()):
-		if power_pool.allow_repeats or not dropped_power_indices.has(index):
-			dropped_power_indices.append(index)
-			node.power_up_id = power_pool.power_ids[index]
-			return
-	
-	print('failed to drop due to repeat')
+	return # WIP
+	if power_pool_index < 0: return
+	var pool: PowerPool = get_tree().current_scene.power_pools[power_pool_index]
+	node.power_up_id = pool.get_drop()

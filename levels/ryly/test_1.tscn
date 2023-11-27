@@ -8,14 +8,14 @@
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="6_1pcix"]
 [ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/ball_sm.tscn" id="7_yjb7s"]
 [ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/ball_md.tscn" id="8_i5y4y"]
-[ext_resource type="Script" path="res://scripts/resources/power_up_pool.gd" id="8_ts0p8"]
+[ext_resource type="Script" path="res://scripts/resources/power_pool.gd" id="8_ts0p8"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_o5ev6"]
 
-[sub_resource type="Resource" id="Resource_s4ugm"]
+[sub_resource type="Resource" id="Resource_4dkvr"]
 script = ExtResource("8_ts0p8")
 power_ids = Array[StringName]([&"mega"])
 allow_repeats = true
-max_drop_count = 1
+drop_count = 1
 expected_rolls_count = 1
 
 [sub_resource type="Curve2D" id="Curve2D_uv1gb"]
@@ -26,6 +26,7 @@ point_count = 16
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_1eubm")
+power_pools = Array[ExtResource("8_ts0p8")]([SubResource("Resource_4dkvr")])
 
 [node name="Camera" parent="." instance=ExtResource("2_x2x1t")]
 
@@ -47,7 +48,7 @@ gizmo_extents = 0.0
 script = ExtResource("6_1pcix")
 scene = ExtResource("7_yjb7s")
 target_parent = NodePath("../../../Path 1")
-power_pool = SubResource("Resource_s4ugm")
+power_pool_index = 0
 
 [node name="Loop 2" type="Node2D" parent="Start"]
 script = ExtResource("4_qeaqc")
