@@ -2,40 +2,40 @@
 
 [ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="1_clksm"]
 [ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="2_brb1f"]
-[ext_resource type="Texture2D" uid="uid://ci87obahahpay" path="res://content/sprites/fruits/apple.svg" id="3_lfif0"]
+[ext_resource type="Texture2D" uid="uid://tt7tcpiubhyc" path="res://content/sprites/skull.svg" id="3_8x68l"]
 
 [sub_resource type="Resource" id="Resource_6cahd"]
 script = ExtResource("1_clksm")
 name = "Hive Queen"
-is_boss = false
+is_boss = true
 path = "res://levels/blake/hive_queen.tscn"
 
 [sub_resource type="Resource" id="Resource_r5g30"]
 script = ExtResource("1_clksm")
 name = "Slime"
-is_boss = false
+is_boss = true
 path = "res://levels/ryly/boss_split.tscn"
 
 [sub_resource type="Resource" id="Resource_udjyw"]
 script = ExtResource("1_clksm")
-name = "Train"
-is_boss = false
+name = "Mecha Snake"
+is_boss = true
 path = "res://levels/blake/train.tscn"
 
 [sub_resource type="Resource" id="Resource_ryeja"]
 script = ExtResource("1_clksm")
 name = "Golem"
-is_boss = false
+is_boss = true
 path = "res://levels/blake/pillar_boss.tscn"
 
 [sub_resource type="Resource" id="Resource_fc5xl"]
 script = ExtResource("1_clksm")
 name = "Wizard"
-is_boss = false
+is_boss = true
 path = "res://levels/ryly/boss_dig.tscn"
 
 [resource]
 script = ExtResource("2_brb1f")
-name = "Tutorial World"
-sprite = ExtResource("3_lfif0")
+name = "Boss World"
+sprite = ExtResource("3_8x68l")
 levels = Array[ExtResource("1_clksm")]([SubResource("Resource_6cahd"), SubResource("Resource_r5g30"), SubResource("Resource_udjyw"), SubResource("Resource_ryeja"), SubResource("Resource_fc5xl")])

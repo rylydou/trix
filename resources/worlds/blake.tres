@@ -24,7 +24,7 @@ path = "res://levels/blake/Nests.tscn"
 
 [sub_resource type="Resource" id="Resource_y8mp0"]
 script = ExtResource("1_vm6u4")
-name = "Train"
+name = "Mecha Snake"
 is_boss = true
 path = "res://levels/blake/train.tscn"
 
