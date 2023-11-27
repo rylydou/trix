@@ -12,13 +12,13 @@
 
 [sub_resource type="Curve2D" id="Curve2D_4ltbu"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -250, -370, 0, 0, 0, 0, -250, 370)
+"points": PackedVector2Array(0, 0, 0, 0, -250, -365, 0, 0, 0, 0, -250, 365)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_t358h"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 250, 370, 0, 0, 0, 0, 250, -370)
+"points": PackedVector2Array(0, 0, 0, 0, 250, 365, 0, 0, 0, 0, 250, -370)
 }
 point_count = 2
 
@@ -96,12 +96,12 @@ count = 11
 position = Vector2(-250, -340)
 gizmo_extents = 0.0
 script = ExtResource("7_lbsbv")
-target_parent = NodePath("../../../Left Trench")
 scene = ExtResource("8_xfbbg")
+target_parent = NodePath("../../../Left Trench")
 
 [node name="Delay" type="Node2D" parent="Start/Left Trench Spawn"]
 script = ExtResource("6_hyhrk")
-ticks = 17
+ticks = 16
 
 [node name="Right Trench Spawn" type="Node2D" parent="Start"]
 script = ExtResource("5_t04wu")
@@ -111,12 +111,12 @@ count = 11
 position = Vector2(250, 340)
 gizmo_extents = 0.0
 script = ExtResource("7_lbsbv")
-target_parent = NodePath("../../../Right Trench")
 scene = ExtResource("8_xfbbg")
+target_parent = NodePath("../../../Right Trench")
 
 [node name="Delay" type="Node2D" parent="Start/Right Trench Spawn"]
 script = ExtResource("6_hyhrk")
-ticks = 17
+ticks = 16
 
 [node name="Player" parent="." instance=ExtResource("10_0titi")]
 
