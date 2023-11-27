@@ -13,8 +13,8 @@ void fragment() {
 	float y_frac = fract(FRAGCOORD.y / diamond_pixel_size);
 	float x_dist = abs(x_frac - 0.5);
 	float y_dist = abs(y_frac - 0.5);
-	float v = x_dist + y_dist + UV.x + UV.y + 0.5;
-	if (v > clamp(progress, 0.0, 1.0) * 4.0 || v < clamp(progress - 1.0, 0.0, 1.0) * 4.0) {
+	float v = x_dist + y_dist + UV.x + UV.y;
+	if (v > clamp(progress, 0.0, 1.0) * 3.0 || v < clamp(progress - 1.0, 0.0, 1.0) * 3.0) {
 		discard;
 	}
 }

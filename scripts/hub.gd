@@ -47,9 +47,7 @@ func update() -> void:
 		var btn: BubbleButton = button_scene.instantiate()
 		btn.index = index
 		btn.position = get_button_placement(index, current_world.levels.size())
-		btn.triggered.connect(func():
-			get_tree().change_scene_to_file(level.path)
-		)
+		btn.triggered.connect(func(): Game.goto_scene(level.path))
 		level_buttons.add_child(btn)
 		if level.is_boss:
 			btn.sprite.texture = preload('res://content/sprites/skull.svg')

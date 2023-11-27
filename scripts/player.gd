@@ -34,8 +34,6 @@ func _enter_tree() -> void:
 	current = self
 	show()
 	base_power.player = self
-	
-	# set_power_up(Consts.powers_ups['mega'].new())
 
 
 func _physics_process(delta: float) -> void:
@@ -92,7 +90,6 @@ func _physics_process(delta: float) -> void:
 		power_up._tick(delta)
 	
 	var current_power := power_up if power_up else base_power
-	
 	if input_shoot_pressed:
 		current_power._pressed()
 	if input_shoot_down:

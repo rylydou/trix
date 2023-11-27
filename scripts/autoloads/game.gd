@@ -5,7 +5,6 @@ extends Node
 var sensitivity_multiplier := 1.0
 
 @export var bounds := Vector2(1280/2, 720/2)
-@export var hub_scene: PackedScene
 
 
 @onready var transition_anim: AnimationPlayer = %'Transition Animation'
@@ -71,36 +70,56 @@ func release_mouse() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
+var next_scene := ''
+## Pass null to reload the current scene
+func goto_scene(scene := '') -> void:
+	if is_restarting: return
+	is_restarting = true
+	
+	get_tree().paused = true
+	next_scene = scene
+	transition_anim.animation_finished.connect(func(anim_name: StringName): _finish_goto_scene(), Node.CONNECT_ONE_SHOT)
+	transition_anim.play('fade_in')
+
+
+func _finish_goto_scene() -> void:
+	Particles.restart_all()
+	
+	if next_scene.is_empty():
+		get_tree().reload_current_scene()
+	else:
+		get_tree().change_scene_to_file(next_scene)
+	
+	await get_tree().process_frame
+	
+	is_restarting = false
+	transition_anim.play('fade_out')
+	resume()
+
+
 func win() -> void:
 	get_tree().paused = true
 	release_mouse()
 	win_anim.play('show')
 
 
-func fail_out_of_time() -> void:
-	print('>> Out of time!')
+func fail_death() -> void:
+	get_tree().paused = true
 	restart_level()
+
+
+func fail_out_of_time() -> void:
+	get_tree().paused = true
+	restart_level()
+
 
 var is_restarting := false
 func restart_level() -> void:
-	if is_restarting: return
-	is_restarting = true
-	get_tree().paused = true
-	get_tree().reload_current_scene()
-	await get_tree().process_frame
-	Particles.restart_all()
-	resume()
-	
-	await get_tree().process_frame
-	
-	is_restarting = false
+	goto_scene('')
 
 
 func back_to_hub() -> void:
-	get_tree().change_scene_to_packed(hub_scene)
-	await get_tree().process_frame
-	Particles.restart_all()
-	resume()
+	goto_scene('res://scenes/hub.tscn')
 
 
 func next_level() -> void:
