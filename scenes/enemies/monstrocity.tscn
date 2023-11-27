@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=3 uid="uid://cy6yi8c4p1pyy"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_5sqi8"]
+[ext_resource type="Script" path="res://scripts/movers/mover.gd" id="2_woe4g"]
+[ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="3_nwl0j"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="4_6w3ps"]
+[ext_resource type="Script" path="res://scripts/movers/aimer.gd" id="5_fxx7t"]
+
+[sub_resource type="Curve" id="Curve_2mfe4"]
+max_value = 5.0
+_data = [Vector2(0, 4.01099), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
+shader = ExtResource("4_6w3ps")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.25
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_fb1hl"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
+shader = ExtResource("4_6w3ps")
+shader_parameter/radius = 0.5
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3yejo"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brgrb"]
+radius = 32.0
+
+[node name="Large Ball" type="CharacterBody2D" groups=["enemy"]]
+modulate = Color(0.988235, 0, 0.305882, 1)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_5sqi8")
+shield_hp = 20
+warn_radius = 24.0
+
+[node name="Mover" type="Node" parent="."]
+script = ExtResource("2_woe4g")
+curve = SubResource("Curve_2mfe4")
+
+[node name="Edge Boucer" type="Node" parent="."]
+script = ExtResource("3_nwl0j")
+
+[node name="Ring" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_d4481")
+scale = Vector2(1.5, 1.5)
+mesh = SubResource("QuadMesh_fb1hl")
+
+[node name="Dot" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_ssyi3")
+scale = Vector2(1.5, 1.5)
+mesh = SubResource("QuadMesh_3yejo")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_brgrb")
+
+[node name="Aimer" type="Node" parent="."]
+script = ExtResource("5_fxx7t")
+turn_speed = 3.5

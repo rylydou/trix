@@ -1,0 +1,240 @@
+[gd_scene load_steps=20 format=3 uid="uid://m1b6gv8ogvi6"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_s2nhc"]
+[ext_resource type="Script" path="res://scripts/movers/aimer.gd" id="2_ev2ns"]
+[ext_resource type="Script" path="res://scripts/movers/mover.gd" id="3_8dn35"]
+[ext_resource type="Script" path="res://scripts/movers/edge_bouncer.gd" id="4_dflxk"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="5_ryepl"]
+[ext_resource type="Script" path="res://scripts/components/health_indicator.gd" id="6_le5bd"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="7_h0nqc"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="9_j5m27"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="10_5sf7n"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="11_6v633"]
+[ext_resource type="PackedScene" uid="uid://cmbpxwpe0fwyk" path="res://scenes/enemies/engi_shooter.tscn" id="12_6fbtn"]
+[ext_resource type="PackedScene" uid="uid://cy6yi8c4p1pyy" path="res://scenes/enemies/monstrocity.tscn" id="13_6xinq"]
+[ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/projectiles/enemy/basic.tscn" id="13_ls27y"]
+
+[sub_resource type="Curve" id="Curve_kqp1y"]
+max_value = 5.0
+_data = [Vector2(0, -2.36736), 0.0, 0.0, 0, 0, Vector2(1e-05, 2.30769), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
+shader = ExtResource("5_ryepl")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.25
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_fb1hl"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssyi3"]
+shader = ExtResource("5_ryepl")
+shader_parameter/radius = 0.5
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3yejo"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brgrb"]
+radius = 32.0
+
+[node name="Mad Engineer" type="CharacterBody2D" groups=["enemy"]]
+modulate = Color(0.988235, 0, 0.305882, 1)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_s2nhc")
+shield_hp = 80
+warn_radius = 24.0
+
+[node name="Aimer" type="Node" parent="."]
+script = ExtResource("2_ev2ns")
+turn_speed = 2.0
+away = true
+
+[node name="Mover" type="Node" parent="."]
+script = ExtResource("3_8dn35")
+curve = SubResource("Curve_kqp1y")
+
+[node name="Edge Boucer" type="Node" parent="."]
+script = ExtResource("4_dflxk")
+
+[node name="Ring" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_d4481")
+scale = Vector2(1.5, 1.5)
+mesh = SubResource("QuadMesh_fb1hl")
+
+[node name="Dot" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_ssyi3")
+scale = Vector2(1.5, 1.5)
+mesh = SubResource("QuadMesh_3yejo")
+script = ExtResource("6_le5bd")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_brgrb")
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("7_h0nqc")
+
+[node name="Delay" type="Node2D" parent="Start"]
+script = ExtResource("9_j5m27")
+ticks = 60
+
+[node name="MG" type="Node2D" parent="Start"]
+script = ExtResource("10_5sf7n")
+count = 20
+
+[node name="Spawn" type="Marker2D" parent="Start/MG"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_rotation = 3
+spawn_color = 1
+
+[node name="Spawn 2" type="Marker2D" parent="Start/MG"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_color = 1
+
+[node name="Spawn 3" type="Marker2D" parent="Start/MG"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_color = 1
+
+[node name="Delay" type="Node2D" parent="Start/MG"]
+script = ExtResource("9_j5m27")
+ticks = 4
+
+[node name="Delay 2" type="Node2D" parent="Start"]
+script = ExtResource("9_j5m27")
+ticks = 60
+
+[node name="Turret" type="Marker2D" parent="Start"]
+script = ExtResource("11_6v633")
+scene = ExtResource("12_6fbtn")
+warn_ticks = -1
+
+[node name="Delay 3" type="Node2D" parent="Start"]
+script = ExtResource("9_j5m27")
+ticks = 60
+
+[node name="MG 2" type="Node2D" parent="Start"]
+script = ExtResource("10_5sf7n")
+count = 20
+
+[node name="Spawn" type="Marker2D" parent="Start/MG 2"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_rotation = 3
+spawn_color = 1
+
+[node name="Spawn 2" type="Marker2D" parent="Start/MG 2"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_color = 1
+
+[node name="Spawn 3" type="Marker2D" parent="Start/MG 2"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_color = 1
+
+[node name="Delay" type="Node2D" parent="Start/MG 2"]
+script = ExtResource("9_j5m27")
+ticks = 4
+
+[node name="Delay 4" type="Node2D" parent="Start"]
+script = ExtResource("9_j5m27")
+ticks = 60
+
+[node name="Turret 2" type="Marker2D" parent="Start"]
+script = ExtResource("11_6v633")
+scene = ExtResource("12_6fbtn")
+warn_ticks = -1
+
+[node name="Mosntrocity" type="Marker2D" parent="Start"]
+script = ExtResource("11_6v633")
+scene = ExtResource("13_6xinq")
+warn_ticks = -1
+spawn_rotation = 3
+
+[node name="Delay 6" type="Node2D" parent="Start"]
+script = ExtResource("9_j5m27")
+ticks = 60
+
+[node name="MG 3" type="Node2D" parent="Start"]
+script = ExtResource("10_5sf7n")
+count = 20
+
+[node name="Spawn" type="Marker2D" parent="Start/MG 3"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_rotation = 3
+spawn_color = 1
+
+[node name="Spawn 2" type="Marker2D" parent="Start/MG 3"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_color = 1
+
+[node name="Spawn 3" type="Marker2D" parent="Start/MG 3"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_color = 1
+
+[node name="Delay" type="Node2D" parent="Start/MG 3"]
+script = ExtResource("9_j5m27")
+ticks = 4
+
+[node name="Delay 7" type="Node2D" parent="Start"]
+script = ExtResource("9_j5m27")
+ticks = 60
+
+[node name="MG 4" type="Node2D" parent="Start"]
+script = ExtResource("10_5sf7n")
+count = 20
+
+[node name="Spawn" type="Marker2D" parent="Start/MG 4"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_rotation = 3
+spawn_color = 1
+
+[node name="Spawn 2" type="Marker2D" parent="Start/MG 4"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_color = 1
+
+[node name="Spawn 3" type="Marker2D" parent="Start/MG 4"]
+modulate = Color(0.921569, 0.921569, 0, 1)
+script = ExtResource("11_6v633")
+scene = ExtResource("13_ls27y")
+warn_ticks = -1
+spawn_color = 1
+
+[node name="Delay" type="Node2D" parent="Start/MG 4"]
+script = ExtResource("9_j5m27")
+ticks = 4

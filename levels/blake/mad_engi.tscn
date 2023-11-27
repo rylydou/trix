@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0md0aevnl01"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_loulc"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_lb6xw"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_0mkbg"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="4_curcp"]
+[ext_resource type="PackedScene" uid="uid://m1b6gv8ogvi6" path="res://scenes/enemies/mad_engineer.tscn" id="5_b8wtq"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="6_03mdc"]
+
+[sub_resource type="Curve2D" id="Curve2D_4ltbu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -250, -370, 0, 0, 0, 0, -250, 370)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_t358h"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 250, 370, 0, 0, 0, 0, 250, -370)
+}
+point_count = 2
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_loulc")
+time_limit = null
+win_delay_ticks = null
+
+[node name="Camera" parent="." instance=ExtResource("2_lb6xw")]
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_0mkbg")
+parallel = true
+
+[node name="Spawn" type="Marker2D" parent="Start"]
+position = Vector2(400, 0)
+gizmo_extents = 0.0
+script = ExtResource("4_curcp")
+scene = ExtResource("5_b8wtq")
+spawn_rotation = 3
+
+[node name="Player" parent="." instance=ExtResource("6_03mdc")]
+
+[node name="Left Trench" type="Path2D" parent="."]
+curve = SubResource("Curve2D_4ltbu")
+
+[node name="Right Trench" type="Path2D" parent="."]
+curve = SubResource("Curve2D_t358h")
