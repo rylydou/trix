@@ -141,6 +141,7 @@ count = 2
 script = ExtResource("8_n0lg4")
 scene = ExtResource("11_yraug")
 warn_ticks = -1
+health_override = 2
 
 [node name="Delay" type="Node2D" parent="Start/Spawn/Loop"]
 script = ExtResource("10_6x2cj")

@@ -71,12 +71,11 @@ parallel = true
 script = ExtResource("5_vvl7y")
 count = 5
 
-[node name="Spawn" type="Marker2D" parent="Start/Ring/Loop" node_paths=PackedStringArray("target_parent")]
+[node name="Spawn" type="Marker2D" parent="Start/Ring/Loop"]
 position = Vector2(200, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_1igos")
 scene = ExtResource("7_jn7xp")
-target_parent = NodePath("")
 
 [node name="Delay" type="Node2D" parent="Start/Ring/Loop"]
 script = ExtResource("7_v3n1t")
@@ -86,12 +85,11 @@ ticks = 14
 script = ExtResource("5_vvl7y")
 count = 5
 
-[node name="Spawn 2" type="Marker2D" parent="Start/Ring/Loop 2" node_paths=PackedStringArray("target_parent")]
+[node name="Spawn 2" type="Marker2D" parent="Start/Ring/Loop 2"]
 position = Vector2(0, -200)
 gizmo_extents = 0.0
 script = ExtResource("6_1igos")
 scene = ExtResource("7_jn7xp")
-target_parent = NodePath("")
 
 [node name="Delay" type="Node2D" parent="Start/Ring/Loop 2"]
 script = ExtResource("7_v3n1t")
@@ -101,12 +99,11 @@ ticks = 14
 script = ExtResource("5_vvl7y")
 count = 5
 
-[node name="Spawn 3" type="Marker2D" parent="Start/Ring/Loop 3" node_paths=PackedStringArray("target_parent")]
+[node name="Spawn 3" type="Marker2D" parent="Start/Ring/Loop 3"]
 position = Vector2(-200, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_1igos")
 scene = ExtResource("7_jn7xp")
-target_parent = NodePath("")
 
 [node name="Delay" type="Node2D" parent="Start/Ring/Loop 3"]
 script = ExtResource("7_v3n1t")
@@ -116,12 +113,11 @@ ticks = 14
 script = ExtResource("5_vvl7y")
 count = 5
 
-[node name="Spawn 4" type="Marker2D" parent="Start/Ring/Loop 4" node_paths=PackedStringArray("target_parent")]
+[node name="Spawn 4" type="Marker2D" parent="Start/Ring/Loop 4"]
 position = Vector2(0, 200)
 gizmo_extents = 0.0
 script = ExtResource("6_1igos")
 scene = ExtResource("7_jn7xp")
-target_parent = NodePath("")
 
 [node name="Delay" type="Node2D" parent="Start/Ring/Loop 4"]
 script = ExtResource("7_v3n1t")
@@ -145,6 +141,7 @@ count = 2
 script = ExtResource("6_1igos")
 scene = ExtResource("11_1qr8x")
 warn_ticks = -1
+health_override = 3
 
 [node name="Delay" type="Node2D" parent="Start/Spawn/Loop"]
 script = ExtResource("7_v3n1t")
