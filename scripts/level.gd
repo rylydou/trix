@@ -1,6 +1,9 @@
 class_name Level extends Node2D
 
 
+static var current: Level
+
+
 @export var time_limit := 20.0
 @export var win_delay_ticks := 30
 @export var attempts_to_skip := 3.0
@@ -17,9 +20,14 @@ var enemy_count := 0
 var no_enemies_ticks := 0
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
+	current = self
+	
 	var timer_scene: PackedScene = preload('res://scenes/timer.tscn')
 	add_child(timer_scene.instantiate())
+	
+	for pool in power_pools:
+		pool.reset()
 
 
 func _process(delta: float) -> void:

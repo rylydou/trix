@@ -89,7 +89,9 @@ func set_node_color(node: Node2D) -> void:
 
 
 func set_node_power(node: Node2D) -> void:
-	return # WIP
+	# return # WIP
 	if power_pool_index < 0: return
-	var pool: PowerPool = get_tree().current_scene.power_pools[power_pool_index]
+	if not is_instance_valid(Level.current): return
+	
+	var pool: PowerPool = Level.current.power_pools[power_pool_index]
 	node.power_up_id = pool.get_drop()

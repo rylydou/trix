@@ -13,7 +13,7 @@
 
 [sub_resource type="Resource" id="Resource_4dkvr"]
 script = ExtResource("8_ts0p8")
-power_ids = Array[StringName]([&"mega"])
+power_ids = Array[StringName]([&"mega", &"mega"])
 allow_repeats = true
 drop_count = 1
 expected_rolls_count = 1
