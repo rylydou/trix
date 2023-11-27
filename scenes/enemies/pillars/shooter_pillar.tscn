@@ -41,7 +41,7 @@ motion_mode = 1
 script = ExtResource("1_ioavu")
 spawns = [NodePath("Start/Ring/Loop/Spawn"), NodePath("Start/Ring/Loop 2/Spawn 2"), NodePath("Start/Ring/Loop 3/Spawn 3"), NodePath("Start/Ring/Loop 4/Spawn 4")]
 path_scene = ExtResource("2_sn4p8")
-shield_hp = 10
+shield_hp = 15
 warn_radius = 24.0
 
 [node name="Ring" type="MeshInstance2D" parent="."]
@@ -135,7 +135,7 @@ script = ExtResource("7_k6sq2")
 
 [node name="Loop" type="Node2D" parent="Start/Spawn/Loop"]
 script = ExtResource("7_k6sq2")
-count = 10
+count = 15
 
 [node name="Spawn" type="Marker2D" parent="Start/Spawn/Loop/Loop"]
 script = ExtResource("8_03un8")
