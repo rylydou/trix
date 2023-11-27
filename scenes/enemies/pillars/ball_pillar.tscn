@@ -135,7 +135,7 @@ script = ExtResource("5_vvl7y")
 
 [node name="Loop" type="Node2D" parent="Start/Spawn/Loop"]
 script = ExtResource("5_vvl7y")
-count = 3
+count = 2
 
 [node name="Spawn" type="Marker2D" parent="Start/Spawn/Loop/Loop"]
 script = ExtResource("6_1igos")
