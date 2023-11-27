@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://2y2wpfkcpfoe"]
+[gd_scene load_steps=10 format=3 uid="uid://2y2wpfkcpfoe"]
 
 [ext_resource type="Script" path="res://scripts/hub.gd" id="1_nib47"]
 [ext_resource type="PackedScene" uid="uid://hfcs8ly4yvr6" path="res://scenes/bubble_button.tscn" id="2_uveh0"]
@@ -8,11 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="5_wep7b"]
 [ext_resource type="Resource" uid="uid://ckrkti6uuewkc" path="res://resources/worlds/enemies.tres" id="5_y0lqu"]
 [ext_resource type="Resource" uid="uid://bnbkqdor7bbm4" path="res://resources/worlds/tutorial.tres" id="6_gyx0d"]
+[ext_resource type="Resource" uid="uid://bffthnwfd4iw0" path="res://resources/worlds/boss.tres" id="7_ikw0a"]
 
 [node name="Hub" type="Node2D"]
 script = ExtResource("1_nib47")
 button_scene = ExtResource("2_uveh0")
-worlds = Array[Resource("res://scripts/resources/world_data.gd")]([ExtResource("3_bmoob"), ExtResource("4_4kpw7"), ExtResource("5_y0lqu"), ExtResource("6_gyx0d")])
+worlds = Array[Resource("res://scripts/resources/world_data.gd")]([ExtResource("3_bmoob"), ExtResource("4_4kpw7"), ExtResource("5_y0lqu"), ExtResource("6_gyx0d"), ExtResource("7_ikw0a")])
 metadata/level_type = &"hub"
 
 [node name="Camera" parent="." instance=ExtResource("4_0btjx")]
