@@ -96,6 +96,8 @@ func _physics_process(delta: float) -> void:
 		current_power._down()
 	if input_shoot_released:
 		current_power._released()
+	
+	RenderingServer.global_shader_parameter_set('player_uv', (global_position + Game.bounds) / (Game.bounds * 2))
 
 
 func apply_force(vector: Vector2, slippery_ticks: int) -> void:
