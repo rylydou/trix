@@ -8,6 +8,8 @@ var sensitivity_multiplier := 1.0
 
 
 @onready var transition_anim: AnimationPlayer = %'Transition Animation'
+@onready var transition_control: Control = %'Transition Fade'
+
 @onready var pause_anim: AnimationPlayer = %'Pause Animation'
 @onready var win_anim: AnimationPlayer = %'Win Animation'
 
@@ -72,13 +74,14 @@ func release_mouse() -> void:
 
 var next_scene := ''
 ## Pass null to reload the current scene
-func goto_scene(scene := '') -> void:
+func goto_scene(scene := '', color := Color.from_ok_hsl(0, 0, 1)) -> void:
 	if is_restarting: return
 	is_restarting = true
 	
 	get_tree().paused = true
 	next_scene = scene
 	transition_anim.animation_finished.connect(func(anim_name: StringName): _finish_goto_scene(), Node.CONNECT_ONE_SHOT)
+	transition_control.modulate = color
 	transition_anim.play('fade_in')
 
 
@@ -103,19 +106,19 @@ func win() -> void:
 	win_anim.play('show')
 
 
-func fail_death() -> void:
+func fail_death(color := Color.from_ok_hsl(0, 0, .5)) -> void:
 	get_tree().paused = true
-	restart_level()
+	restart_level(color)
 
 
 func fail_out_of_time() -> void:
 	get_tree().paused = true
-	restart_level()
+	restart_level(Color.from_ok_hsl(.17, 1, .57))
 
 
 var is_restarting := false
-func restart_level() -> void:
-	goto_scene('')
+func restart_level(color := Color.from_ok_hsl(0, 0, 1)) -> void:
+	goto_scene('', color)
 
 
 func back_to_hub() -> void:

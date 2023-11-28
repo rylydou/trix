@@ -28,4 +28,5 @@ func _physics_process(delta: float) -> void:
 			is_dangerous = reported
 		
 		if is_dangerous:
-			Game.fail_death()
+			player.global_position = collision.point
+			Game.fail_death(collider.modulate)

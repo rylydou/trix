@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://xs2s7eh3s3yj"]
+[gd_scene load_steps=30 format=3 uid="uid://xs2s7eh3s3yj"]
 
 [ext_resource type="Script" path="res://scripts/autoloads/game.gd" id="1_fjg5l"]
 [ext_resource type="Script" path="res://scripts/ui/fullscreen_button.gd" id="2_2y54c"]
@@ -13,6 +13,7 @@
 [ext_resource type="StyleBox" uid="uid://il0j50nawgxg" path="res://resources/styles/bottom/normal.tres" id="8_04imf"]
 [ext_resource type="StyleBox" uid="uid://b1ot0f8mxofca" path="res://resources/styles/bottom/hover.tres" id="9_4q1sj"]
 [ext_resource type="Shader" path="res://shaders/transition.gdshader" id="10_eqddc"]
+[ext_resource type="Script" path="res://scripts/ui/fps_label.gd" id="14_buya8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h4pb"]
 content_margin_left = 32.0
@@ -641,7 +642,8 @@ libraries = {
 "": SubResource("AnimationLibrary_vo4kc")
 }
 
-[node name="Fade" type="ColorRect" parent="."]
+[node name="Transition Fade" type="ColorRect" parent="."]
+unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_ohr7q")
 anchors_preset = 15
@@ -650,13 +652,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.466181, 0.466181, 0.466181, 1)
 
-[node name="Transition Animation" type="AnimationPlayer" parent="Fade"]
+[node name="Transition Animation" type="AnimationPlayer" parent="Transition Fade"]
 unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_3xdio")
 }
+
+[node name="FPS Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 19.0
+text = "? fps"
+script = ExtResource("14_buya8")
 
 [connection signal="pressed" from="Win Screen/VBox/HBox/HBox/Replay Level" to="." method="restart_level"]
 [connection signal="pressed" from="Win Screen/VBox/HBox/HBox/Next Button" to="." method="next_level"]
