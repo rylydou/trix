@@ -84,7 +84,7 @@ script = ExtResource("9_d6udm")
 
 [node name="Loop" type="Node2D" parent="Start/Loop 2"]
 script = ExtResource("9_d6udm")
-count = 6
+count = 10
 
 [node name="Spawn" type="Marker2D" parent="Start/Loop 2/Loop"]
 script = ExtResource("10_jm0pk")
@@ -93,8 +93,8 @@ warn_ticks = -1
 
 [node name="Delay" type="Node2D" parent="Start/Loop 2/Loop"]
 script = ExtResource("8_oenwt")
-ticks = 20
+ticks = 5
 
 [node name="Delay 2" type="Node2D" parent="Start/Loop 2"]
 script = ExtResource("8_oenwt")
-ticks = 60
+ticks = 90
