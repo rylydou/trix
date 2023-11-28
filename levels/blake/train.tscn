@@ -42,7 +42,7 @@ script = ExtResource("6_xg4hg")
 scene = ExtResource("7_3wjv4")
 target_parent = NodePath("../../../../Left Trench")
 spawn_rotation = 0
-health_override = 5
+health_override = 6
 
 [node name="Delay" type="Node2D" parent="Start/Group/Armored"]
 script = ExtResource("8_57sh7")
