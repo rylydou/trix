@@ -20,6 +20,7 @@ enum SpawnColor {
 
 @export var warn_ticks := 30
 @export var spawn_rotation := SpawnRotation.Randomize
+@export var spread := 0.0
 @export var spawn_color := SpawnColor.Unset
 @export var health_override := -1
 
@@ -64,7 +65,7 @@ func set_node_rotation(node: Node2D) -> void:
 		SpawnRotation.Unset: return
 		
 		SpawnRotation.Inherit:
-			node.global_rotation = global_rotation
+			node.global_rotation = global_rotation * (randf() - 1) * 2 * spread
 		
 		SpawnRotation.Randomize:
 			node.rotation = randf_range(0, 2*PI)
@@ -74,7 +75,7 @@ func set_node_rotation(node: Node2D) -> void:
 				node.rotation = randf_range(0, 2*PI)
 				return
 			
-			node.rotation = node.global_position.angle_to_point(Player.current.global_position)
+			node.rotation = node.global_position.angle_to_point(Player.current.global_position) + (randf() - 1) * 2 * spread
 
 
 func set_node_color(node: Node2D) -> void:

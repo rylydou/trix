@@ -92,6 +92,7 @@ script = ExtResource("11_6v633")
 scene = ExtResource("13_ls27y")
 warn_ticks = -1
 spawn_rotation = 3
+spread = 0.075
 spawn_color = 1
 
 [node name="Spawn 2" type="Marker2D" parent="Start/MG"]
@@ -135,6 +136,7 @@ script = ExtResource("11_6v633")
 scene = ExtResource("13_ls27y")
 warn_ticks = -1
 spawn_rotation = 3
+spread = 0.075
 spawn_color = 1
 
 [node name="Spawn 2" type="Marker2D" parent="Start/MG 2"]
@@ -184,6 +186,7 @@ script = ExtResource("11_6v633")
 scene = ExtResource("13_ls27y")
 warn_ticks = -1
 spawn_rotation = 3
+spread = 0.075
 spawn_color = 1
 
 [node name="Spawn 2" type="Marker2D" parent="Start/MG 3"]
@@ -218,6 +221,7 @@ script = ExtResource("11_6v633")
 scene = ExtResource("13_ls27y")
 warn_ticks = -1
 spawn_rotation = 3
+spread = 0.075
 spawn_color = 1
 
 [node name="Spawn 2" type="Marker2D" parent="Start/MG 4"]
