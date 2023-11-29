@@ -13,6 +13,10 @@ var sensitivity_multiplier := 1.0
 @onready var pause_anim: AnimationPlayer = %'Pause Animation'
 @onready var win_anim: AnimationPlayer = %'Win Animation'
 
+@onready var next_button: Button = %'Next Button'
+@onready var hub_button: Button = %'Hub Button'
+@onready var hub_button_alt: Button = %'Hub Button Alt'
+
 @onready var sensitivity_slider: Slider = %'Sensitivity Slider'
 @onready var sensitivity_label: Label = %'Sensitivity Label'
 
@@ -106,6 +110,12 @@ func _finish_goto_scene() -> void:
 func win() -> void:
 	get_tree().paused = true
 	release_mouse()
+	
+	var show_next := is_instance_valid(current_world) and current_level_index < current_world.levels.size() - 1
+	next_button.visible = show_next
+	hub_button_alt.visible = not show_next
+	hub_button.visible = show_next
+	
 	win_anim.play('show')
 
 

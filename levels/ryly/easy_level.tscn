@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://jetbxhhoeojs"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_7ip1i"]
+[ext_resource type="Script" path="res://scripts/resources/power_pool.gd" id="2_pic1o"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="3_xgxsa"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="10_gmieu"]
+
+[sub_resource type="Resource" id="Resource_4dkvr"]
+script = ExtResource("2_pic1o")
+power_ids = Array[StringName]([&"mega", &"mega"])
+allow_repeats = true
+drop_count = 1
+expected_rolls_count = 1
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_7ip1i")
+power_pools = Array[ExtResource("2_pic1o")]([SubResource("Resource_4dkvr")])
+
+[node name="Camera" parent="." instance=ExtResource("3_xgxsa")]
+
+[node name="Player" parent="." instance=ExtResource("10_gmieu")]

@@ -410,8 +410,8 @@ theme_override_styles/focus = ExtResource("4_1322k")
 text = "↺  Replay Level"
 
 [node name="Next Button" type="Button" parent="Win Screen/VBox/HBox/HBox"]
+unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "NOT IMPLEMENTED!!!"
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_styles/normal = ExtResource("5_x11d8")
@@ -421,7 +421,21 @@ theme_override_styles/disabled = ExtResource("5_x11d8")
 theme_override_styles/focus = ExtResource("6_g4ftt")
 text = "⇒  Next Level"
 
+[node name="Hub Button Alt" type="Button" parent="Win Screen/VBox/HBox/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = ExtResource("5_x11d8")
+theme_override_styles/hover = ExtResource("6_g4ftt")
+theme_override_styles/pressed = ExtResource("6_g4ftt")
+theme_override_styles/disabled = ExtResource("5_x11d8")
+theme_override_styles/focus = ExtResource("6_g4ftt")
+text = "↩  Back to Hub"
+
 [node name="Hub Button" type="Button" parent="Win Screen/VBox/HBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
@@ -667,6 +681,7 @@ script = ExtResource("14_buya8")
 
 [connection signal="pressed" from="Win Screen/VBox/HBox/HBox/Replay Level" to="." method="restart_level"]
 [connection signal="pressed" from="Win Screen/VBox/HBox/HBox/Next Button" to="." method="next_level"]
+[connection signal="pressed" from="Win Screen/VBox/HBox/HBox/Hub Button Alt" to="." method="back_to_hub"]
 [connection signal="pressed" from="Win Screen/VBox/HBox/Hub Button" to="." method="back_to_hub"]
 [connection signal="pressed" from="Pause Menu/Quit Button" to="." method="quit"]
 [connection signal="pressed" from="Pause Menu/Menu/Buttons/Resume Button" to="." method="resume"]

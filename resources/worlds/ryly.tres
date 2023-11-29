@@ -1,8 +1,14 @@
-[gd_resource type="Resource" script_class="WorldData" load_steps=7 format=3 uid="uid://c7d4oldlxtid8"]
+[gd_resource type="Resource" script_class="WorldData" load_steps=9 format=3 uid="uid://c7d4oldlxtid8"]
 
 [ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="1_agrmg"]
 [ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="2_hc5xq"]
 [ext_resource type="Texture2D" uid="uid://bmbonnbh64gon" path="res://content/sprites/animals/turtle.svg" id="3_wf1fg"]
+
+[sub_resource type="Resource" id="Resource_g3g7j"]
+script = ExtResource("1_agrmg")
+name = "Easy Level"
+is_boss = false
+path = "res://levels/ryly/easy_level.tscn"
 
 [sub_resource type="Resource" id="Resource_2h6mk"]
 script = ExtResource("1_agrmg")
@@ -22,8 +28,14 @@ name = "Split Boss"
 is_boss = true
 path = "res://levels/ryly/boss_split.tscn"
 
+[sub_resource type="Resource" id="Resource_crs4p"]
+script = ExtResource("1_agrmg")
+name = "Easy Level"
+is_boss = false
+path = "res://levels/ryly/easy_level.tscn"
+
 [resource]
 script = ExtResource("2_hc5xq")
 name = "Ryly's Test"
 sprite = ExtResource("3_wf1fg")
-levels = Array[ExtResource("1_agrmg")]([SubResource("Resource_2h6mk"), SubResource("Resource_srq4h"), SubResource("Resource_0pctw")])
+levels = Array[ExtResource("1_agrmg")]([SubResource("Resource_g3g7j"), SubResource("Resource_2h6mk"), SubResource("Resource_srq4h"), SubResource("Resource_0pctw"), SubResource("Resource_crs4p")])
