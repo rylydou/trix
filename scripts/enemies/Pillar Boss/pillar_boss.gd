@@ -15,7 +15,14 @@ func _ready():
 	
 func spawn_pillar():
 	var pillar = pillar_scenes[num_of_pillars - pillars_left].instantiate()
-	pillar.global_position = Vector2(randf_range(-bounds.x, bounds.x), randf_range(-bounds.y, bounds.y))
+	var spawn_point
+	for x in range(0, 10):
+		spawn_point = Vector2(randf_range(-bounds.x, bounds.x), randf_range(-bounds.y, bounds.y))
+		var distance = Player.current.global_position - spawn_point
+		distance = sqrt(pow(distance.x, 2) + pow(distance.y, 2))
+		if distance > 200.0:
+			break
+	pillar.global_position = spawn_point
 	pillar.destroy.connect(_on_pillar_break)
 	get_tree().current_scene.add_child(pillar)
 	
