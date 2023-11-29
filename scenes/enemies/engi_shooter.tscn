@@ -72,8 +72,8 @@ gizmo_extents = 0.0
 script = ExtResource("7_6u5da")
 scene = ExtResource("8_ybh7y")
 warn_ticks = -1
-spawn_rotation = 1
-spread = 0.05
+spawn_rotation = 3
+spread = 0.075
 
 [node name="Delay" type="Node2D" parent="Start/Loop/Loop"]
 script = ExtResource("5_f6t7d")
