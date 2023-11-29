@@ -150,6 +150,7 @@ script = ExtResource("9_wm0ed")
 scene = ExtResource("10_ssvge")
 warn_ticks = -1
 spawn_rotation = 3
+spread = 0.05
 spawn_color = 1
 health_override = null
 
