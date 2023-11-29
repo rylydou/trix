@@ -9,8 +9,6 @@ class_name Hub extends Node2D
 @onready var level_buttons: Node2D = %'Level Buttons'
 
 
-var current_world: WorldData
-
 
 func _ready() -> void:
 	var index = 0
@@ -19,7 +17,9 @@ func _ready() -> void:
 		btn.position.x = (index - float(worlds.size() - 1) / 2) * (128 + 16)
 		btn.index = index
 		btn.triggered.connect(func():
-			current_world = world
+			Game.current_world = world
+			Game.current_level = null
+			Game.current_level_index = -1
 			update()
 			btn.fill.show()
 		)
@@ -40,14 +40,18 @@ func update() -> void:
 	for child in world_buttons.get_children():
 		child.fill.hide()
 	
-	if not current_world: return
+	if not Game.current_world: return
 	
 	var index = 0
-	for level in current_world.levels:
+	for level in Game.current_world.levels:
 		var btn: BubbleButton = button_scene.instantiate()
 		btn.index = index
-		btn.position = get_button_placement(index, current_world.levels.size())
-		btn.triggered.connect(func(): Game.goto_scene(level.path))
+		btn.position = get_button_placement(index, Game.current_world.levels.size())
+		btn.triggered.connect(func():
+			Game.current_level = level
+			Game.current_level_index = index
+			Game.goto_scene(level.path)
+		)
 		level_buttons.add_child(btn)
 		if level.is_boss:
 			btn.sprite.texture = preload('res://content/sprites/skull.svg')

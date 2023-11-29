@@ -18,6 +18,9 @@ var sensitivity_multiplier := 1.0
 
 
 var mouse_delta: Vector2
+var current_world: WorldData = null
+var current_level: LevelData = null
+var current_level_index := -1
 
 
 func _ready() -> void:
@@ -113,7 +116,7 @@ func fail_death(color := Color.from_ok_hsl(0, 0, .5)) -> void:
 
 func fail_out_of_time() -> void:
 	get_tree().paused = true
-	restart_level(Color.from_ok_hsl(.17, 1, .57))
+	restart_level(Color.from_ok_hsl(.17 / 360, 1, .57))
 
 
 var is_restarting := false
@@ -126,7 +129,16 @@ func back_to_hub() -> void:
 
 
 func next_level() -> void:
-	print('>> Next level')
+	if not is_instance_valid(current_world): return
+	if not is_instance_valid(current_level): return
+	if current_level_index < 0: return
+	
+	if current_level_index >= current_world.levels.size() - 1:
+		print('Cannot go to last level. This is the last level.')
+		return
+	
+	var level := current_world.levels[current_level_index + 1]
+	goto_scene(level.path)
 
 
 func quit() -> void:
