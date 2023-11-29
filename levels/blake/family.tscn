@@ -1,0 +1,70 @@
+[gd_scene load_steps=13 format=3 uid="uid://ca5lb5ix3p3kk"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_yjyty"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_y8o1h"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_6qvh6"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="4_jstma"]
+[ext_resource type="PackedScene" uid="uid://bqommp5xb2eya" path="res://scenes/enemies/spawner.tscn" id="5_pr5is"]
+[ext_resource type="PackedScene" uid="uid://bkui8rjmc8rjh" path="res://scenes/enemies/ball_lg_seek.tscn" id="6_phurn"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="7_15vw8"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="7_ki0s2"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="8_63e4y"]
+[ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/ball_md.tscn" id="9_0q5i8"]
+
+[sub_resource type="Curve2D" id="Curve2D_4ltbu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -250, -365, 0, 0, 0, 0, -250, 365)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_t358h"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 250, 365, 0, 0, 0, 0, 250, -365)
+}
+point_count = 2
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_yjyty")
+time_limit = null
+win_delay_ticks = null
+
+[node name="Camera" parent="." instance=ExtResource("2_y8o1h")]
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_6qvh6")
+parallel = true
+
+[node name="Mother" type="Marker2D" parent="Start"]
+gizmo_extents = 200.0
+script = ExtResource("4_jstma")
+scene = ExtResource("5_pr5is")
+health_override = 20
+
+[node name="Father" type="Marker2D" parent="Start"]
+gizmo_extents = 200.0
+script = ExtResource("4_jstma")
+scene = ExtResource("6_phurn")
+health_override = 30
+
+[node name="Delay" type="Node2D" parent="Start/Father"]
+script = ExtResource("7_ki0s2")
+
+[node name="Loop" type="Node2D" parent="Start"]
+script = ExtResource("8_63e4y")
+count = 3
+
+[node name="Spawn" type="Marker2D" parent="Start/Loop"]
+gizmo_extents = 200.0
+script = ExtResource("4_jstma")
+scene = ExtResource("9_0q5i8")
+
+[node name="Delay" type="Node2D" parent="Start/Loop"]
+script = ExtResource("7_ki0s2")
+
+[node name="Player" parent="." instance=ExtResource("7_15vw8")]
+
+[node name="Left Trench" type="Path2D" parent="."]
+curve = SubResource("Curve2D_4ltbu")
+
+[node name="Right Trench" type="Path2D" parent="."]
+curve = SubResource("Curve2D_t358h")
