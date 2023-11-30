@@ -56,11 +56,11 @@ script = ExtResource("4_0brnk")
 mazes_image = ExtResource("5_xfv8h")
 
 [node name="Orb" type="StaticBody2D" parent="Maze"]
+modulate = Color(0.988235, 0, 0.305882, 1)
 collision_layer = 8
 collision_mask = 0
 
 [node name="Mesh" type="MeshInstance2D" parent="Maze/Orb"]
-modulate = Color(0.988235, 0, 0.305882, 1)
 material = SubResource("ShaderMaterial_ucsp7")
 mesh = SubResource("QuadMesh_a2j6w")
 
