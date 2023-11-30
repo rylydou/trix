@@ -1,5 +1,9 @@
 extends Node
 
+signal paused()
+signal resumed()
+signal restarted()
+
 
 @export var sensitivity := 0.0
 var sensitivity_multiplier := 1.0
@@ -22,10 +26,13 @@ var sensitivity_multiplier := 1.0
 
 
 var mouse_delta: Vector2
-var current_world: WorldData = null
-var current_level: LevelData = null
-var current_level_index := -1
 
+var world: WorldData = null
+var level: LevelData = null
+var level_index := -1
+var level_accumulated_ticks := 0
+var level_ticks_to_skip := 0
+var level_skip_ratio := 0.0
 
 func _ready() -> void:
 	if OS.has_feature('web') or not OS.is_debug_build():
@@ -50,6 +57,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed('pause'):
 			pause()
 			return
+	
+	if Input.is_action_just_pressed('cheat_skip'):
+		Game.level_skip_ratio = 1.0
 
 
 func _input(event: InputEvent) -> void:
@@ -61,11 +71,15 @@ func _input(event: InputEvent) -> void:
 
 
 func pause() -> void:
+	paused.emit()
+	
 	get_tree().paused = true
 	release_mouse()
 	pause_anim.play('show')
 
 func resume() -> void:
+	resumed.emit()
+	
 	capture_mouse()
 	get_tree().paused = false
 	pause_anim.play('hide')
@@ -81,9 +95,10 @@ func release_mouse() -> void:
 
 var next_scene := ''
 ## Pass null to reload the current scene
+var is_transitioning := false
 func goto_scene(scene := '', color := Color.from_ok_hsl(0, 0, 1)) -> void:
-	if is_restarting: return
-	is_restarting = true
+	if is_transitioning: return
+	is_transitioning = true
 	
 	get_tree().paused = true
 	next_scene = scene
@@ -93,6 +108,8 @@ func goto_scene(scene := '', color := Color.from_ok_hsl(0, 0, 1)) -> void:
 
 
 func _finish_goto_scene() -> void:
+	if not is_transitioning: return
+	
 	Particles.restart_all()
 	
 	if next_scene.is_empty():
@@ -100,9 +117,13 @@ func _finish_goto_scene() -> void:
 	else:
 		get_tree().change_scene_to_file(next_scene)
 	
-	await get_tree().process_frame
+	await get_tree().physics_frame
 	
-	is_restarting = false
+	level_ticks_to_skip = 0
+	if get_tree().current_scene is Level:
+		level_ticks_to_skip = get_tree().current_scene.ticks_to_skip
+	
+	is_transitioning = false
 	transition_anim.play('fade_out')
 	resume()
 
@@ -111,7 +132,7 @@ func win() -> void:
 	get_tree().paused = true
 	release_mouse()
 	
-	var show_next := is_instance_valid(current_world) and current_level_index < current_world.levels.size() - 1
+	var show_next := is_instance_valid(world) and level_index < world.levels.size() - 1
 	next_button.visible = show_next
 	hub_button_alt.visible = not show_next
 	hub_button.visible = show_next
@@ -120,17 +141,20 @@ func win() -> void:
 
 
 func fail_death(color := Color.from_ok_hsl(0, 0, .5)) -> void:
-	get_tree().paused = true
 	restart_level(color)
 
 
 func fail_out_of_time() -> void:
-	get_tree().paused = true
 	restart_level(Color.from_ok_hsl(.17 / 360, 1, .57))
 
 
-var is_restarting := false
 func restart_level(color := Color.from_ok_hsl(0, 0, 1)) -> void:
+	restarted.emit()
+	
+	if get_tree().current_scene is Level:
+		level_accumulated_ticks += get_tree().current_scene.tick
+		level_skip_ratio = float(level_accumulated_ticks) / level_ticks_to_skip
+	
 	goto_scene('', color)
 
 
@@ -138,17 +162,34 @@ func back_to_hub() -> void:
 	goto_scene('res://scenes/hub.tscn')
 
 
+func set_level(level: LevelData) -> void:
+	self.level = level
+	level_accumulated_ticks = 0
+	level_ticks_to_skip = 0
+	level_skip_ratio = 0.0
+	goto_scene(level.path, Color.WHITE)
+
+
 func next_level() -> void:
-	if not is_instance_valid(current_world): return
-	if not is_instance_valid(current_level): return
-	if current_level_index < 0: return
+	if not is_instance_valid(world): return
+	if not is_instance_valid(level): return
+	if level_index < 0: return
 	
-	if current_level_index >= current_world.levels.size() - 1:
+	if level_index >= world.levels.size() - 1:
 		print('Cannot go to last level. This is the last level.')
 		return
 	
-	var level := current_world.levels[current_level_index + 1]
-	goto_scene(level.path)
+	level_index += 1
+	level = world.levels[level_index]
+	set_level(level)
+
+
+func skip_level() -> void:
+	if not get_tree().current_scene is Level: return
+	if level_accumulated_ticks < get_tree().current_scene.ticks_to_skip: return
+	level_accumulated_ticks = -1
+	
+	next_level()
 
 
 func quit() -> void:

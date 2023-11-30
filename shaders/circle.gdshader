@@ -18,7 +18,7 @@ void fragment() {
 	float ring_feather = fwidth(len);
 	float ring_alpha = smoothstep(ring_feather, 0.0, abs(len - half_radius + quarter_fill + ring_feather) - quarter_fill);
 	
-	// Radial Cutout
+	// Radial Fill
 	float theta = atan(uv.x, -uv.y);
 	float angle = theta / TAU + 0.5;
 	float radial_feather = fwidth(angle) * 1.5;

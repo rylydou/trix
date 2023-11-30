@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://jetbxhhoeojs"]
+[gd_scene load_steps=11 format=3 uid="uid://jetbxhhoeojs"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_7ip1i"]
 [ext_resource type="Script" path="res://scripts/resources/power_pool.gd" id="2_pic1o"]
 [ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="3_xgxsa"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="5_3nxwi"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="6_3hdb8"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="10_gmieu"]
 
 [sub_resource type="Resource" id="Resource_4dkvr"]
@@ -12,10 +14,40 @@ allow_repeats = true
 drop_count = 1
 expected_rolls_count = 1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkrh4"]
+shader = ExtResource("6_3hdb8")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 0.25
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_gyfj6"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5x6ge"]
+radius = 12.0
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_7ip1i")
+time_limit = 3.0
 power_pools = Array[ExtResource("2_pic1o")]([SubResource("Resource_4dkvr")])
 
 [node name="Camera" parent="." instance=ExtResource("3_xgxsa")]
 
 [node name="Player" parent="." instance=ExtResource("10_gmieu")]
+
+[node name="Dummy" type="CharacterBody2D" parent="." groups=["enemy"]]
+modulate = Color(0.988235, 0, 0.305882, 1)
+position = Vector2(327, 0)
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("5_3nxwi")
+
+[node name="Ring" type="MeshInstance2D" parent="Dummy"]
+material = SubResource("ShaderMaterial_pkrh4")
+mesh = SubResource("QuadMesh_gyfj6")
+
+[node name="Collision" type="CollisionShape2D" parent="Dummy"]
+shape = SubResource("CircleShape2D_5x6ge")
+debug_color = Color(1, 0, 0, 0)

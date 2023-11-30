@@ -12,6 +12,7 @@ static var current: Level
 
 
 @onready var time_limit_ticks := time_limit * 60
+@onready var ticks_to_skip := attempts_to_skip * time_limit * 60
 
 
 var tick := 0
