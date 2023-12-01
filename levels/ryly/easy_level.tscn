@@ -29,6 +29,7 @@ radius = 12.0
 [node name="Level" type="Node2D"]
 script = ExtResource("1_7ip1i")
 time_limit = 3.0
+attempts_to_skip = 2.0
 power_pools = Array[ExtResource("2_pic1o")]([SubResource("Resource_4dkvr")])
 
 [node name="Camera" parent="." instance=ExtResource("3_xgxsa")]

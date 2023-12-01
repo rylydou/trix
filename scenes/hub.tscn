@@ -16,8 +16,6 @@ button_scene = ExtResource("2_uveh0")
 worlds = Array[Resource("res://scripts/resources/world_data.gd")]([ExtResource("3_bmoob"), ExtResource("4_4kpw7"), ExtResource("5_y0lqu"), ExtResource("6_gyx0d"), ExtResource("7_ikw0a")])
 metadata/level_type = &"hub"
 
-[node name="Camera" parent="." instance=ExtResource("4_0btjx")]
-
 [node name="World Buttons" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -192)
@@ -44,3 +42,7 @@ text = "Adjust settings such as sensitivity in the pause menu (escape)"
 horizontal_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("5_wep7b")]
+screen_bounds_mode = 0
+
+[node name="Camera" parent="Player" instance=ExtResource("4_0btjx")]
+process_callback = 0

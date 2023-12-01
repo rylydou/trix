@@ -1,12 +1,20 @@
 class_name Player extends CharacterBody2D
 
 
+enum ScreenBoundsMode {
+	Ignore,
+	Wrap,
+	Clamp,
+}
+
+
 static var current: Player
 
 
 @export_group('Movement')
 @export var normal_friction := 0.9
 @export var firing_friction := 0.99
+@export var screen_bounds_mode := ScreenBoundsMode.Wrap
 
 @export_group('Shooting')
 @export var aim_length_limit := 96.0
@@ -70,9 +78,7 @@ func _physics_process(delta: float) -> void:
 				rotation = direction.angle()
 	
 	# Screen bounds and wrap
-	var bounds: Vector2 = Game.bounds
-	position.x = wrapf(position.x, -bounds.x, bounds.x)
-	position.y = wrapf(position.y, -bounds.y, bounds.y)
+	handle_bounds()
 	
 	# Dot crosshair
 	dot_node.position = global_position + aim_vector
@@ -97,7 +103,20 @@ func _physics_process(delta: float) -> void:
 	if input_shoot_released:
 		current_power._released()
 	
-	RenderingServer.global_shader_parameter_set('player_uv', (global_position + Game.bounds) / (Game.bounds * 2))
+	RenderingServer.global_shader_parameter_set('player_uv', (global_position - get_viewport().get_camera_2d().global_position + Game.bounds) / (Game.bounds * 2))
+
+
+func handle_bounds() -> void:
+	var bounds: Vector2 = Game.bounds
+	
+	match screen_bounds_mode:
+		ScreenBoundsMode.Ignore: return
+		ScreenBoundsMode.Wrap:
+			position.x = wrapf(position.x, -bounds.x, bounds.x)
+			position.y = wrapf(position.y, -bounds.y, bounds.y)
+		ScreenBoundsMode.Clamp:
+			position.x = clampf(position.x, -bounds.x, bounds.x)
+			position.y = clampf(position.y, -bounds.y, bounds.y)
 
 
 func apply_force(vector: Vector2, slippery_ticks: int) -> void:
