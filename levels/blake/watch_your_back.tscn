@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://dsu8t3ebf7vbq"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_gjmdl"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_py5o0"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_lf4j4"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="4_o24a8"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="5_2exeu"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="7_52tbw"]
+[ext_resource type="PackedScene" uid="uid://dhhm2yj3i3i7t" path="res://scenes/enemies/seeker.tscn" id="8_4tfw5"]
+[ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/ball_md.tscn" id="8_rcrds"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_kodpf"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_gjmdl")
+time_limit = null
+win_delay_ticks = null
+
+[node name="Camera" parent="." instance=ExtResource("2_py5o0")]
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_lf4j4")
+parallel = true
+
+[node name="Loop" type="Node2D" parent="Start"]
+script = ExtResource("4_o24a8")
+count = 10
+
+[node name="Spawn" type="Marker2D" parent="Start/Loop"]
+gizmo_extents = 320.0
+script = ExtResource("5_2exeu")
+scene = ExtResource("8_rcrds")
+
+[node name="Delay" type="Node2D" parent="Start/Loop"]
+script = ExtResource("7_52tbw")
+
+[node name="Loop 2" type="Node2D" parent="Start"]
+script = ExtResource("4_o24a8")
+count = 5
+
+[node name="Spawn" type="Marker2D" parent="Start/Loop 2"]
+gizmo_extents = 320.0
+script = ExtResource("5_2exeu")
+scene = ExtResource("8_4tfw5")
+health_override = 2
+
+[node name="Delay" type="Node2D" parent="Start/Loop 2"]
+script = ExtResource("7_52tbw")
+ticks = 15
+
+[node name="Player" parent="." instance=ExtResource("9_kodpf")]
