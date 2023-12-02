@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://dckkp0yxcswmu"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_0i1qm"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_lovho"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_ychom"]
+[ext_resource type="Script" path="res://scripts/events/group.gd" id="4_ce0g4"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="5_nbk6x"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="6_xfkhn"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="7_4euki"]
+[ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/ball_sm.tscn" id="8_5reqq"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="10_4fs5v"]
+
+[sub_resource type="Curve2D" id="Curve2D_jxb3k"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -700, 270, -71.4178, 21.2132, 71.4178, -21.2132, -100, 250, 0, 0, 0, 0, -30, 200, -0.487991, 61.2442, 0.487991, -61.2442, -30, -200, -93.7256, -60.1022, 93.7256, 60.1022, -150, -100, -66.2253, -98.2659, 66.2253, 98.2659, 100, -100, -67.8056, -115.687, 67.8056, 115.687, -150, 100, -22.0486, 65.5159, 22.0486, -65.5159, 500, 100, 3.77976, 64.256, -3.77976, -64.256, 401, -60, -42.8373, -3.77976, 42.8373, 3.77976, 477, -158, 10.7093, -74.3353, -10.7093, 74.3353, 619, 42, 107.723, -8.18949, -107.723, 8.18949, 461, 246, 31.498, 113.393, -31.498, -113.393, 131, 194, 13.2292, 68.0357, -13.2292, -68.0357, 269, -152, -6.29961, 66.1459, 6.29961, -66.1459, 101, -275, 0, 0, 0, 0, 275, -346, 0, 0, 0, 0, 443, -247)
+}
+point_count = 17
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_0i1qm")
+time_limit = null
+win_delay_ticks = null
+
+[node name="Camera" parent="." instance=ExtResource("2_lovho")]
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_ychom")
+parallel = true
+
+[node name="Group" type="Node2D" parent="Start"]
+script = ExtResource("4_ce0g4")
+parallel = true
+
+[node name="Loop 1" type="Node2D" parent="Start/Group"]
+script = ExtResource("5_nbk6x")
+count = 30
+
+[node name="Spawn" type="Marker2D" parent="Start/Group/Loop 1" node_paths=PackedStringArray("target_parent")]
+position = Vector2(-700, 270)
+gizmo_extents = 0.0
+script = ExtResource("7_4euki")
+scene = ExtResource("8_5reqq")
+target_parent = NodePath("../../../../Path")
+
+[node name="Delay" type="Node2D" parent="Start/Group/Loop 1"]
+script = ExtResource("6_xfkhn")
+ticks = 10
+
+[node name="Loop 2" type="Node2D" parent="Start/Group"]
+script = ExtResource("5_nbk6x")
+count = 30
+
+[node name="Spawn" type="Marker2D" parent="Start/Group/Loop 2" node_paths=PackedStringArray("target_parent")]
+position = Vector2(700, 270)
+gizmo_extents = 0.0
+script = ExtResource("7_4euki")
+scene = ExtResource("8_5reqq")
+target_parent = NodePath("../../../../Path 2")
+
+[node name="Delay" type="Node2D" parent="Start/Group/Loop 2"]
+script = ExtResource("6_xfkhn")
+ticks = 10
+
+[node name="Player" parent="." instance=ExtResource("10_4fs5v")]
+
+[node name="Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jxb3k")
+
+[node name="Path 2" type="Path2D" parent="."]
+scale = Vector2(-1, 1)
+curve = SubResource("Curve2D_jxb3k")
