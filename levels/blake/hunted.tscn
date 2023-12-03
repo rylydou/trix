@@ -1,0 +1,50 @@
+[gd_scene load_steps=11 format=3 uid="uid://85u024xnm8t"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_ua1gd"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_axson"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_2xwyx"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="4_7bkfs"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="5_wg5g7"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="7_j7j0x"]
+[ext_resource type="Script" path="res://scripts/events/group.gd" id="8_t0gwh"]
+[ext_resource type="PackedScene" uid="uid://cyyw1p53cj5jx" path="res://scenes/enemies/ball_md.tscn" id="8_xq61v"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_n2yx3"]
+[ext_resource type="PackedScene" uid="uid://cy6yi8c4p1pyy" path="res://scenes/enemies/monstrocity.tscn" id="9_stjx1"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_ua1gd")
+time_limit = null
+win_delay_ticks = null
+
+[node name="Camera" parent="." instance=ExtResource("2_axson")]
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_2xwyx")
+parallel = true
+
+[node name="Loop 2" type="Node2D" parent="Start"]
+script = ExtResource("4_7bkfs")
+count = 6
+
+[node name="Spawn" type="Marker2D" parent="Start/Loop 2"]
+gizmo_extents = 320.0
+script = ExtResource("5_wg5g7")
+scene = ExtResource("8_xq61v")
+
+[node name="Delay" type="Node2D" parent="Start/Loop 2"]
+script = ExtResource("7_j7j0x")
+ticks = 15
+
+[node name="Group" type="Node2D" parent="Start"]
+script = ExtResource("8_t0gwh")
+
+[node name="Delay" type="Node2D" parent="Start/Group"]
+script = ExtResource("7_j7j0x")
+ticks = 60
+
+[node name="Spawn" type="Marker2D" parent="Start/Group"]
+script = ExtResource("5_wg5g7")
+scene = ExtResource("9_stjx1")
+health_override = 40
+
+[node name="Player" parent="." instance=ExtResource("9_n2yx3")]
