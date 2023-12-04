@@ -52,14 +52,15 @@ func _process(delta: float) -> void:
 		restart_level()
 		return
 	
+	if Input.is_action_just_pressed('cheat_skip'):
+		Game.level_skip_ratio = 1.0
+		return
+	
 	if get_tree().paused: return
 	
 	if Input.is_action_just_pressed('pause'):
 			pause()
 			return
-	
-	if Input.is_action_just_pressed('cheat_skip'):
-		Game.level_skip_ratio = 1.0
 
 
 func _input(event: InputEvent) -> void:
@@ -177,6 +178,7 @@ func next_level() -> void:
 	
 	if level_index >= world.levels.size() - 1:
 		print('Cannot go to last level. This is the last level.')
+		back_to_hub()
 		return
 	
 	level_index += 1
