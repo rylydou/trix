@@ -65,6 +65,7 @@ enabled=PackedStringArray("res://addons/anim_player_refactor/plugin.cfg", "res:/
 
 [gui]
 
+common/snap_controls_to_pixels=false
 theme/custom="res://resources/theme.tres"
 theme/custom_font="res://content/fonts/teko/regular.otf"
 

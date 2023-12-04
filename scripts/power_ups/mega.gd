@@ -1,6 +1,8 @@
 extends PowerUp
 
 
+var sound := preload('res://content/sounds/shoot_big.wav')
+
 var max_shots := 3
 var projectile: PackedScene = preload('res://scenes/projectiles/player/mega_bullet.tscn')
 var fire_cooldown := 10
@@ -33,3 +35,7 @@ func _pressed() -> void:
 	
 	shot_projectile(projectile.instantiate())
 	player.apply_force(Vector2.from_angle(player.rotation) * -recoil_force, recoil_ticks)
+	
+	var p := SoundManager.play_sound(sound, 'SFX')
+	p.pitch_scale = randf_range(0.9, 1.1)
+	p.volume_db = -12.0

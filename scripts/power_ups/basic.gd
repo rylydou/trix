@@ -1,5 +1,7 @@
 extends PowerUp
 
+var sound := preload('res://content/sounds/shoot.wav')
+
 var projectile: PackedScene = preload('res://scenes/projectiles/player/basic_bullet.tscn')
 var fire_cooldown := 5
 var recoil_ticks := 5
@@ -27,3 +29,7 @@ func _down() -> void:
 	
 	shot_projectile(projectile.instantiate())
 	player.apply_force(Vector2.from_angle(player.rotation) * -recoil_force, recoil_ticks)
+	
+	var p := SoundManager.play_sound(sound, 'SFX')
+	p.pitch_scale = randf_range(0.9, 1.1)
+	p.volume_db = -19.0

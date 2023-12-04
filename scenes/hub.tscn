@@ -24,8 +24,7 @@ position = Vector2(0, -192)
 unique_name_in_owner = true
 position = Vector2(0, 64)
 
-[node name="Player" parent="." instance=ExtResource("5_wep7b")]
-screen_bounds_mode = 0
-
-[node name="Camera" parent="Player" instance=ExtResource("4_0btjx")]
+[node name="Camera" parent="." instance=ExtResource("4_0btjx")]
 process_callback = 0
+
+[node name="Player" parent="." instance=ExtResource("5_wep7b")]

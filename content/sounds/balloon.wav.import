@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://ddavg22e37xc6"
-path="res://.godot/imported/death.wav-5aca78714f68249c50ffb52bd25d47c1.sample"
+uid="uid://cvk5t3shmlhh1"
+path="res://.godot/imported/balloon.wav-c1550e3c4f5b140c9960caf4235ee929.sample"
 
 [deps]
 
-source_file="res://content/sounds/death.wav"
-dest_files=["res://.godot/imported/death.wav-5aca78714f68249c50ffb52bd25d47c1.sample"]
+source_file="res://content/sounds/balloon.wav"
+dest_files=["res://.godot/imported/balloon.wav-c1550e3c4f5b140c9960caf4235ee929.sample"]
 
 [params]
 
