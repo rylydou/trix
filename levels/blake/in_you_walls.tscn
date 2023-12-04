@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8qy763eldyfv"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_saxfp"]
+[ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="2_5h2kb"]
+[ext_resource type="Script" path="res://scripts/events/start.gd" id="3_oi8h7"]
+[ext_resource type="Script" path="res://scripts/events/loop.gd" id="4_gmcv7"]
+[ext_resource type="Script" path="res://scripts/events/spawn.gd" id="5_u6401"]
+[ext_resource type="Script" path="res://scripts/events/delay.gd" id="7_e72mx"]
+[ext_resource type="PackedScene" uid="uid://dhhm2yj3i3i7t" path="res://scenes/enemies/seeker.tscn" id="8_5fc2y"]
+[ext_resource type="PackedScene" uid="uid://cy6yi8c4p1pyy" path="res://scenes/enemies/monstrocity.tscn" id="9_3760s"]
+[ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="9_vygmy"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_saxfp")
+time_limit = null
+win_delay_ticks = null
+
+[node name="Camera" parent="." instance=ExtResource("2_5h2kb")]
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource("3_oi8h7")
+parallel = true
+
+[node name="Loop" type="Node2D" parent="Start"]
+script = ExtResource("4_gmcv7")
+count = 6
+
+[node name="Spawn" type="Marker2D" parent="Start/Loop"]
+position = Vector2(0, -700)
+gizmo_extents = 300.0
+script = ExtResource("5_u6401")
+scene = ExtResource("8_5fc2y")
+health_override = 2
+
+[node name="Delay" type="Node2D" parent="Start/Loop"]
+script = ExtResource("7_e72mx")
+
+[node name="Loop 2" type="Node2D" parent="Start"]
+script = ExtResource("4_gmcv7")
+count = 6
+
+[node name="Spawn" type="Marker2D" parent="Start/Loop 2"]
+position = Vector2(0, 700)
+gizmo_extents = 300.0
+script = ExtResource("5_u6401")
+scene = ExtResource("8_5fc2y")
+health_override = 2
+
+[node name="Delay" type="Node2D" parent="Start/Loop 2"]
+script = ExtResource("7_e72mx")
+
+[node name="Spawn" type="Marker2D" parent="Start"]
+position = Vector2(800, 0)
+script = ExtResource("5_u6401")
+scene = ExtResource("9_3760s")
+spawn_rotation = 3
+
+[node name="Spawn 2" type="Marker2D" parent="Start"]
+position = Vector2(-800, 0)
+script = ExtResource("5_u6401")
+scene = ExtResource("9_3760s")
+spawn_rotation = 3
+
+[node name="Player" parent="." instance=ExtResource("9_vygmy")]

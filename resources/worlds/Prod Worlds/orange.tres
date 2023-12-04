@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="WorldData" load_steps=11 format=3 uid="uid://qguw3j4ibdvb"]
+
+[ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="1_e0k4i"]
+[ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="2_de0ky"]
+[ext_resource type="Texture2D" uid="uid://diopxt2bpgebe" path="res://content/sprites/fruits/orange.svg" id="3_m42ma"]
+
+[sub_resource type="Resource" id="Resource_n4apo"]
+script = ExtResource("1_e0k4i")
+name = "Lots O' Balls"
+is_boss = false
+path = "res://levels/blake/lots_o_balls.tscn"
+
+[sub_resource type="Resource" id="Resource_p0aou"]
+script = ExtResource("1_e0k4i")
+name = "Prison"
+is_boss = false
+path = "res://levels/blake/prisonbreak.tscn"
+
+[sub_resource type="Resource" id="Resource_6h07j"]
+script = ExtResource("1_e0k4i")
+name = "Trenches"
+is_boss = false
+path = "res://levels/blake/trenches.tscn"
+
+[sub_resource type="Resource" id="Resource_ok56h"]
+script = ExtResource("1_e0k4i")
+name = "Wizard"
+is_boss = true
+path = "res://levels/ryly/boss_dig.tscn"
+
+[sub_resource type="Resource" id="Resource_oba1d"]
+script = ExtResource("1_e0k4i")
+name = "Mother Madness"
+is_boss = false
+path = "res://levels/blake/mother_madness.tscn"
+
+[sub_resource type="Resource" id="Resource_vytsi"]
+script = ExtResource("1_e0k4i")
+name = "Hunted"
+is_boss = false
+path = "res://levels/blake/hunted.tscn"
+
+[sub_resource type="Resource" id="Resource_mppfm"]
+script = ExtResource("1_e0k4i")
+name = "Slime"
+is_boss = true
+path = "res://levels/ryly/boss_split.tscn"
+
+[resource]
+script = ExtResource("2_de0ky")
+name = "Orange"
+sprite = ExtResource("3_m42ma")
+levels = Array[ExtResource("1_e0k4i")]([SubResource("Resource_n4apo"), SubResource("Resource_p0aou"), SubResource("Resource_6h07j"), SubResource("Resource_ok56h"), SubResource("Resource_oba1d"), SubResource("Resource_vytsi"), SubResource("Resource_mppfm")])

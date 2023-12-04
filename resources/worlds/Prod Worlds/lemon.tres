@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="WorldData" load_steps=10 format=3 uid="uid://b55cr7rwraay4"]
+
+[ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="1_dy2rs"]
+[ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="2_6ociv"]
+[ext_resource type="Texture2D" uid="uid://dujfvnhe6vyao" path="res://content/sprites/fruits/lemon.svg" id="3_lbv1g"]
+
+[sub_resource type="Resource" id="Resource_bkyx5"]
+script = ExtResource("1_dy2rs")
+name = "IN YOUR WALLS"
+is_boss = false
+path = "res://levels/blake/in_you_walls.tscn"
+
+[sub_resource type="Resource" id="Resource_7blv1"]
+script = ExtResource("1_dy2rs")
+name = "Mecha Snake"
+is_boss = true
+path = "res://levels/blake/train.tscn"
+
+[sub_resource type="Resource" id="Resource_qypex"]
+script = ExtResource("1_dy2rs")
+name = "Cluster"
+is_boss = false
+path = "res://levels/blake/clusterfuck.tscn"
+
+[sub_resource type="Resource" id="Resource_u5rc0"]
+script = ExtResource("1_dy2rs")
+name = "Golem"
+is_boss = true
+path = "res://levels/blake/pillar_boss.tscn"
+
+[sub_resource type="Resource" id="Resource_spqty"]
+script = ExtResource("1_dy2rs")
+name = "Nests"
+is_boss = false
+path = "res://levels/blake/Nests.tscn"
+
+[sub_resource type="Resource" id="Resource_tfsm7"]
+script = ExtResource("1_dy2rs")
+name = "Mad Engineer"
+is_boss = true
+path = "res://levels/blake/mad_engi.tscn"
+
+[resource]
+script = ExtResource("2_6ociv")
+name = "Lemon"
+sprite = ExtResource("3_lbv1g")
+levels = Array[ExtResource("1_dy2rs")]([SubResource("Resource_bkyx5"), SubResource("Resource_7blv1"), SubResource("Resource_qypex"), SubResource("Resource_u5rc0"), SubResource("Resource_spqty"), SubResource("Resource_tfsm7")])

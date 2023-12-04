@@ -10,6 +10,12 @@ name = "Hive Queen"
 is_boss = true
 path = "res://levels/blake/hive_queen.tscn"
 
+[sub_resource type="Resource" id="Resource_fc5xl"]
+script = ExtResource("1_clksm")
+name = "Wizard"
+is_boss = true
+path = "res://levels/ryly/boss_dig.tscn"
+
 [sub_resource type="Resource" id="Resource_r5g30"]
 script = ExtResource("1_clksm")
 name = "Slime"
@@ -34,14 +40,8 @@ name = "Mad Engineer"
 is_boss = true
 path = "res://levels/blake/mad_engi.tscn"
 
-[sub_resource type="Resource" id="Resource_fc5xl"]
-script = ExtResource("1_clksm")
-name = "Wizard"
-is_boss = true
-path = "res://levels/ryly/boss_dig.tscn"
-
 [resource]
 script = ExtResource("2_brb1f")
 name = "Boss World"
 sprite = ExtResource("3_8x68l")
-levels = Array[ExtResource("1_clksm")]([SubResource("Resource_6cahd"), SubResource("Resource_r5g30"), SubResource("Resource_udjyw"), SubResource("Resource_ryeja"), SubResource("Resource_w50qn"), SubResource("Resource_fc5xl")])
+levels = Array[ExtResource("1_clksm")]([SubResource("Resource_6cahd"), SubResource("Resource_fc5xl"), SubResource("Resource_r5g30"), SubResource("Resource_udjyw"), SubResource("Resource_ryeja"), SubResource("Resource_w50qn")])
