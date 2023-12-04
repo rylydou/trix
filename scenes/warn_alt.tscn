@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfojfyt7m4emv"]
+
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="1_jm800"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3cdpn"]
+resource_local_to_scene = true
+shader = ExtResource("1_jm800")
+shader_parameter/radius = 1.0
+shader_parameter/fill = 1.0
+shader_parameter/radial_fill = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_kvgeq"]
+size = Vector2(80, 80)
+
+[node name="Warn Alt" type="MeshInstance2D"]
+modulate = Color(0.988235, 0, 0.305882, 1)
+top_level = true
+z_index = -50
+z_as_relative = false
+material = SubResource("ShaderMaterial_3cdpn")
+mesh = SubResource("QuadMesh_kvgeq")

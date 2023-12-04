@@ -9,6 +9,7 @@ shader = ExtResource("1_c3mx2")
 shader_parameter/radius = 1.0
 shader_parameter/fill = 0.125
 shader_parameter/dash_count = 6.0
+shader_parameter/radial_fill = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_kvgeq"]
 size = Vector2(64, 64)
