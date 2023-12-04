@@ -48,6 +48,7 @@ script = ExtResource("1_2dqp6")
 pillar_scenes = Array[PackedScene]([ExtResource("2_etbvg"), ExtResource("3_k8erc"), ExtResource("3_4ckql")])
 num_of_pillars = 3
 bounds = Vector2(500, 300)
+shield_hp = 20
 
 [node name="Mover" type="Node" parent="."]
 script = ExtResource("2_dhplt")
