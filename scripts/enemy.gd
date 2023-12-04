@@ -50,8 +50,11 @@ func set_shield(new_hp: int) -> void:
 
 func take_damage(damage: int, knockback: Vector2) -> bool:
 	if invuln_ticks > 0: return false
-	if shield_hp <= 0: return true
+	if shield_hp <= 0:
+		SFX.play_hit_ineffective(position)
+		return true
 	
+	SFX.play_hit(position)
 	set_shield(shield_hp - damage)
 	velocity += knockback
 	return true

@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://xs2s7eh3s3yj"]
+[gd_scene load_steps=45 format=3 uid="uid://xs2s7eh3s3yj"]
 
 [ext_resource type="Script" path="res://scripts/autoloads/game.gd" id="1_fjg5l"]
 [ext_resource type="Script" path="res://scripts/ui/fullscreen_button.gd" id="2_2y54c"]
 [ext_resource type="StyleBox" uid="uid://kxvhto7mjodl" path="res://resources/styles/left/normal.tres" id="3_35ky0"]
+[ext_resource type="Script" path="res://scripts/components/bgm_player.gd" id="3_dmjsr"]
 [ext_resource type="StyleBox" uid="uid://cfjm0j6qa3ya3" path="res://resources/styles/left/hover.tres" id="4_1322k"]
 [ext_resource type="StyleBox" uid="uid://cfbpeulqs4m5y" path="res://resources/styles/top/normal.tres" id="4_ie6do"]
 [ext_resource type="StyleBox" uid="uid://cg2d6la3ufjno" path="res://resources/styles/right/normal.tres" id="5_x11d8"]
@@ -14,9 +15,12 @@
 [ext_resource type="StyleBox" uid="uid://b1ot0f8mxofca" path="res://resources/styles/bottom/hover.tres" id="9_4q1sj"]
 [ext_resource type="Shader" path="res://shaders/transition.gdshader" id="10_eqddc"]
 [ext_resource type="Script" path="res://scripts/ui/fps_label.gd" id="14_buya8"]
+[ext_resource type="Script" path="res://scripts/ui/bus_toggle.gd" id="15_7u4fb"]
 [ext_resource type="Shader" path="res://shaders/circle_ui.gdshader" id="15_ilv6g"]
 [ext_resource type="Script" path="res://scripts/ui/skip_ui.gd" id="15_sadii"]
 [ext_resource type="Shader" path="res://shaders/invert_bg.gdshader" id="16_2wr8y"]
+[ext_resource type="Script" path="res://scripts/ui/web_warning.gd" id="18_5w80o"]
+[ext_resource type="AudioStream" uid="uid://dujbfy71wffpp" path="res://content/music/trix.ogg" id="19_y7kpy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h4pb"]
 content_margin_left = 32.0
@@ -418,9 +422,18 @@ _data = {
 "show": SubResource("Animation_g408s")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y440k"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="Game" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_fjg5l")
+
+[node name="Music Player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_y7kpy")
+autoplay = true
+bus = &"BGM"
+script = ExtResource("3_dmjsr")
 
 [node name="Win Screen" type="Control" parent="."]
 unique_name_in_owner = true
@@ -550,6 +563,7 @@ text = "Go Fullscreen"
 script = ExtResource("2_2y54c")
 
 [node name="Quit Button" type="Button" parent="Pause Menu"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -706,6 +720,31 @@ visible = false
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
+[node name="Sound Controls" type="HBoxContainer" parent="Pause Menu/Menu/Settings"]
+layout_mode = 2
+
+[node name="Music Toggle" type="CheckButton" parent="Pause Menu/Menu/Settings/Sound Controls"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Music"
+flat = true
+script = ExtResource("15_7u4fb")
+bus = &"BGM"
+
+[node name="Sound Toggle" type="CheckButton" parent="Pause Menu/Menu/Settings/Sound Controls"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Sound"
+flat = true
+script = ExtResource("15_7u4fb")
+bus = &"SFX"
+
 [node name="Links" type="HBoxContainer" parent="Pause Menu/Menu"]
 layout_mode = 2
 alignment = 1
@@ -747,12 +786,6 @@ libraries = {
 "": SubResource("AnimationLibrary_3xdio")
 }
 
-[node name="FPS Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 19.0
-text = "? fps"
-script = ExtResource("14_buya8")
-
 [node name="Skip" type="MarginContainer" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 80)
@@ -761,8 +794,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -80.0
-offset_right = 120.0
+offset_left = 1280.0
+offset_top = 640.0
+offset_right = 1400.0
+offset_bottom = 720.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/margin_left = 32
@@ -822,6 +857,62 @@ libraries = {
 "": SubResource("AnimationLibrary_8mmm1")
 }
 
+[node name="Web Warning" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y440k")
+script = ExtResource("18_5w80o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Web Warning"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Web Warning/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.988235, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "--- Please Note ---"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Web Warning/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]You are currently play the web build which does run very well due to these reasons:[/center]
+[indent]
+- No support for raw mouse movement
+- No support for particles
+- Bad performance and freezes
+[/indent][center]
+This version just exists for the web build requirement of the jam. Please consider downloading the game to have the best, and arguably playable, experience.
+"
+fit_content = true
+scroll_active = false
+tab_size = 16
+
+[node name="OK Button" type="Button" parent="Web Warning/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "I understand I playing an inferior version of the game"
+
+[node name="FPS Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 19.0
+text = "? fps"
+script = ExtResource("14_buya8")
+
 [connection signal="pressed" from="Win Screen/VBox/HBox/HBox/Replay Level" to="." method="restart_level"]
 [connection signal="pressed" from="Win Screen/VBox/HBox/HBox/Next Button" to="." method="next_level"]
 [connection signal="pressed" from="Win Screen/VBox/HBox/HBox/Hub Button Alt" to="." method="back_to_hub"]
@@ -832,3 +923,4 @@ libraries = {
 [connection signal="pressed" from="Pause Menu/Menu/Buttons/Back Button" to="." method="back_to_hub"]
 [connection signal="value_changed" from="Pause Menu/Menu/Settings/Sensitivity/Sensitivity Slider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="pressed" from="Skip/Skip Button" to="." method="skip_level"]
+[connection signal="pressed" from="Web Warning/VBoxContainer/OK Button" to="Web Warning" method="ok"]

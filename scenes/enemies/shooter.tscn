@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bms80o6kt2iuj"]
+[gd_scene load_steps=17 format=3 uid="uid://bms80o6kt2iuj"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_1x5p5"]
 [ext_resource type="Script" path="res://scripts/movers/aimer.gd" id="2_6kqy6"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/events/start.gd" id="3_tq43f"]
 [ext_resource type="Script" path="res://scripts/events/loop.gd" id="4_ryyte"]
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="5_rtpmw"]
+[ext_resource type="Script" path="res://scripts/events/warn.gd" id="7_4axt5"]
 [ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/projectiles/enemy/basic.tscn" id="7_v82d7"]
 
 [sub_resource type="Curve" id="Curve_8bs85"]
@@ -63,6 +64,9 @@ ticks = 180
 [node name="Loop" type="Node2D" parent="Start"]
 script = ExtResource("4_ryyte")
 
+[node name="Warn" type="Node2D" parent="Start/Loop"]
+script = ExtResource("7_4axt5")
+
 [node name="Loop" type="Node2D" parent="Start/Loop"]
 script = ExtResource("4_ryyte")
 count = 3
@@ -80,7 +84,7 @@ spawn_rotation = 3
 
 [node name="Delay" type="Node2D" parent="Start/Loop"]
 script = ExtResource("5_rtpmw")
-ticks = 240
+ticks = 210
 
 [node name="Ring" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_d4481")

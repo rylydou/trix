@@ -19,9 +19,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerPrefs="*res://scripts/autoloads/player_prefs.gd"
-Game="*res://scenes/autoloads/game.tscn"
-Particles="*res://scenes/autoloads/particles.tscn"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
+SFX="*res://scenes/autoloads/sfx.tscn"
+Particles="*res://scenes/autoloads/particles.tscn"
+Game="*res://scenes/autoloads/game.tscn"
 
 [debug]
 
@@ -66,6 +67,21 @@ enabled=PackedStringArray("res://addons/anim_player_refactor/plugin.cfg", "res:/
 
 theme/custom="res://resources/theme.tres"
 theme/custom_font="res://content/fonts/teko/regular.otf"
+
+[importer_defaults]
+
+wav={
+"compress/mode": 1,
+"edit/loop_begin": 0,
+"edit/loop_end": -1,
+"edit/loop_mode": 1,
+"edit/normalize": true,
+"edit/trim": true,
+"force/8_bit": false,
+"force/max_rate": true,
+"force/max_rate_hz": 44100,
+"force/mono": false
+}
 
 [input]
 

@@ -30,3 +30,5 @@ func _physics_process(delta: float) -> void:
 		if is_dangerous:
 			player.global_position = collision.point
 			Game.fail_death(collider.modulate)
+			SFX.play_death(global_position)
+			# SFX.play_respawn()

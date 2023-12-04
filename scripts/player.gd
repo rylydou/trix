@@ -98,6 +98,7 @@ func _physics_process(delta: float) -> void:
 	var current_power := power_up if power_up else base_power
 	if input_shoot_pressed:
 		current_power._pressed()
+		Game.capture_mouse()
 	if input_shoot_down:
 		current_power._down()
 	if input_shoot_released:

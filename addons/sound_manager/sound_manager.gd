@@ -4,9 +4,9 @@ extends Node
 const SoundEffectsPlayer = preload("res://addons/sound_manager/sound_effects.gd")
 const MusicPlayer = preload("res://addons/sound_manager/music.gd")
 
-var sound_effects: SoundEffectsPlayer = SoundEffectsPlayer.new(["Sounds", "SFX"], 8)
+var sound_effects: SoundEffectsPlayer = SoundEffectsPlayer.new(["Sounds", "SFX"], 16)
 var ui_sound_effects: SoundEffectsPlayer = SoundEffectsPlayer.new(["UI", "Interface", "Sounds", "SFX"], 8)
-var music: MusicPlayer = MusicPlayer.new(["Music"], 2)
+var music: MusicPlayer = MusicPlayer.new(["Music", "BGM"], 2)
 
 var sound_process_mode: ProcessMode:
 	set(value):

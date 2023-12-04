@@ -1,0 +1,19 @@
+[gd_scene load_steps=9 format=3 uid="uid://5ys00047r1co"]
+
+[ext_resource type="Script" path="res://scripts/autoloads/sfx.gd" id="1_4i3xo"]
+[ext_resource type="AudioStream" uid="uid://ci72pxlspfn5d" path="res://content/sounds/death_2.wav" id="2_y2jv0"]
+[ext_resource type="AudioStream" uid="uid://c1eiggldp840w" path="res://content/sounds/respawn.wav" id="3_g4wg7"]
+[ext_resource type="AudioStream" uid="uid://beey7g171iorg" path="res://content/sounds/impact_2.wav" id="4_jmfdp"]
+[ext_resource type="AudioStream" uid="uid://cp07148yi4en" path="res://content/sounds/impact_3.wav" id="5_7q25o"]
+[ext_resource type="AudioStream" uid="uid://l5oi1c0p15ms" path="res://content/sounds/impact_4.wav" id="6_qxb5q"]
+[ext_resource type="AudioStream" uid="uid://cqfg8d54l3l2p" path="res://content/sounds/impact_5.wav" id="7_4qq8h"]
+[ext_resource type="AudioStream" uid="uid://cbe0jnmuiuurk" path="res://content/sounds/impact_1.wav" id="8_5116h"]
+
+[node name="SFX" type="Node"]
+script = ExtResource("1_4i3xo")
+death = Array[AudioStream]([ExtResource("2_y2jv0")])
+respawn = Array[AudioStream]([ExtResource("3_g4wg7")])
+hit = Array[AudioStream]([ExtResource("5_7q25o"), ExtResource("6_qxb5q")])
+shield_break = Array[AudioStream]([ExtResource("7_4qq8h")])
+hit_ineffective = Array[AudioStream]([ExtResource("8_5116h")])
+cut = Array[AudioStream]([ExtResource("4_jmfdp")])

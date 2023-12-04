@@ -23,16 +23,21 @@ func emit_impact(position: Vector2) -> void:
 	var xform := Transform2D(0, Vector2.ZERO, 0, position)
 	impact.emit_particle(xform, Vector2.ZERO, Color.WHITE, Color.WHITE, flags)
 
+
 func emit_shield_break(position: Vector2) -> void:
 	const flags := GPUParticles2D.EMIT_FLAG_POSITION
 	var xform := Transform2D(0, Vector2.ZERO, 0, position)
 	shield_break.emit_particle(xform, Vector2.ZERO, Color.WHITE, Color.WHITE, flags)
+	SFX.play_shield_break(position)
+
 
 func emit_kill(position: Vector2) -> void:
 	const flags := GPUParticles2D.EMIT_FLAG_POSITION
 	var xform := Transform2D(0, Vector2.ZERO, 0, position)
 	# for index in range(16):
 	kill.emit_particle(xform, Vector2.ZERO, Color.WHITE, Color.WHITE, flags)
+	SFX.play_cut(position)
+
 
 func emit_warn(position: Vector2) -> void:
 	const flags := GPUParticles2D.EMIT_FLAG_POSITION
