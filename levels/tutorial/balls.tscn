@@ -37,3 +37,13 @@ scene = ExtResource("7_wl1e0")
 script = ExtResource("8_u81d7")
 
 [node name="Player" parent="." instance=ExtResource("9_7l1bo")]
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.709804)
+offset_left = -108.0
+offset_top = -254.0
+offset_right = 117.0
+offset_bottom = -169.0
+rotation = -0.0872665
+text = "Hold X or RMB to Stay Still and Aim"
+horizontal_alignment = 1

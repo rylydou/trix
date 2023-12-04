@@ -51,3 +51,16 @@ ticks = 10
 
 [node name="Left Trench" type="Path2D" parent="."]
 curve = SubResource("Curve2D_4ltbu")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.709804)
+offset_left = -108.0
+offset_top = -254.0
+offset_right = 117.0
+offset_bottom = -169.0
+rotation = 0.0872665
+text = "Z or LMB to Shoot
+Shooting Enemies Turns Them White
+Kill White Enemies by Slashing Them
+Clear the Stage to Win"
+horizontal_alignment = 1
