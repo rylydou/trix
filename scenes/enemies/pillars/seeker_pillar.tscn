@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://drlwwk7okv58y"]
+[gd_scene load_steps=18 format=3 uid="uid://drlwwk7okv58y"]
 
 [ext_resource type="Script" path="res://scripts/enemies/Pillar Boss/pillar.gd" id="1_slpee"]
 [ext_resource type="PackedScene" uid="uid://dl0802bd4oxdx" path="res://scenes/enemies/pillars/path.tscn" id="2_w8h0r"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="8_n0lg4"]
 [ext_resource type="PackedScene" uid="uid://cahbnmdqml26y" path="res://scenes/enemies/ball_sm.tscn" id="9_2dsun"]
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="10_6x2cj"]
+[ext_resource type="Script" path="res://scripts/events/warn.gd" id="11_cnx8c"]
 [ext_resource type="PackedScene" uid="uid://dhhm2yj3i3i7t" path="res://scenes/enemies/seeker.tscn" id="11_yraug"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d4481"]
@@ -41,8 +42,6 @@ motion_mode = 1
 script = ExtResource("1_slpee")
 spawns = [NodePath("Start/Ring/Loop/Spawn"), NodePath("Start/Ring/Loop 2/Spawn 2"), NodePath("Start/Ring/Loop 3/Spawn 3"), NodePath("Start/Ring/Loop 4/Spawn 4")]
 path_scene = ExtResource("2_w8h0r")
-shield_hp = 15
-warn_radius = 24.0
 
 [node name="Ring" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_d4481")
@@ -128,7 +127,9 @@ script = ExtResource("6_8dde2")
 
 [node name="Delay" type="Node2D" parent="Start/Spawn"]
 script = ExtResource("10_6x2cj")
-ticks = 60
+
+[node name="Warn" type="Node2D" parent="Start/Spawn"]
+script = ExtResource("11_cnx8c")
 
 [node name="Loop" type="Node2D" parent="Start/Spawn"]
 script = ExtResource("7_n6yjm")
@@ -145,4 +146,7 @@ health_override = 2
 
 [node name="Delay" type="Node2D" parent="Start/Spawn/Loop"]
 script = ExtResource("10_6x2cj")
-ticks = 120
+ticks = 90
+
+[node name="Warn 2" type="Node2D" parent="Start/Spawn/Loop"]
+script = ExtResource("11_cnx8c")

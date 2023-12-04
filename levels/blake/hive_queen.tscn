@@ -34,8 +34,8 @@ parallel = true
 position = Vector2(400, 0)
 gizmo_extents = 0.0
 script = ExtResource("6_amur5")
-spawn_rotation = 3
 scene = ExtResource("5_rpmai")
+spawn_rotation = 3
 
 [node name="Player" parent="." instance=ExtResource("9_4dt7p")]
 

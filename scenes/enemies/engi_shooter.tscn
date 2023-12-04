@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmbpxwpe0fwyk"]
+[gd_scene load_steps=17 format=3 uid="uid://cmbpxwpe0fwyk"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mofov"]
 [ext_resource type="Script" path="res://scripts/movers/mover.gd" id="2_vawfp"]
 [ext_resource type="Script" path="res://scripts/movers/aimer.gd" id="3_cjssi"]
 [ext_resource type="Script" path="res://scripts/events/start.gd" id="4_8xqd3"]
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="5_f6t7d"]
+[ext_resource type="Script" path="res://scripts/events/warn.gd" id="6_de8ru"]
 [ext_resource type="Script" path="res://scripts/events/loop.gd" id="6_ss0qw"]
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="7_6u5da"]
 [ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/projectiles/enemy/basic.tscn" id="8_ybh7y"]
@@ -58,7 +59,9 @@ script = ExtResource("4_8xqd3")
 
 [node name="Delay 2" type="Node2D" parent="Start"]
 script = ExtResource("5_f6t7d")
-ticks = 60
+
+[node name="Warn" type="Node2D" parent="Start"]
+script = ExtResource("6_de8ru")
 
 [node name="Loop" type="Node2D" parent="Start"]
 script = ExtResource("6_ss0qw")
@@ -81,7 +84,10 @@ ticks = 6
 
 [node name="Delay" type="Node2D" parent="Start/Loop"]
 script = ExtResource("5_f6t7d")
-ticks = 120
+ticks = 90
+
+[node name="Warn 2" type="Node2D" parent="Start/Loop"]
+script = ExtResource("6_de8ru")
 
 [node name="Ring" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_d4481")

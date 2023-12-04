@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b7elxltgjxik6"]
+[gd_scene load_steps=17 format=3 uid="uid://b7elxltgjxik6"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_y22sy"]
 [ext_resource type="Script" path="res://scripts/movers/mover.gd" id="2_w7fwf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/events/start.gd" id="4_xh3p5"]
 [ext_resource type="Script" path="res://scripts/events/loop.gd" id="5_aui0p"]
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="6_xeoi3"]
+[ext_resource type="Script" path="res://scripts/events/warn.gd" id="7_4uvoq"]
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="7_uxhcb"]
 [ext_resource type="PackedScene" uid="uid://bsnvvssl1bdf2" path="res://scenes/projectiles/enemy/homing.tscn" id="8_lllyo"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="9_t8f2b"]
@@ -61,7 +62,10 @@ script = ExtResource("5_aui0p")
 
 [node name="Delay" type="Node2D" parent="Start/Loop"]
 script = ExtResource("6_xeoi3")
-ticks = 240
+ticks = 210
+
+[node name="Warn" type="Node2D" parent="Start/Loop"]
+script = ExtResource("7_4uvoq")
 
 [node name="Loop" type="Node2D" parent="Start/Loop"]
 script = ExtResource("5_aui0p")

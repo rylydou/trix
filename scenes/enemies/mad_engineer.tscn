@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://m1b6gv8ogvi6"]
+[gd_scene load_steps=21 format=3 uid="uid://m1b6gv8ogvi6"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_s2nhc"]
 [ext_resource type="Script" path="res://scripts/movers/aimer.gd" id="2_ev2ns"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cmbpxwpe0fwyk" path="res://scenes/enemies/engi_shooter.tscn" id="12_6fbtn"]
 [ext_resource type="PackedScene" uid="uid://cy6yi8c4p1pyy" path="res://scenes/enemies/monstrocity.tscn" id="13_6xinq"]
 [ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/projectiles/enemy/basic.tscn" id="13_ls27y"]
+[ext_resource type="Script" path="res://scripts/events/warn.gd" id="14_6clmv"]
 
 [sub_resource type="Curve" id="Curve_kqp1y"]
 max_value = 5.0
@@ -80,7 +81,9 @@ script = ExtResource("7_h0nqc")
 
 [node name="Delay" type="Node2D" parent="Start"]
 script = ExtResource("9_j5m27")
-ticks = 60
+
+[node name="Warn 6" type="Node2D" parent="Start"]
+script = ExtResource("14_6clmv")
 
 [node name="MG" type="Node2D" parent="Start"]
 script = ExtResource("10_5sf7n")
@@ -115,7 +118,9 @@ ticks = 5
 
 [node name="Delay 2" type="Node2D" parent="Start"]
 script = ExtResource("9_j5m27")
-ticks = 60
+
+[node name="Warn 5" type="Node2D" parent="Start"]
+script = ExtResource("14_6clmv")
 
 [node name="Turret" type="Marker2D" parent="Start"]
 script = ExtResource("11_6v633")
@@ -124,7 +129,9 @@ warn_ticks = -1
 
 [node name="Delay 3" type="Node2D" parent="Start"]
 script = ExtResource("9_j5m27")
-ticks = 60
+
+[node name="Warn 4" type="Node2D" parent="Start"]
+script = ExtResource("14_6clmv")
 
 [node name="MG 2" type="Node2D" parent="Start"]
 script = ExtResource("10_5sf7n")
@@ -165,7 +172,9 @@ spawn_rotation = 3
 
 [node name="Delay 4" type="Node2D" parent="Start"]
 script = ExtResource("9_j5m27")
-ticks = 60
+
+[node name="Warn 3" type="Node2D" parent="Start"]
+script = ExtResource("14_6clmv")
 
 [node name="Turret 2" type="Marker2D" parent="Start"]
 script = ExtResource("11_6v633")
@@ -174,7 +183,9 @@ warn_ticks = -1
 
 [node name="Delay 6" type="Node2D" parent="Start"]
 script = ExtResource("9_j5m27")
-ticks = 60
+
+[node name="Warn 2" type="Node2D" parent="Start"]
+script = ExtResource("14_6clmv")
 
 [node name="MG 3" type="Node2D" parent="Start"]
 script = ExtResource("10_5sf7n")
@@ -209,7 +220,9 @@ ticks = 5
 
 [node name="Delay 7" type="Node2D" parent="Start"]
 script = ExtResource("9_j5m27")
-ticks = 60
+
+[node name="Warn" type="Node2D" parent="Start"]
+script = ExtResource("14_6clmv")
 
 [node name="MG 4" type="Node2D" parent="Start"]
 script = ExtResource("10_5sf7n")
