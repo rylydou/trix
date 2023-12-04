@@ -77,7 +77,7 @@ script = ExtResource("7_nfqfd")
 
 [node name="Delay" type="Node2D" parent="Start"]
 script = ExtResource("8_oenwt")
-ticks = 10
+ticks = 60
 
 [node name="Warn" type="Node2D" parent="Start"]
 script = ExtResource("10_wpj3n")

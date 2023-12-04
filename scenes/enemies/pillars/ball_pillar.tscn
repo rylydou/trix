@@ -42,7 +42,7 @@ motion_mode = 1
 script = ExtResource("1_f7vht")
 spawns = [NodePath("Start/Ring/Loop/Spawn"), NodePath("Start/Ring/Loop 2/Spawn 2"), NodePath("Start/Ring/Loop 3/Spawn 3"), NodePath("Start/Ring/Loop 4/Spawn 4")]
 path_scene = ExtResource("2_b1m38")
-shield_hp = 15
+shield_hp = 10
 
 [node name="Ring" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_d4481")
