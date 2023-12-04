@@ -23,7 +23,7 @@ parallel = true
 
 [node name="Loop" type="Node2D" parent="Start"]
 script = ExtResource("4_o24a8")
-count = 10
+count = 8
 
 [node name="Spawn" type="Marker2D" parent="Start/Loop"]
 gizmo_extents = 320.0
@@ -48,3 +48,13 @@ script = ExtResource("7_52tbw")
 ticks = 15
 
 [node name="Player" parent="." instance=ExtResource("9_kodpf")]
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.709804)
+offset_left = -108.0
+offset_top = -254.0
+offset_right = 117.0
+offset_bottom = -169.0
+rotation = 0.0872665
+text = "Change Sensitiviy in the Pause Menu"
+horizontal_alignment = 1
