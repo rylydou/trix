@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://rwedmk43yuce"]
+[gd_scene load_steps=20 format=3 uid="uid://rwedmk43yuce"]
 
 [ext_resource type="Script" path="res://scripts/enemies/Pillar Boss/pillar_boss.gd" id="1_2dqp6"]
 [ext_resource type="Script" path="res://scripts/movers/mover.gd" id="2_dhplt"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/events/delay.gd" id="8_oenwt"]
 [ext_resource type="Script" path="res://scripts/events/loop.gd" id="9_d6udm"]
 [ext_resource type="Script" path="res://scripts/events/spawn.gd" id="10_jm0pk"]
+[ext_resource type="Script" path="res://scripts/events/warn.gd" id="10_wpj3n"]
 [ext_resource type="PackedScene" uid="uid://sq1xnf8av723" path="res://scenes/projectiles/enemy/basic.tscn" id="11_a5gft"]
 
 [sub_resource type="Curve" id="Curve_jc4ki"]
@@ -76,7 +77,10 @@ script = ExtResource("7_nfqfd")
 
 [node name="Delay" type="Node2D" parent="Start"]
 script = ExtResource("8_oenwt")
-ticks = 40
+ticks = 10
+
+[node name="Warn" type="Node2D" parent="Start"]
+script = ExtResource("10_wpj3n")
 
 [node name="Loop 2" type="Node2D" parent="Start"]
 script = ExtResource("9_d6udm")
@@ -96,4 +100,7 @@ ticks = 5
 
 [node name="Delay 2" type="Node2D" parent="Start/Loop 2"]
 script = ExtResource("8_oenwt")
-ticks = 90
+ticks = 60
+
+[node name="Warn" type="Node2D" parent="Start/Loop 2"]
+script = ExtResource("10_wpj3n")
