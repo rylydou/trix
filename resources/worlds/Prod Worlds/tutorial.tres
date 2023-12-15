@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="WorldData" load_steps=11 format=3 uid="uid://badkgyvb4kyjy"]
+[gd_resource type="Resource" script_class="WorldData" load_steps=9 format=3 uid="uid://di480fvw5rcy0"]
 
 [ext_resource type="Script" path="res://scripts/resources/level_data.gd" id="1_lb42j"]
 [ext_resource type="Script" path="res://scripts/resources/world_data.gd" id="2_8s8oc"]
-[ext_resource type="Texture2D" uid="uid://ci87obahahpay" path="res://content/sprites/fruits/apple.svg" id="3_7op6x"]
+[ext_resource type="Texture2D" uid="uid://dpnf30hwikhen" path="res://content/sprites/book.png" id="3_4ad7q"]
 
 [sub_resource type="Resource" id="Resource_a7bfo"]
 script = ExtResource("1_lb42j")
@@ -22,32 +22,20 @@ name = "Split"
 is_boss = false
 path = "res://levels/tutorial/split.tscn"
 
-[sub_resource type="Resource" id="Resource_243l3"]
+[sub_resource type="Resource" id="Resource_hro4q"]
 script = ExtResource("1_lb42j")
-name = "Watch Your Back"
+name = "Bullets"
 is_boss = false
-path = "res://levels/blake/watch_your_back.tscn"
+path = "res://levels/tutorial/shooter.tscn"
 
-[sub_resource type="Resource" id="Resource_dsheo"]
+[sub_resource type="Resource" id="Resource_38dx1"]
 script = ExtResource("1_lb42j")
-name = "Twin Dragons"
+name = "Big Balls"
 is_boss = false
-path = "res://levels/blake/dual_dragons.tscn"
-
-[sub_resource type="Resource" id="Resource_wxqwx"]
-script = ExtResource("1_lb42j")
-name = "Family"
-is_boss = false
-path = "res://levels/blake/family.tscn"
-
-[sub_resource type="Resource" id="Resource_nnbgb"]
-script = ExtResource("1_lb42j")
-name = "Hive Queen"
-is_boss = true
-path = "res://levels/blake/hive_queen.tscn"
+path = "res://levels/tutorial/BigBalls.tscn"
 
 [resource]
 script = ExtResource("2_8s8oc")
 name = "Tutorial"
-sprite = ExtResource("3_7op6x")
-levels = Array[ExtResource("1_lb42j")]([SubResource("Resource_a7bfo"), SubResource("Resource_yyfdl"), SubResource("Resource_8bw8k"), SubResource("Resource_243l3"), SubResource("Resource_dsheo"), SubResource("Resource_wxqwx"), SubResource("Resource_nnbgb")])
+sprite = ExtResource("3_4ad7q")
+levels = Array[ExtResource("1_lb42j")]([SubResource("Resource_a7bfo"), SubResource("Resource_yyfdl"), SubResource("Resource_8bw8k"), SubResource("Resource_hro4q"), SubResource("Resource_38dx1")])

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://2y2wpfkcpfoe"]
+[gd_scene load_steps=10 format=3 uid="uid://2y2wpfkcpfoe"]
 
 [ext_resource type="Script" path="res://scripts/hub.gd" id="1_nib47"]
 [ext_resource type="PackedScene" uid="uid://hfcs8ly4yvr6" path="res://scenes/bubble_button.tscn" id="2_uveh0"]
-[ext_resource type="Resource" uid="uid://badkgyvb4kyjy" path="res://resources/worlds/Prod Worlds/tutorial.tres" id="3_wqubu"]
+[ext_resource type="Resource" uid="uid://di480fvw5rcy0" path="res://resources/worlds/Prod Worlds/tutorial.tres" id="3_wqubu"]
 [ext_resource type="PackedScene" uid="uid://cknp4c1lc6h0d" path="res://scenes/camera.tscn" id="4_0btjx"]
+[ext_resource type="Resource" uid="uid://badkgyvb4kyjy" path="res://resources/worlds/Prod Worlds/apple.tres" id="4_xngbw"]
 [ext_resource type="Resource" uid="uid://qguw3j4ibdvb" path="res://resources/worlds/Prod Worlds/orange.tres" id="4_xtrhq"]
 [ext_resource type="Resource" uid="uid://b55cr7rwraay4" path="res://resources/worlds/Prod Worlds/lemon.tres" id="5_c7dyi"]
 [ext_resource type="PackedScene" uid="uid://dmcpku4xskc2q" path="res://scenes/player.tscn" id="5_wep7b"]
@@ -12,7 +13,7 @@
 [node name="Hub" type="Node2D"]
 script = ExtResource("1_nib47")
 button_scene = ExtResource("2_uveh0")
-worlds = Array[Resource("res://scripts/resources/world_data.gd")]([ExtResource("3_wqubu"), ExtResource("4_xtrhq"), ExtResource("5_c7dyi"), ExtResource("7_ikw0a")])
+worlds = Array[Resource("res://scripts/resources/world_data.gd")]([ExtResource("3_wqubu"), ExtResource("4_xngbw"), ExtResource("4_xtrhq"), ExtResource("5_c7dyi"), ExtResource("7_ikw0a")])
 metadata/level_type = &"hub"
 
 [node name="World Buttons" type="Node2D" parent="."]
